@@ -44,7 +44,8 @@ public class UserController {
 	@ApiOperation(value = "회원정보 조회", response = String.class)
 	@GetMapping("/{id}")
 	private ResponseEntity<UserDto> read(@PathVariable String id, HttpServletResponse response) {
-		return null;
+		UserDto userDto = userService.read(id);
+		return new ResponseEntity<UserDto>(userDto, HttpStatus.OK);
 	}
 	
 	@ApiOperation(value = "회원정보 수정", response = String.class)
