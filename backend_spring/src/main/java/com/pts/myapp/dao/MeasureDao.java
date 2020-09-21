@@ -1,5 +1,8 @@
 package com.pts.myapp.dao;
 
-public class MeasureDao {
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
+public interface MeasureDao {
 
 }

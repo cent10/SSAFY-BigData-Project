@@ -1,5 +1,5 @@
 package com.pts.myapp.dto;
 
-public class Result {
+public class FavoriteDto {
 
 }

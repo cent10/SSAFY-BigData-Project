@@ -1,5 +1,5 @@
 package com.pts.myapp.dto;
 
-public class Class {
+public class ResultDto {
 
 }
