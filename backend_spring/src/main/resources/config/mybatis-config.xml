@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<mappers>
+		<mapper resource="mappers/class-mapper.xml"/>
+		<mapper resource="mappers/coach-mapper.xml"/>
+		<mapper resource="mappers/favorite-mapper.xml"/>
+		<mapper resource="mappers/fitness-mapper.xml"/>
+		<mapper resource="mappers/log-mapper.xml"/>
+		<mapper resource="mappers/measure-mapper.xml"/>
+		<mapper resource="mappers/pushup-mapper.xml"/>
+		<mapper resource="mappers/result-mapper.xml"/>
+		<mapper resource="mappers/silhouette-mapper.xml"/>
+		<mapper resource="mappers/user-mapper.xml"/>
+		<mapper resource="mappers/video-mapper.xml"/>
+	</mappers>
+</configuration>
