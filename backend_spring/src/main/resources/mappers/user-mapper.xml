@@ -2,6 +2,25 @@
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pts.myapp.dao.UserDao">
 	
+	<!-- 회원가입 -->
 	
+	
+	<!-- 회원탈퇴 -->
+	
+	
+	<!-- 회원 정보 조회 (민감 정보 제외) -->
+	<select id="read" resultType="com.pts.myapp.dto.UserDto">
+		SELECT id, nickname, height, weight, birth_year, gender
+		FROM users
+		WHERE id LIKE #{id}
+	</select>
+	
+	<!-- 회원정보 수정 -->
+	
+	
+	<!-- 로그인 -->
+	
+	
+	<!-- 로그아웃 -->
 
 </mapper>
