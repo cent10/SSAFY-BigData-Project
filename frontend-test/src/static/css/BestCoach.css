@@ -1,5 +1,6 @@
 .bcoach {
   color: white;
+  margin-bottom: 40px;
 }
 
 .best-coach {
@@ -7,8 +8,9 @@
   height: 800px;
 }
 
-.title {
+.bcoach-title {
   margin-left: 20px;
+  margin-bottom: 20px;
 }
 
 .bcoach__contents {
