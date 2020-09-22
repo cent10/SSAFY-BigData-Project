@@ -18,7 +18,6 @@ import com.pts.myapp.dto.MeasureDto;
 import com.pts.myapp.service.MeasureService;
 
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -44,11 +43,12 @@ public class MeasureController {
 		@ApiResponse(code = 404, message = "체력측정 값 생성 실패")
 	})
 	private ResponseEntity<?> create(MeasureDto measure) {
+		logger.debug("체력측정 생성");
 		service.create(measure);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
-	@RequestMapping(method = RequestMethod.POST, value = "/{uid}", produces = "application/json")
+	@RequestMapping(method = RequestMethod.GET, value = "/{uid}", produces = "application/json")
 	@ApiOperation(value = "측정값 조회", notes = "사용자의 체력 측정값 조회")
 	@ApiResponses({
 		@ApiResponse(code = 200, message = "체력측정 값 조회"),
@@ -58,6 +58,7 @@ public class MeasureController {
 		@ApiResponse(code = 404, message = "체력측정 값 조회 실패")
 	})
 	private ResponseEntity<?> readAll(@PathVariable(value = "uid") String uid) {
+		logger.debug("체력측정 리스트 조회");
 		List<MeasureDto> list = service.readAll(uid);
 		return new ResponseEntity<List<MeasureDto>>(list, HttpStatus.OK);
 	}
