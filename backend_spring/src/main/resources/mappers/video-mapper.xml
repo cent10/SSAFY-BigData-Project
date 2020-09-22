@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pts.myapp.dao.VideoDao">
-	
-	
-
+    <insert id="create" parameterType="com.pts.myapp.dto.VideoDto">
+        insert into VIDEOS (THUMBNAIL, TITLE, TYPE1, TYPE2, TYPE3, COUNT, URL) values
+            (#{thumbnail}, #{title}, #{type1}, #{type2}, #{type3}, 0, #{url})
+    </insert>
 </mapper>
