@@ -36,5 +36,11 @@ public class FavoriteController {
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 	
-
+	@ApiOperation(value = "성향 조회", response = FavoriteDto.class)
+	@GetMapping("/{uid}")
+	private ResponseEntity<FavoriteDto> read(@PathVariable("id") String id) {
+		logger.debug("성향 조회");
+		FavoriteDto favoriteDto = favoriteService.read(id);
+		return new ResponseEntity<FavoriteDto>(favoriteDto, HttpStatus.OK);
+	}
 }
