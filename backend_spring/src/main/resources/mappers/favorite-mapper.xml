@@ -2,6 +2,12 @@
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pts.myapp.dao.FavoriteDao">
 	
+	<!-- 성향 등록 -->
+	<insert id="create">
+		INSERT INTO favorites (uid, is_solo, is_active, like, goal, dislike)
+		VALUES(#{uid}, #{is_solo}, #{is_active} ,#{like}, #{goal}, #{dislike})
+	</insert>
+	
 
 
 </mapper>

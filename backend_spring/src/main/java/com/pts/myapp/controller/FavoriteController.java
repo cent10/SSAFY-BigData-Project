@@ -28,5 +28,13 @@ public class FavoriteController {
 	@Autowired
 	FavoriteService favoriteService;
 	
+	@ApiOperation(value = "성향 등록")
+	@PostMapping("")
+	private ResponseEntity<?> create(@RequestBody FavoriteDto favoriteDto) {
+		logger.debug("성향 등록");
+		favoriteService.create(favoriteDto);
+		return new ResponseEntity<>(HttpStatus.CREATED);
+	}
+	
 
 }
