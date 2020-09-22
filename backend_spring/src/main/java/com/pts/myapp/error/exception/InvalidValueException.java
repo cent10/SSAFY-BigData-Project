@@ -1,4 +1,4 @@
-package com.ssafy.waple.error.exception;
+package com.pts.myapp.error.exception;
 
 public class InvalidValueException extends BusinessException {
 	public InvalidValueException(String value) {
