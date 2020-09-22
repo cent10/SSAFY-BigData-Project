@@ -9,4 +9,10 @@
     <select id="read" parameterType="int" resultType="com.pts.myapp.dto.VideoDto">
         select * from VIDEOS where ID = #{id}
     </select>
+
+    <select id="readAll" resultType="com.pts.myapp.dto.VideoDto">
+        select * from VIDEOS
+        order by `COUNT`
+        OFFSET 0 LIMIT 10
+    </select>
 </mapper>
