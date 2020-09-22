@@ -5,4 +5,8 @@
         insert into VIDEOS (THUMBNAIL, TITLE, TYPE1, TYPE2, TYPE3, COUNT, URL) values
             (#{thumbnail}, #{title}, #{type1}, #{type2}, #{type3}, 0, #{url})
     </insert>
+
+    <select id="read" parameterType="int" resultType="com.pts.myapp.dto.VideoDto">
+        select * from VIDEOS where ID = #{id}
+    </select>
 </mapper>

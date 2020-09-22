@@ -8,4 +8,6 @@ import com.pts.myapp.dto.VideoDto;
 public interface VideoDao {
 
 	int create(VideoDto video);
+
+	VideoDto read(int id);
 }

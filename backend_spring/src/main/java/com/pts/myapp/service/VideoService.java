@@ -6,4 +6,5 @@ public interface VideoService {
 
 	void create(VideoDto video);
 
+	VideoDto read(int id);
 }
