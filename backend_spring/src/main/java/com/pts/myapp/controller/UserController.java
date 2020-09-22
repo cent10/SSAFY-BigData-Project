@@ -29,42 +29,42 @@ public class UserController {
 	
 	@ApiOperation(value = "회원가입")
 	@PostMapping("")
-	private ResponseEntity<?> create(@RequestBody UserDto userDto, HttpServletResponse response) {
+	private ResponseEntity<?> create(@RequestBody UserDto userDto) {
 		userService.create(userDto);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 	
 	@ApiOperation(value = "회원탈퇴")
 	@DeleteMapping("/{id}")
-	private ResponseEntity<String> delete(@RequestBody UserDto userDto, HttpServletResponse response) {
-		
-		return null;
+	private ResponseEntity<String> delete(@PathVariable("id") String id) {
+		userService.delete(id);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	
 	@ApiOperation(value = "회원정보 조회", response = UserDto.class)
 	@GetMapping("/{id}")
-	private ResponseEntity<UserDto> read(@PathVariable String id, HttpServletResponse response) {
+	private ResponseEntity<UserDto> read(@PathVariable("id") String id) {
 		UserDto userDto = userService.read(id);
 		return new ResponseEntity<UserDto>(userDto, HttpStatus.OK);
 	}
 	
 	@ApiOperation(value = "회원정보 수정")
 	@PutMapping("/{id}")
-	private ResponseEntity<String> update(@RequestBody UserDto userDto, HttpServletResponse response) {
+	private ResponseEntity<String> update(@PathVariable("id") String id) {
 		
 		return null;
 	}
 	
 	@ApiOperation(value = "로그인")
 	@PostMapping("/login")
-	private ResponseEntity<String> login(@RequestBody UserDto userDto, HttpServletResponse response) {
+	private ResponseEntity<String> login(@RequestBody UserDto userDto) {
 		
 		return null;
 	}
 	
 	@ApiOperation(value = "로그아웃")
 	@GetMapping("/logout")
-	private ResponseEntity<String> logout(@RequestBody UserDto userDto, HttpServletResponse response) {
+	private ResponseEntity<String> logout(@RequestBody UserDto userDto) {
 		
 		return null;
 	}

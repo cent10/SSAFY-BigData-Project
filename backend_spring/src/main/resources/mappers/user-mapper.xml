@@ -9,7 +9,11 @@
 	</insert>
 	
 	<!-- 회원탈퇴 -->
-	
+	<delete id="delete">
+		DELETE
+		FROM users
+		WHERE id LIKE #{id}
+	</delete>
 	
 	<!-- 회원 정보 조회 (민감 정보 제외) -->
 	<select id="read" resultType="com.pts.myapp.dto.UserDto">
