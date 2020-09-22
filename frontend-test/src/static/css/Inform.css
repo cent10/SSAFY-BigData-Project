@@ -3,11 +3,11 @@
   /* object-fit: contain; */
   height: 500px;
   color: #fff;
+  display: flex;
+  justify-content: space-around;
 }
 
 .part {
-  margin-left: 100px;
-  display: inline-block;
   width: 250px;
   height: 400px;
   background-color: #000;
