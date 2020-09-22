@@ -15,4 +15,16 @@
         order by `COUNT`
         OFFSET 0 LIMIT 10
     </select>
+
+    <update id="update" parameterType="com.pts.myapp.dto.VideoDto">
+        update VIDEOS
+        set THUMBNAIL = #{thumbnail},
+            TITLE = #{title},
+            TYPE1 = #{type1},
+            TYPE2 = #{type2},
+            TYPE3 = #{type3},
+            COUNT = #{count},
+            URL = #{url}
+            where ID = #{id}
+    </update>
 </mapper>

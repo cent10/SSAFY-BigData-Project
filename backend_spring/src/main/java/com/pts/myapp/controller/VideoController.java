@@ -72,4 +72,19 @@ public class VideoController {
 		List<VideoDto> list = service.readAll();
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
+
+	@RequestMapping(method = RequestMethod.PUT, value = "/{id}", produces = "application/json")
+	@ApiOperation(value = "영상 수정", notes = "영상 수정")
+	@ApiResponses({
+		@ApiResponse(code = 201, message = "영상 수정"),
+		@ApiResponse(code = 400, message = "잘못된 요청입니다"),
+		@ApiResponse(code = 401, message = "로그인 후 이용해 주세요"),
+		@ApiResponse(code = 403, message = "권한이 없습니다"),
+		@ApiResponse(code = 404, message = "영상 수정 실패")
+	})
+	private ResponseEntity<?> update(@PathVariable(value = "id") int id, VideoDto video) {
+		logger.debug("영상 수정");
+		service.update(video);
+		return new ResponseEntity<>(video, HttpStatus.OK);
+	}
 }

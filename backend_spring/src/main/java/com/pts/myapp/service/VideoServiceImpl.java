@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.pts.myapp.dao.VideoDao;
 import com.pts.myapp.dto.VideoDto;
+import com.pts.myapp.error.exception.EntityNotFoundException;
 import com.pts.myapp.error.exception.IncorrectFormatException;
 
 @Service
@@ -31,5 +32,17 @@ public class VideoServiceImpl implements VideoService {
 	@Override
 	public List<VideoDto> readAll() {
 		return dao.readAll();
+	}
+
+	@Override
+	public void update(VideoDto video) {
+		video.setCount(video.getCount() + 1);
+		try {
+			dao.update(video);
+		} catch (DataAccessException e) {
+			if(e.getMessage().contains("For")) {
+				throw new EntityNotFoundException(String.valueOf(video.getId()));
+			}
+		}
 	}
 }

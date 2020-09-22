@@ -14,4 +14,6 @@ public interface VideoDao {
 	VideoDto read(int id);
 
 	List<VideoDto> readAll();
+
+	int update(VideoDto video);
 }
