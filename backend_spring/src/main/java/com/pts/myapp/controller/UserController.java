@@ -57,9 +57,14 @@ public class UserController {
 	
 	@ApiOperation(value = "로그인")
 	@PostMapping("/login")
-	private ResponseEntity<String> login(@RequestBody UserDto userDto) {
+	private ResponseEntity<UserDto> login(@RequestBody UserDto userDto, HttpServletResponse response) {
+		UserDto user = userService.login(userDto);
 		
-		return null;
+		// JWT 부분
+		
+		///////////
+		
+		return new ResponseEntity<UserDto>(user, HttpStatus.OK);
 	}
 	
 	@ApiOperation(value = "로그아웃")
