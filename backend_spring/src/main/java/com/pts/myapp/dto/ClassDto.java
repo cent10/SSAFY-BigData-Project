@@ -7,28 +7,31 @@ import io.swagger.annotations.ApiModelProperty;
 public class ClassDto {
 	@ApiModelProperty(value = "클래스 ID")
 	private int id;
-	
+
 	@ApiModelProperty(value = "썸네일")
 	private String thumbnail;
-	
+
 	@ApiModelProperty(value = "클래스 이름")
 	private String title;
-	
+
 	@ApiModelProperty(value = "코치 ID")
 	private String coachId;
-	
+
 	@ApiModelProperty(value = "클래스 난이도")
 	private int level;
-	
+
 	@ApiModelProperty(value = "해시태그 1")
 	private String type1;
-	
+
 	@ApiModelProperty(value = "해시태그 2")
 	private String type2;
-	
+
 	@ApiModelProperty(value = "해시태그 3")
 	private String type3;
-	
+
+	public ClassDto() {
+	}
+
 	public ClassDto(int id, String thumbnail, String title, String coachId, int level, String type1, String type2,
 			String type3) {
 		this.id = id;
@@ -104,5 +107,5 @@ public class ClassDto {
 	public void setType3(String type3) {
 		this.type3 = type3;
 	}
-	
+
 }

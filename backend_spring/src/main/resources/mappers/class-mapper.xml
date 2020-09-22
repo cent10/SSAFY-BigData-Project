@@ -2,13 +2,13 @@
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pts.myapp.dao.ClassDao">
 	
-	<select id="readAll" resultType="ClassDto">
+	<select id="readAll" resultType="com.pts.myapp.dto.ClassDto">
 		select id, thumbnail, title, coach_id as coachId, level, type1, type2, type3
 		from classes
 	</select>
 	
 	<!-- 확인 필요 -->
-	<select id="readById" resultType="ClassDto">
+	<select id="readById" resultType="com.pts.myapp.dto.ClassDto">
 		select id, thumbnail, title, coach_id as coachId, level, type1, type2, type3
 		from classes
 		where id=#{id}
