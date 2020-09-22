@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pts.myapp.dao.MeasureDao">
-	
-	
 
+    <insert id="create" parameterType="com.pts.myapp.dto.MeasureDto">
+        insert into MEASURES (UID, SIT_UP, PUSH_UP, SQUAT, RUNNING_JUMP, STANDING_JUMP, TWIST_SIT_UP) VALUES
+                             (#{uid}, #{sitUp}, #{pushUp}, #{squat}, #{runningJump}, #{standingJump}, #{twistSitUp})
+    </insert>
+    
+    <select id="readAll" parameterType="com.pts.myapp.dto.MeasureDto">
+        select * from MESURES WHERE UID = #{uid}
+    </select>
 </mapper>
