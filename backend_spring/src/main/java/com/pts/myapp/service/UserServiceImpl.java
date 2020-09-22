@@ -12,13 +12,13 @@ public class UserServiceImpl implements UserService {
 	UserDao userDao;
 	
 	@Override
-	public int create(UserDto userDto) {
-		return userDao.create(userDto);
+	public void create(UserDto userDto) {
+		userDao.create(userDto);
 	}
 
 	@Override
-	public int delete(String id) {
-		return userDao.delete(id);
+	public void delete(String id) {
+		userDao.delete(id);
 	}
 
 	@Override
@@ -27,8 +27,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public int update(UserDto userDto) {
-		return userDao.update(userDto);
+	public void update(UserDto userDto) {
+		userDao.update(userDto);
 	}
 
 	@Override
@@ -37,8 +37,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public int logout(String id) {
-		return userDao.logout(id);
+	public void logout(String id) {
+		userDao.logout(id);
 	}
 
 }

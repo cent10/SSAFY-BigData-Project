@@ -69,8 +69,12 @@ public class UserController {
 	
 	@ApiOperation(value = "로그아웃")
 	@GetMapping("/logout")
-	private ResponseEntity<String> logout(@RequestBody UserDto userDto) {
+	private ResponseEntity<?> logout(@RequestBody UserDto userDto) {
 		
-		return null;
+		// 로그아웃 처리
+		
+		////////////////
+		
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }
