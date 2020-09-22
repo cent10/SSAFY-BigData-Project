@@ -3,7 +3,10 @@
 <mapper namespace="com.pts.myapp.dao.UserDao">
 	
 	<!-- 회원가입 -->
-	
+	<insert id="create">
+		INSERT INTO users (id, password, nickname, height, weight, birth_year, gender)
+		VALUES(#{id}, #{password}, #{nickname} ,#{height}, #{weight}, #{birth_year}, #{gender})
+	</insert>
 	
 	<!-- 회원탈퇴 -->
 	

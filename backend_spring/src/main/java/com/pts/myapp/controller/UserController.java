@@ -27,44 +27,44 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
-	@ApiOperation(value = "회원가입", response = String.class)
+	@ApiOperation(value = "회원가입")
 	@PostMapping("")
-	private ResponseEntity<String> create(@RequestBody UserDto user, HttpServletResponse response) {
-		
-		return null;
+	private ResponseEntity<?> create(@RequestBody UserDto userDto, HttpServletResponse response) {
+		userService.create(userDto);
+		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 	
-	@ApiOperation(value = "회원탈퇴", response = String.class)
+	@ApiOperation(value = "회원탈퇴")
 	@DeleteMapping("/{id}")
-	private ResponseEntity<String> delete(@RequestBody UserDto user, HttpServletResponse response) {
+	private ResponseEntity<String> delete(@RequestBody UserDto userDto, HttpServletResponse response) {
 		
 		return null;
 	}
 	
-	@ApiOperation(value = "회원정보 조회", response = String.class)
+	@ApiOperation(value = "회원정보 조회", response = UserDto.class)
 	@GetMapping("/{id}")
 	private ResponseEntity<UserDto> read(@PathVariable String id, HttpServletResponse response) {
 		UserDto userDto = userService.read(id);
 		return new ResponseEntity<UserDto>(userDto, HttpStatus.OK);
 	}
 	
-	@ApiOperation(value = "회원정보 수정", response = String.class)
+	@ApiOperation(value = "회원정보 수정")
 	@PutMapping("/{id}")
-	private ResponseEntity<String> update(@RequestBody UserDto user, HttpServletResponse response) {
+	private ResponseEntity<String> update(@RequestBody UserDto userDto, HttpServletResponse response) {
 		
 		return null;
 	}
 	
-	@ApiOperation(value = "로그인", response = String.class)
+	@ApiOperation(value = "로그인")
 	@PostMapping("/login")
-	private ResponseEntity<String> login(@RequestBody UserDto user, HttpServletResponse response) {
+	private ResponseEntity<String> login(@RequestBody UserDto userDto, HttpServletResponse response) {
 		
 		return null;
 	}
 	
-	@ApiOperation(value = "로그아웃", response = String.class)
+	@ApiOperation(value = "로그아웃")
 	@GetMapping("/logout")
-	private ResponseEntity<String> logout(@RequestBody UserDto user, HttpServletResponse response) {
+	private ResponseEntity<String> logout(@RequestBody UserDto userDto, HttpServletResponse response) {
 		
 		return null;
 	}
