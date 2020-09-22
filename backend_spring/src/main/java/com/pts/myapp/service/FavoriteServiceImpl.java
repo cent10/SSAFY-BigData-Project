@@ -12,8 +12,8 @@ public class FavoriteServiceImpl implements FavoriteService {
 	FavoriteDao favoriteDao;
 	
 	@Override
-	public int create(FavoriteDto favoriteDto) {
-		return favoriteDao.create(favoriteDto);
+	public void create(FavoriteDto favoriteDto) {
+		favoriteDao.create(favoriteDto);
 	}
 
 	@Override
