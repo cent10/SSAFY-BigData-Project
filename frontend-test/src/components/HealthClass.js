@@ -3,7 +3,7 @@ import axios from "axios";
 import "../static/css/Row.css";
 import YouTube from "react-youtube";
 
-const API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
+const API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY2;
 
 function HealthClass({ title, keyword, isLargeRow }) {
   const [videos, setVideos] = useState([]);
@@ -44,12 +44,14 @@ function HealthClass({ title, keyword, isLargeRow }) {
     if (videoUrl) {
       setVideoUrl("");
     } else setVideoUrl(video.id.videoId);
+    // setVideoUrl(video.id.videoId);
+    // return <Redirect push to={`/video/${videoUrl}`}></Redirect>;
   };
 
   return (
-    <div className="row">
+    <div className="rowrow">
       {/* title */}
-      <h2>{title}</h2>
+      <h2 className="row__title">{title}</h2>
 
       {/* container -> posters */}
       <div className="row__posters">
@@ -58,7 +60,9 @@ function HealthClass({ title, keyword, isLargeRow }) {
           <img
             key={video.id.videoId}
             onClick={() => handleClick(video)}
-            className={`row__poster ${isLargeRow && "row__posterLarge"}`}
+            className={`row__class row__poster ${
+              isLargeRow && "row__posterLarge"
+            }`}
             src={video.snippet.thumbnails.high.url}
             alt={video?.snippet.title}
           />
