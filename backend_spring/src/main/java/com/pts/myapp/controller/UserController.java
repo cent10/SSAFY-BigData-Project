@@ -50,9 +50,9 @@ public class UserController {
 	
 	@ApiOperation(value = "회원정보 수정")
 	@PutMapping("/{id}")
-	private ResponseEntity<String> update(@PathVariable("id") String id) {
-		
-		return null;
+	private ResponseEntity<?> update(@RequestBody UserDto userDto) {
+		userService.update(userDto);
+		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 	
 	@ApiOperation(value = "로그인")
