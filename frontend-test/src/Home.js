@@ -2,12 +2,13 @@ import React from "react";
 import "./static/css/Home.css";
 
 import MainNav from "./components/MainNav";
+import MainFooter from "./components/MainFooter";
 
 import { Link } from "react-router-dom";
 
 function Home() {
   return (
-    <>
+    <div className="home">
       <MainNav isLoggedIn={false} />
       {/* <!-- Masthead--> */}
       <header class="masthead" id="page-top">
@@ -208,7 +209,9 @@ function Home() {
       <footer class="footer bg-black small text-center text-white-50">
         <div class="container">Copyright © 멋진 신사들</div>
       </footer>
-    </>
+      {/* footer */}
+      <MainFooter />
+    </div>
   );
 }
 

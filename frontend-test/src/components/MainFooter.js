@@ -17,6 +17,7 @@ function MainFooter() {
         <Icon className="icon" icon={twitterIcon} />
         <Icon className="icon" icon={youtubeIcon} />
       </div>
+      <br />
       <h5 className="team">
         멋쟁이 신사들 - 오인호, 김경재, 김세훈, 박진, 최재빈
       </h5>
