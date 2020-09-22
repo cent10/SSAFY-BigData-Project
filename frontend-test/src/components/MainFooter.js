@@ -6,11 +6,11 @@ import instagramIcon from "@iconify/icons-mdi/instagram";
 import twitterIcon from "@iconify/icons-mdi/twitter";
 import youtubeIcon from "@iconify/icons-mdi/youtube";
 
-import "../static/css/Footer.css";
+import "../static/css/MainFooter.css";
 
-function Footer() {
+function MainFooter() {
   return (
-    <footer className="footer">
+    <footer className="footer__main">
       <div className="icons">
         <Icon className="icon" icon={facebookIcon} />
         <Icon className="icon" icon={instagramIcon} />
@@ -24,4 +24,4 @@ function Footer() {
   );
 }
 
-export default Footer;
+export default MainFooter;
