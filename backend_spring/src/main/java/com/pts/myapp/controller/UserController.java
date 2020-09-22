@@ -2,6 +2,8 @@ package com.pts.myapp.controller;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,12 +26,16 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @RequestMapping("/pts/users")
 public class UserController {
+	
+	static final Logger logger = LoggerFactory.getLogger(UserController.class);
+	
 	@Autowired
 	UserService userService;
 	
 	@ApiOperation(value = "회원가입")
 	@PostMapping("")
 	private ResponseEntity<?> create(@RequestBody UserDto userDto) {
+		logger.debug("회원가입");
 		userService.create(userDto);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
@@ -37,6 +43,7 @@ public class UserController {
 	@ApiOperation(value = "회원탈퇴")
 	@DeleteMapping("/{id}")
 	private ResponseEntity<String> delete(@PathVariable("id") String id) {
+		logger.debug("회원탈퇴");
 		userService.delete(id);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
@@ -44,6 +51,7 @@ public class UserController {
 	@ApiOperation(value = "회원정보 조회", response = UserDto.class)
 	@GetMapping("/{id}")
 	private ResponseEntity<UserDto> read(@PathVariable("id") String id) {
+		logger.debug("회원정보 조회");
 		UserDto userDto = userService.read(id);
 		return new ResponseEntity<UserDto>(userDto, HttpStatus.OK);
 	}
@@ -51,6 +59,7 @@ public class UserController {
 	@ApiOperation(value = "회원정보 수정")
 	@PutMapping("/{id}")
 	private ResponseEntity<?> update(@RequestBody UserDto userDto) {
+		logger.debug("회원정보 수정");
 		userService.update(userDto);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
@@ -58,6 +67,7 @@ public class UserController {
 	@ApiOperation(value = "로그인")
 	@PostMapping("/login")
 	private ResponseEntity<UserDto> login(@RequestBody UserDto userDto, HttpServletResponse response) {
+		logger.debug("로그인");
 		UserDto user = userService.login(userDto);
 		
 		// JWT 부분
@@ -70,6 +80,7 @@ public class UserController {
 	@ApiOperation(value = "로그아웃")
 	@GetMapping("/logout")
 	private ResponseEntity<?> logout(@RequestBody UserDto userDto) {
+		logger.debug("로그아웃");
 		
 		// 로그아웃 처리
 		
