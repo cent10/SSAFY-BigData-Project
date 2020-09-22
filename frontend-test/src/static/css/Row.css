@@ -1,6 +1,9 @@
-.row {
+.rowrow {
   margin-left: 20px;
   color: white;
+}
+
+.row__title {
 }
 
 .row__posters {
@@ -13,12 +16,26 @@
 .row__posters::-webkit-scrollbar {
   display: none;
 }
-/* 공통 부분을 먼저 써주고 */
-.row__poster {
+
+.row__link {
   object-fit: contain;
   width: 100%;
   max-height: 200px;
   margin-right: 20px;
+}
+
+.row__class {
+  object-fit: contain;
+  width: 100%;
+  margin-right: 20px;
+}
+
+/* 공통 부분을 먼저 써주고 */
+.row__poster {
+  /* object-fit: contain; */
+  /* width: 100%; */
+  max-height: 200px;
+  /* margin-right: 20px; */
   transition: transform 450ms;
 }
 
