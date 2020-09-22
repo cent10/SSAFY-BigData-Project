@@ -1,8 +1,12 @@
 package com.pts.myapp.service;
 
-import com.pts.myapp.dto.Measure;
+import java.util.List;
+
+import com.pts.myapp.dto.MeasureDto;
 
 public interface MeasureService {
 
-	void create(Measure measure);
+	void create(MeasureDto measure);
+
+	List<MeasureDto> readAll(String uid);
 }
