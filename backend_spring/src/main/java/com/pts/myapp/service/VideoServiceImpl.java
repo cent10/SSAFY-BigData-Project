@@ -45,4 +45,15 @@ public class VideoServiceImpl implements VideoService {
 			}
 		}
 	}
+
+	@Override
+	public void delete(int id) {
+		try {
+			dao.delete(id);
+		} catch (DataAccessException e) {
+			if(e.getMessage().contains("For")) {
+				throw new EntityNotFoundException(String.valueOf(id));
+			}
+		}
+	}
 }

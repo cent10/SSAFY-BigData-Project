@@ -13,4 +13,6 @@ public interface VideoService {
 	List<VideoDto> readAll();
 
 	void update(VideoDto video);
+
+	void delete(int id);
 }

@@ -27,4 +27,8 @@
             URL = #{url}
             where ID = #{id}
     </update>
+
+    <delete id="delete" parameterType="int">
+        delete from VIDEOS where ID = #{id}
+    </delete>
 </mapper>
