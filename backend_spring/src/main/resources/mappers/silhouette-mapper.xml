@@ -2,6 +2,12 @@
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pts.myapp.dao.SilhouetteDao">
 	
-	
+	<insert id="create" parameterType="com.pts.myapp.dto.SilhouetteDto">
+        insert into SILHOUTTES (NUMBER, UID, STAR) VALUES
+            ( #{number}, #{uid}, #{star})
+    </insert>
 
+    <select id="read" parameterType="String" resultType="com.pts.myapp.dto.SilhouetteDto">
+        select * from SILHOUTTES where UID = #{uid}
+    </select>
 </mapper>
