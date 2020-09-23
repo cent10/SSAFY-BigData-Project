@@ -11,36 +11,36 @@ function Home() {
     <div className="home">
       <MainNav isLoggedIn={false} />
       {/* <!-- Masthead--> */}
-      <header class="masthead" id="page-top">
-        <div class="container d-flex h-100 align-items-center">
-          <div class="mx-auto text-center">
-            <h1 class="mx-auto my-0 text-uppercase">
+      <header className="masthead" id="page-top">
+        <div className="container d-flex h-100 align-items-center">
+          <div className="mx-auto text-center">
+            <h1 className="mx-auto my-0 text-uppercase">
               Persnal
               <br />
               Training
               <br />
               Service
             </h1>
-            <h2 class="text-white-50 mx-auto mt-2 mb-5">
+            <h2 className="text-white-50 mx-auto mt-2 mb-5">
               온라인 고객 맞춤형 트레이닝 서비스 플랫폼
             </h2>
             <Link to={"/main"}>
               {/* {"시작하기"} */}
               <button className="start-button">시작하기</button>
             </Link>
-            {/* <a class="btn btn-primary js-scroll-trigger" href="#about">
+            {/* <a className="btn btn-primary js-scroll-trigger" href="#about">
               Log In
             </a> */}
           </div>
         </div>
       </header>
       {/* <!-- About--> */}
-      <section class="about-section text-center" id="about">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-8 mx-auto">
-              <h2 class="text-white mb-4">Built with Bootstrap 4</h2>
-              <p class="text-white-50">
+      <section className="about-section text-center" id="about">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-8 mx-auto">
+              <h2 className="text-white mb-4">Built with Bootstrap 4</h2>
+              <p className="text-white-50">
                 Grayscale is a free Bootstrap theme created by Start Bootstrap.
                 It can be yours right now, simply download the template on
                 <a href="https://startbootstrap.com/template-overviews/grayscale/">
@@ -52,28 +52,28 @@ function Home() {
             </div>
           </div>
           <img
-            class="img-fluid"
+            className="img-fluid"
             src={require("./static/assets/img/ipad.png")}
             alt=""
           />
         </div>
       </section>
       {/* <!-- Projects--> */}
-      <section class="projects-section bg-light" id="projects">
-        <div class="container">
+      <section className="projects-section bg-light" id="projects">
+        <div className="container">
           {/* <!-- Featured Project Row--> */}
-          <div class="row align-items-center no-gutters mb-4 mb-lg-5">
-            <div class="col-xl-8 col-lg-7">
+          <div className="row align-items-center no-gutters mb-4 mb-lg-5">
+            <div className="col-xl-8 col-lg-7">
               <img
-                class="img-fluid mb-3 mb-lg-0"
+                className="img-fluid mb-3 mb-lg-0"
                 src={require("./static/assets/img/bg-masthead.jpg")}
                 alt=""
               />
             </div>
-            <div class="col-xl-4 col-lg-5">
-              <div class="featured-text text-center text-lg-left">
+            <div className="col-xl-4 col-lg-5">
+              <div className="featured-text text-center text-lg-left">
                 <h4>Shoreline</h4>
-                <p class="text-black-50 mb-0">
+                <p className="text-black-50 mb-0">
                   Grayscale is open source and MIT licensed. This means you can
                   use it for any project - even commercial projects! Download
                   it, customize it, and publish your website!
@@ -82,49 +82,49 @@ function Home() {
             </div>
           </div>
           {/* <!-- Project One Row--> */}
-          <div class="row justify-content-center no-gutters mb-5 mb-lg-0">
-            <div class="col-lg-6">
+          <div className="row justify-content-center no-gutters mb-5 mb-lg-0">
+            <div className="col-lg-6">
               <img
-                class="img-fluid"
+                className="img-fluid"
                 src={require("./static/assets/img/demo-image-01.jpg")}
                 alt=""
               />
             </div>
-            <div class="col-lg-6">
-              <div class="bg-black text-center h-100 project">
-                <div class="d-flex h-100">
-                  <div class="project-text w-100 my-auto text-center text-lg-left">
-                    <h4 class="text-white">Misty</h4>
-                    <p class="mb-0 text-white-50">
+            <div className="col-lg-6">
+              <div className="bg-black text-center h-100 project">
+                <div className="d-flex h-100">
+                  <div className="project-text w-100 my-auto text-center text-lg-left">
+                    <h4 className="text-white">Misty</h4>
+                    <p className="mb-0 text-white-50">
                       An example of where you can put an image of a project, or
                       anything else, along with a description.
                     </p>
-                    <hr class="d-none d-lg-block mb-0 ml-0" />
+                    <hr className="d-none d-lg-block mb-0 ml-0" />
                   </div>
                 </div>
               </div>
             </div>
           </div>
           {/* <!-- Project Two Row--> */}
-          <div class="row justify-content-center no-gutters">
-            <div class="col-lg-6">
+          <div className="row justify-content-center no-gutters">
+            <div className="col-lg-6">
               <img
-                class="img-fluid"
+                className="img-fluid"
                 src={require("./static/assets/img/demo-image-02.jpg")}
                 alt=""
               />
             </div>
-            <div class="col-lg-6 order-lg-first">
-              <div class="bg-black text-center h-100 project">
-                <div class="d-flex h-100">
-                  <div class="project-text w-100 my-auto text-center text-lg-right">
-                    <h4 class="text-white">Mountains</h4>
-                    <p class="mb-0 text-white-50">
+            <div className="col-lg-6 order-lg-first">
+              <div className="bg-black text-center h-100 project">
+                <div className="d-flex h-100">
+                  <div className="project-text w-100 my-auto text-center text-lg-right">
+                    <h4 className="text-white">Mountains</h4>
+                    <p className="mb-0 text-white-50">
                       Another example of a project with its respective
                       description. These sections work well responsively as
                       well, try this theme on a small screen!
                     </p>
-                    <hr class="d-none d-lg-block mb-0 mr-0" />
+                    <hr className="d-none d-lg-block mb-0 mr-0" />
                   </div>
                 </div>
               </div>
@@ -133,20 +133,20 @@ function Home() {
         </div>
       </section>
       {/* <!-- Signup--> */}
-      <section class="signup-section" id="signup">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-10 col-lg-8 mx-auto text-center">
-              <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
-              <h2 class="text-white mb-5">Subscribe to receive updates!</h2>
-              <form class="form-inline d-flex">
+      <section className="signup-section" id="signup">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-10 col-lg-8 mx-auto text-center">
+              <i className="far fa-paper-plane fa-2x mb-2 text-white"></i>
+              <h2 className="text-white mb-5">Subscribe to receive updates!</h2>
+              <form className="form-inline d-flex">
                 <input
-                  class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0"
+                  className="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0"
                   id="inputEmail"
                   type="email"
                   placeholder="Enter email address..."
                 />
-                <button class="btn btn-primary mx-auto" type="submit">
+                <button className="btn btn-primary mx-auto" type="submit">
                   Subscribe
                 </button>
               </form>
@@ -155,59 +155,59 @@ function Home() {
         </div>
       </section>
       {/* <!-- Contact--> */}
-      <section class="contact-section bg-black">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-4 mb-3 mb-md-0">
-              <div class="card py-4 h-100">
-                <div class="card-body text-center">
-                  <i class="fas fa-map-marked-alt text-primary mb-2"></i>
-                  <h4 class="text-uppercase m-0">Address</h4>
-                  <hr class="my-4" />
-                  <div class="small text-black-50">
+      <section className="contact-section bg-black">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-4 mb-3 mb-md-0">
+              <div className="card py-4 h-100">
+                <div className="card-body text-center">
+                  <i className="fas fa-map-marked-alt text-primary mb-2"></i>
+                  <h4 className="text-uppercase m-0">Address</h4>
+                  <hr className="my-4" />
+                  <div className="small text-black-50">
                     4923 Market Street, Orlando FL
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col-md-4 mb-3 mb-md-0">
-              <div class="card py-4 h-100">
-                <div class="card-body text-center">
-                  <i class="fas fa-envelope text-primary mb-2"></i>
-                  <h4 class="text-uppercase m-0">Email</h4>
-                  <hr class="my-4" />
-                  <div class="small text-black-50">
+            <div className="col-md-4 mb-3 mb-md-0">
+              <div className="card py-4 h-100">
+                <div className="card-body text-center">
+                  <i className="fas fa-envelope text-primary mb-2"></i>
+                  <h4 className="text-uppercase m-0">Email</h4>
+                  <hr className="my-4" />
+                  <div className="small text-black-50">
                     <a href="#!">hello@yourdomain.com</a>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col-md-4 mb-3 mb-md-0">
-              <div class="card py-4 h-100">
-                <div class="card-body text-center">
-                  <i class="fas fa-mobile-alt text-primary mb-2"></i>
-                  <h4 class="text-uppercase m-0">Phone</h4>
-                  <hr class="my-4" />
-                  <div class="small text-black-50">+1 (555) 902-8832</div>
+            <div className="col-md-4 mb-3 mb-md-0">
+              <div className="card py-4 h-100">
+                <div className="card-body text-center">
+                  <i className="fas fa-mobile-alt text-primary mb-2"></i>
+                  <h4 className="text-uppercase m-0">Phone</h4>
+                  <hr className="my-4" />
+                  <div className="small text-black-50">+1 (555) 902-8832</div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="social d-flex justify-content-center">
-            <a class="mx-2" href="#!">
-              <i class="fab fa-twitter"></i>
+          <div className="social d-flex justify-content-center">
+            <a className="mx-2" href="#!">
+              <i className="fab fa-twitter"></i>
             </a>
-            <a class="mx-2" href="#!">
-              <i class="fab fa-facebook-f"></i>
+            <a className="mx-2" href="#!">
+              <i className="fab fa-facebook-f"></i>
             </a>
-            <a class="mx-2" href="#!">
-              <i class="fab fa-github"></i>
+            <a className="mx-2" href="#!">
+              <i className="fab fa-github"></i>
             </a>
           </div>
         </div>
       </section>
-      <footer class="footer bg-black small text-center text-white-50">
-        <div class="container">Copyright © 멋진 신사들</div>
+      <footer className="footer bg-black small text-center text-white-50">
+        <div className="container">Copyright © 멋진 신사들</div>
       </footer>
       {/* footer */}
       <MainFooter />

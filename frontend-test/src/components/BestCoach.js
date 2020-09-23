@@ -5,7 +5,7 @@ import backdropImage from "../static/image/bestcoach.png";
 function BestCoach({ title, bestCoach }) {
   return (
     <div className="bcoach">
-      <h2 className="title">{title}</h2>
+      <h2 className="bcoach-title">{title}</h2>
       <div
         className="best-coach"
         style={{

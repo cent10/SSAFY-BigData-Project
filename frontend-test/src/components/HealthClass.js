@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../static/css/Row.css";
-import YouTube from "react-youtube";
+// import YouTube from "react-youtube";
 
-const API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY2;
+import ModalClass from "./ModalClass";
+
+const API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
 
 function HealthClass({ title, keyword, isLargeRow }) {
   const [videos, setVideos] = useState([]);
-  const [videoUrl, setVideoUrl] = useState("");
+  // const [videoUrl, setVideoUrl] = useState("");
+  const [modalShow, setModalShow] = useState(false);
+  const [src, setSrc] = useState("");
 
   useEffect(() => {
     async function fetchVideo() {
@@ -32,21 +36,21 @@ function HealthClass({ title, keyword, isLargeRow }) {
   // console.log(keyword);
   // console.log(videos);
 
-  const opts = {
-    height: "390",
-    width: "100%",
-    playerVars: {
-      autoplay: 1,
-    },
-  };
+  // const opts = {
+  //   height: "390",
+  //   width: "100%",
+  //   playerVars: {
+  //     autoplay: 1,
+  //   },
+  // };
 
-  const handleClick = (video) => {
-    if (videoUrl) {
-      setVideoUrl("");
-    } else setVideoUrl(video.id.videoId);
-    // setVideoUrl(video.id.videoId);
-    // return <Redirect push to={`/video/${videoUrl}`}></Redirect>;
-  };
+  // const handleClick = (video) => {
+  //   if (videoUrl) {
+  //     setVideoUrl("");
+  //   } else setVideoUrl(video.id.videoId);
+  //   // setVideoUrl(video.id.videoId);
+  //   // return <Redirect push to={`/video/${videoUrl}`}></Redirect>;
+  // };
 
   return (
     <div className="rowrow">
@@ -59,7 +63,11 @@ function HealthClass({ title, keyword, isLargeRow }) {
         {videos.map((video) => (
           <img
             key={video.id.videoId}
-            onClick={() => handleClick(video)}
+            // onClick={() => handleClick(video)}
+            onClick={() => {
+              setSrc(video.snippet.thumbnails.high.url);
+              setModalShow(true);
+            }}
             className={`row__class row__poster ${
               isLargeRow && "row__posterLarge"
             }`}
@@ -68,7 +76,15 @@ function HealthClass({ title, keyword, isLargeRow }) {
           />
         ))}
       </div>
-      {videoUrl && <YouTube videoId={videoUrl} opts={opts} />}
+      <ModalClass
+        className="modal-calss"
+        show={modalShow}
+        onHide={() => {
+          setModalShow(false);
+        }}
+        src={src}
+      />
+      {/* {videoUrl && <YouTube videoId={videoUrl} opts={opts} />} */}
     </div>
   );
 }
