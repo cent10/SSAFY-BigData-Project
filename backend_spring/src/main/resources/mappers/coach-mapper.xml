@@ -8,23 +8,24 @@
 		VALUES(#{uid}, #{profile_photo}, #{career}, FALSE)
 	</insert>
 	
-	<!-- 코치 신청 리스트 조회 -->
+	<!-- 코치 신청 리스트 조회 (미승인 상태의 코치 리스트 조회) -->
 	<select id="readAllApplication" resultType="com.pts.myapp.dto.CoachDto">
 		SELECT id, uid, profile_photo, career, is_approved
 		FROM coaches
-		WHERE is_approved=FALSE;
+		WHERE is_approved=FALSE
 	</select>
 	
-	<!-- 코치 등록 -->
-	<insert id="create">
-		INSERT INTO coaches (uid, profile_photo, career, is_approved)
-		VALUES(#{uid}, #{profile_photo}, #{career} ,#{is_approved})
-	</insert>
+	<!-- 코치 승인 -->
+	<update id="approve">
+		UPDATE coaches
+		SET is_approved=TRUE
+		WHERE id=#{id}
+	</update>
 	
 	<!-- 코치 수정 -->
 	<update id="update">
 		UPDATE coaches
-		SET uid=#{uid}, profile_photo=#{profile_photo}, career=#{career}, is_approved=#{is_approved}
+		SET profile_photo=#{profile_photo}, career=#{career}
 		WHERE id=#{id}
 	</update>
 	
@@ -46,6 +47,7 @@
 	<select id="readAll" resultType="com.pts.myapp.dto.CoachDto">
 		SELECT id, uid, profile_photo, career, is_approved
 		FROM coaches
+		WHERE is_approved=TRUE
 	</select>
 
 </mapper>

@@ -25,8 +25,8 @@ public class CoachServiceImpl implements CoachService {
 	}
 	
 	@Override
-	public void create(CoachDto coachDto) {
-		coachDao.create(coachDto);
+	public void approve(int id) {
+		coachDao.approve(id);
 	}
 
 	@Override

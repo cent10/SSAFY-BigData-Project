@@ -33,26 +33,26 @@ static final Logger logger = LoggerFactory.getLogger(CoachController.class);
 	CoachService coachService;
 	
 	@ApiOperation(value = "코치 신청")
-	@PostMapping("/application")
+	@PostMapping("")
 	private ResponseEntity<?> createApplication(@RequestBody CoachDto coachDto) {
 		logger.debug("코치 신청");
 		coachService.createApplication(coachDto);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 	
-	@ApiOperation(value = "코치 신청 리스트 조회")
+	@ApiOperation(value = "코치 신청 리스트 조회 (미승인 상태의 코치 리스트 조회)")
 	@GetMapping("/application")
 	private ResponseEntity<List<CoachDto>> readAllApplication() {
-		logger.debug("코치 신청 리스트 조회");
+		logger.debug("코치 신청 리스트 조회 (미승인 상태의 코치 리스트 조회)");
 		List<CoachDto> coachDtoList = coachService.readAllApplication();
 		return new ResponseEntity<List<CoachDto>>(coachDtoList, HttpStatus.OK);
 	}
 	
-	@ApiOperation(value = "코치 등록")
-	@PostMapping("")
-	private ResponseEntity<?> create(@RequestBody CoachDto coachDto) {
-		logger.debug("코치 등록");
-		coachService.create(coachDto);
+	@ApiOperation(value = "코치 승인")
+	@PostMapping("/{id}/approval")
+	private ResponseEntity<?> approve(@PathVariable("id") int id) {
+		logger.debug("코치 승인");
+		coachService.approve(id);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 	
@@ -80,10 +80,10 @@ static final Logger logger = LoggerFactory.getLogger(CoachController.class);
 		return new ResponseEntity<CoachDto>(coachDto, HttpStatus.OK);
 	}
 	
-	@ApiOperation(value = "코치 리스트 조회", response = CoachDto.class)
+	@ApiOperation(value = "코치 리스트 조회 (승인 상태의 코치 리스트 조회)", response = CoachDto.class)
 	@GetMapping("")
 	private ResponseEntity<List<CoachDto>> readAll() {
-		logger.debug("코치 리스트 조회");
+		logger.debug("코치 리스트 조회 (승인 상태의 코치 리스트 조회)");
 		List<CoachDto> coachDtoList = coachService.readAll();
 		return new ResponseEntity<List<CoachDto>>(coachDtoList, HttpStatus.OK);
 	}
