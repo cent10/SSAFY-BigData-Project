@@ -45,7 +45,7 @@ static final Logger logger = LoggerFactory.getLogger(CoachController.class);
 	private ResponseEntity<List<CoachDto>> readAllApplication() {
 		logger.debug("코치 신청 리스트 조회");
 		List<CoachDto> coachDtoList = coachService.readAllApplication();
-		return new ResponseEntity<List<CoachDto>>(HttpStatus.OK);
+		return new ResponseEntity<List<CoachDto>>(coachDtoList, HttpStatus.OK);
 	}
 	
 	@ApiOperation(value = "코치 등록")
