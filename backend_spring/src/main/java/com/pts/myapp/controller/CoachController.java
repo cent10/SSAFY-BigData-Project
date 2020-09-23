@@ -56,6 +56,14 @@ static final Logger logger = LoggerFactory.getLogger(CoachController.class);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 	
+	@ApiOperation(value = "코치 조회", response = CoachDto.class)
+	@GetMapping("/{id}")
+	private ResponseEntity<CoachDto> read(@PathVariable("id") int id) {
+		logger.debug("코치 조회");
+		CoachDto coachDto = coachService.read(id);
+		return new ResponseEntity<CoachDto>(coachDto, HttpStatus.OK);
+	}
 	
+
 	
 }

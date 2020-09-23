@@ -22,6 +22,11 @@
 		WHERE id=#{id}
 	</delete>
 	
-	
+	<!-- 코치 조회 -->
+	<select id="read" resultType="com.pts.myapp.dto.CoachDto">
+		SELECT id, uid, profile_photo, career, is_approved
+		FROM coaches
+		WHERE id=#{id}
+	</select>
 
 </mapper>

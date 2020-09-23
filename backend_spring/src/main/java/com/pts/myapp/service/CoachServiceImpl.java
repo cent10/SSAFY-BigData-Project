@@ -29,5 +29,9 @@ public class CoachServiceImpl implements CoachService {
 		coachDao.delete(id);
 	}
 
-	
+	@Override
+	public CoachDto read(int id) {
+		return coachDao.read(id);
+	}
+
 }

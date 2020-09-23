@@ -15,5 +15,8 @@ public interface CoachService {
 	// 코치 삭제
 	public void delete(int id);
 	
-	// 
+	// 코치 조회
+	public CoachDto read(int id);
+	
+	
 }
