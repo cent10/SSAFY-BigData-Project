@@ -4,6 +4,8 @@ import bodyStyle01 from "../static/image/bodyForm/form-style01.svg";
 import pentaGraph from "../static/image/penta-graph.gif";
 import contributionGraph from "../static/image/contribution-graph.jpg";
 
+import RadialChart from "./RadialChart";
+
 function Inform() {
   // function truncate(str, n) {
   //   return str?.length > n ? str.substr(0, n - 1) + "..." : str;
@@ -26,7 +28,8 @@ function Inform() {
         </span>
       </div>
       <div className="part">
-        <img src={pentaGraph} alt="penta-graph" className="penta-graph" />
+        {/* <img src={pentaGraph} alt="penta-graph" className="penta-graph" /> */}
+        <RadialChart upper={0.75} core={0.9} leg={0.99} back={0.89} arm={0.6} />
       </div>
       <div className="part">
         <img
