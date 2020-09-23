@@ -34,4 +34,8 @@ public class CoachServiceImpl implements CoachService {
 		return coachDao.read(id);
 	}
 
+	@Override
+	public List<CoachDto> readAll() {
+		return coachDao.readAll();
+	}
 }

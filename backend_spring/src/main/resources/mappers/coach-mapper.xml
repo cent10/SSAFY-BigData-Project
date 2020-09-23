@@ -28,5 +28,11 @@
 		FROM coaches
 		WHERE id=#{id}
 	</select>
+	
+	<!-- 코치 리스트 조회 -->
+	<select id="readAll" resultType="com.pts.myapp.dto.CoachDto">
+		SELECT id, uid, profile_photo, career, is_approved
+		FROM coaches
+	</select>
 
 </mapper>

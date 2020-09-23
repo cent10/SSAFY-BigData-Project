@@ -64,6 +64,12 @@ static final Logger logger = LoggerFactory.getLogger(CoachController.class);
 		return new ResponseEntity<CoachDto>(coachDto, HttpStatus.OK);
 	}
 	
-
+	@ApiOperation(value = "코치 리스트 조회", response = CoachDto.class)
+	@GetMapping("")
+	private ResponseEntity<List<CoachDto>> readAll() {
+		logger.debug("코치 리스트 조회");
+		List<CoachDto> coachDtoList = coachService.readAll();
+		return new ResponseEntity<List<CoachDto>>(coachDtoList, HttpStatus.OK);
+	}
 	
 }

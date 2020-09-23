@@ -21,5 +21,6 @@ public interface CoachDao {
 	// 코치 조회
 	public CoachDto read(int id);
 	
-
+	// 코치 리스트 조회
+	public List<CoachDto> readAll();
 }
