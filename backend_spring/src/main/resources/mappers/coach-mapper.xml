@@ -8,7 +8,12 @@
 		VALUES(#{uid}, #{profile_photo}, #{career}, FALSE)
 	</insert>
 	
-	
+	<!-- 코치 신청 리스트 조회 -->
+	<select id="readAllApplication" resultType="com.pts.myapp.dto.CoachDto">
+		SELECT id, uid, profile_photo, career, is_approved
+		FROM coaches
+		WHERE is_approved=FALSE;
+	</select>
 	
 	<!-- 코치 등록 -->
 	<insert id="create">

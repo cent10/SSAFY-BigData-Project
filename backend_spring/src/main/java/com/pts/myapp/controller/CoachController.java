@@ -40,7 +40,13 @@ static final Logger logger = LoggerFactory.getLogger(CoachController.class);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 	
-	
+	@ApiOperation(value = "코치 신청 리스트 조회")
+	@GetMapping("/application")
+	private ResponseEntity<List<CoachDto>> readAllApplication() {
+		logger.debug("코치 신청 리스트 조회");
+		List<CoachDto> coachDtoList = coachService.readAllApplication();
+		return new ResponseEntity<List<CoachDto>>(HttpStatus.OK);
+	}
 	
 	@ApiOperation(value = "코치 등록")
 	@PostMapping("")

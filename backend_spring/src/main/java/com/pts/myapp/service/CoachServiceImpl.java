@@ -19,7 +19,10 @@ public class CoachServiceImpl implements CoachService {
 		coachDao.createApplication(coachDto);
 	}
 	
-	
+	@Override
+	public List<CoachDto> readAllApplication() {
+		return coachDao.readAllApplication();
+	}
 	
 	@Override
 	public void create(CoachDto coachDto) {

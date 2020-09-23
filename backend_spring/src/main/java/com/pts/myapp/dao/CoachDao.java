@@ -12,7 +12,8 @@ public interface CoachDao {
 	// 코치 신청
 	public void createApplication(CoachDto coachDto);
 	
-	
+	// 코치 신청 리스트 조회
+	public List<CoachDto> readAllApplication();
 	
 	// 코치 등록
 	public void create(CoachDto coachDto);
