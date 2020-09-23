@@ -12,5 +12,8 @@ public interface CoachService {
 	// 코치 수정
 	public void update(CoachDto coachDto);
 
+	// 코치 삭제
+	public void delete(int id);
 	
+	// 
 }

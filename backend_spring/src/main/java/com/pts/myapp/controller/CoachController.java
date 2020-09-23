@@ -48,6 +48,14 @@ static final Logger logger = LoggerFactory.getLogger(CoachController.class);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 	
+	@ApiOperation(value = "코치 삭제")
+	@DeleteMapping("/{id}")
+	private ResponseEntity<String> delete(@PathVariable("id") int id) {
+		logger.debug("코치 삭제");
+		coachService.delete(id);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
+	
 	
 	
 }

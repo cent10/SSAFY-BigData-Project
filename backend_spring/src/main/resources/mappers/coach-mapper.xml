@@ -15,6 +15,13 @@
 		WHERE id=#{id}
 	</update>
 	
+	<!-- 코치 삭제 -->
+	<delete id="delete">
+		DELETE
+		FROM coaches
+		WHERE id=#{id}
+	</delete>
+	
 	
 
 </mapper>

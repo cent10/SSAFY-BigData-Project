@@ -24,5 +24,10 @@ public class CoachServiceImpl implements CoachService {
 		coachDao.update(coachDto);
 	}
 
+	@Override
+	public void delete(int id) {
+		coachDao.delete(id);
+	}
 
+	
 }
