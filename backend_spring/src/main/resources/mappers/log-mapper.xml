@@ -7,5 +7,7 @@
             (#{uid}, #{point}, #{day})
     </insert>
 	
-
+    <select id="readAll" parameterType="String" resultType="com.pts.myapp.dto.LogDto">
+        select * from LOGS where UID = #{uid}
+    </select>
 </mapper>

@@ -58,6 +58,6 @@ public class SilhouetteController {
 	private ResponseEntity<?> read(@PathVariable(value = "uid") String uid) {
 		logger.debug("실루엣 조회");
 		SilhouetteDto silhouette = service.read(uid);
-		return new ResponseEntity<>(silhouette, HttpStatus.CREATED);
+		return new ResponseEntity<>(silhouette, HttpStatus.OK);
 	}
 }
