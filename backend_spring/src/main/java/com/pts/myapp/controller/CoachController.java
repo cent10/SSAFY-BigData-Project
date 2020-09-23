@@ -32,6 +32,16 @@ static final Logger logger = LoggerFactory.getLogger(CoachController.class);
 	@Autowired
 	CoachService coachService;
 	
+	@ApiOperation(value = "코치 신청")
+	@PostMapping("/application")
+	private ResponseEntity<?> createApplication(@RequestBody CoachDto coachDto) {
+		logger.debug("코치 신청");
+		coachService.createApplication(coachDto);
+		return new ResponseEntity<>(HttpStatus.CREATED);
+	}
+	
+	
+	
 	@ApiOperation(value = "코치 등록")
 	@PostMapping("")
 	private ResponseEntity<?> create(@RequestBody CoachDto coachDto) {

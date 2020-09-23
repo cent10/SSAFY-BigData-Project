@@ -13,7 +13,14 @@ public class CoachServiceImpl implements CoachService {
 	
 	@Autowired
 	CoachDao coachDao;
-
+	
+	@Override
+	public void createApplication(CoachDto coachDto) {
+		coachDao.createApplication(coachDto);
+	}
+	
+	
+	
 	@Override
 	public void create(CoachDto coachDto) {
 		coachDao.create(coachDto);

@@ -9,6 +9,11 @@ import com.pts.myapp.dto.CoachDto;
 @Mapper
 public interface CoachDao {
 	
+	// 코치 신청
+	public void createApplication(CoachDto coachDto);
+	
+	
+	
 	// 코치 등록
 	public void create(CoachDto coachDto);
 	
