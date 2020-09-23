@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "../static/css/Row.css";
 
-const API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY2;
+const API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
 
 function HealthVideo({ title, keyword, isLargeRow }) {
   const [videos, setVideos] = useState([]);
