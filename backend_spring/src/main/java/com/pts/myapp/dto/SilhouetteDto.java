@@ -5,13 +5,13 @@ import io.swagger.annotations.ApiModelProperty;
 public class SilhouetteDto {
 
 	@ApiModelProperty(value = "사용자 신체 아바타 번호", example = "1")
-	int number;
+	private int number;
 
 	@ApiModelProperty(value = "사용자 이메일", example = "pts.info@gmail.com")
-	String uid;
+	private String uid;
 
 	@ApiModelProperty(value = "등급", example = "3")
-	int star;
+	private int star;
 
 	public int getNumber() {
 		return number;

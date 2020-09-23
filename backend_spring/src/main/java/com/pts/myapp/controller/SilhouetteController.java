@@ -47,12 +47,13 @@ public class SilhouetteController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/{uid}", produces = "application/json")
-	@ApiOperation(value = "실루엣 생성", notes = "사용자의 실루엣 저장")
+	@ApiOperation(value = "실루엣 조회", notes = "사용자의 실루엣 조회")
 	@ApiResponses({
-		@ApiResponse(code = 201, message = "실루엣 생성"),
+		@ApiResponse(code = 201, message = "실루엣 조회"),
 		@ApiResponse(code = 400, message = "잘못된 요청입니다"),
 		@ApiResponse(code = 401, message = "로그인 후 이용해 주세요"),
-		@ApiResponse(code = 404, message = "실루엣 생성 실패")
+		@ApiResponse(code = 403, message = "권한이 없습니다"),
+		@ApiResponse(code = 404, message = "실루엣 조회 실패")
 	})
 	private ResponseEntity<?> read(@PathVariable(value = "uid") String uid) {
 		logger.debug("실루엣 조회");
