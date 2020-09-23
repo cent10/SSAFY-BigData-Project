@@ -5,4 +5,6 @@ import com.pts.myapp.dto.SilhouetteDto;
 public interface SilhouetteService {
 
 	void create(SilhouetteDto silhouette);
+
+	SilhouetteDto read(String uid);
 }

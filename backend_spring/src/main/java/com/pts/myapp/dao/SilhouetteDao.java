@@ -8,4 +8,6 @@ import com.pts.myapp.dto.SilhouetteDto;
 public interface SilhouetteDao {
 
 	int create(SilhouetteDto silhouette);
+
+	SilhouetteDto read(String uid);
 }

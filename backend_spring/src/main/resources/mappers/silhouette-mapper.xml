@@ -7,4 +7,7 @@
             ( #{number}, #{uid}, #{star})
     </insert>
 
+    <select id="read" parameterType="String" resultType="com.pts.myapp.dto.SilhouetteDto">
+        select * from SILHOUTTES where UID = #{uid}
+    </select>
 </mapper>
