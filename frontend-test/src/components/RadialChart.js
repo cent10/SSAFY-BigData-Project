@@ -13,7 +13,7 @@ function RadialChart(props) {
         back: props.back,
         arm: props.arm,
       },
-      meta: { color: "blue" },
+      meta: { color: "#1D4E89" },
     },
   ];
 
