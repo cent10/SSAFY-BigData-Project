@@ -21,4 +21,16 @@ public class ResultServiceImpl implements ResultService {
 			throw e;
 		}
 	}
+
+	@Override
+	public ResultDto read(String uid) {
+		ResultDto result = new ResultDto();
+
+		try {
+			result = dao.read(uid);
+		} catch (DataAccessException e) {
+			throw e;
+		}
+		return result;
+	}
 }

@@ -6,6 +6,9 @@
         insert into RESULTS (UID, BMI, ARM, LEG, CORE, CHEST, FAT) VALUES
             (#{uid}, #{bmi}, #{arm}, #{leg}, #{core}, #{chest}, #{fat})
     </insert>
-	
+
+    <select id="read" parameterType="String" resultType="com.pts.myapp.dto.ResultDto">
+        select * from RESULTS where UID = #{uid}
+    </select>
 
 </mapper>

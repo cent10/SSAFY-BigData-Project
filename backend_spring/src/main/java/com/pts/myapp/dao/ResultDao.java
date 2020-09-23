@@ -8,4 +8,6 @@ import com.pts.myapp.dto.ResultDto;
 public interface ResultDao {
 
 	int create(ResultDto result);
+
+	ResultDto read(String uid);
 }
