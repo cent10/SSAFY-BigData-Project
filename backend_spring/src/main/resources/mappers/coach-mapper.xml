@@ -8,6 +8,13 @@
 		VALUES(#{uid}, #{profile_photo}, #{career} ,#{is_approved})
 	</insert>
 	
+	<!-- 코치 수정 -->
+	<update id="update">
+		UPDATE coaches
+		SET uid=#{uid}, profile_photo=#{profile_photo}, career=#{career}, is_approved=#{is_approved}
+		WHERE id=#{id}
+	</update>
+	
 	
 
 </mapper>

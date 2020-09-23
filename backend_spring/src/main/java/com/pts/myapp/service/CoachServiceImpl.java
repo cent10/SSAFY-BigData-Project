@@ -19,5 +19,10 @@ public class CoachServiceImpl implements CoachService {
 		coachDao.create(coachDto);
 	}
 
-	
+	@Override
+	public void update(CoachDto coachDto) {
+		coachDao.update(coachDto);
+	}
+
+
 }

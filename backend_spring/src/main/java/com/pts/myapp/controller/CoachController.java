@@ -40,6 +40,14 @@ static final Logger logger = LoggerFactory.getLogger(CoachController.class);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 	
+	@ApiOperation(value = "코치 수정")
+	@PutMapping("/{id}")
+	private ResponseEntity<?> update(@RequestBody CoachDto coachDto) {
+		logger.debug("코치 수정");
+		coachService.update(coachDto);
+		return new ResponseEntity<>(HttpStatus.CREATED);
+	}
+	
 	
 	
 }
