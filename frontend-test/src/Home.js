@@ -1,7 +1,6 @@
 import React from "react";
 import "./static/css/Home.css";
 
-import MainNav from "./components/MainNav";
 import MainFooter from "./components/MainFooter";
 
 import { Link } from "react-router-dom";
@@ -12,7 +11,6 @@ function Home() {
 
   return (
     <div className="home">
-      <MainNav2 isLoggedIn={false} />
       {/* <!-- Masthead--> */}
       <header className="masthead" id="page-top">
         <div className="container d-flex h-100 align-items-center">

@@ -1,6 +1,5 @@
 import React from "react";
 
-import MainNav from "./components/MainNav";
 import HealthVideo from "./components/HealthVideo";
 import HealthClass from "./components/HealthClass";
 import Inform from "./components/Inform";
@@ -10,20 +9,9 @@ import MainFooter from "./components/MainFooter";
 
 import "./static/css/Main.css";
 
-function Main() {
-  const MainNav2 = MainNav;
-  const HealthVideo2 = HealthVideo;
-  const HealthClass2 = HealthClass;
-  const Inform2 = Inform;
-  const BestCoach2 = BestCoach;
-  const Coaches2 = Coaches;
-  const MainFooter2 = MainFooter;
-
+function Main({user}) {
   return (
     <div className="main">
-      {/* Nav */}
-      <MainNav2 isLoggedIn={true} />
-
       {/* Inform */}
       <Inform2 />
 
