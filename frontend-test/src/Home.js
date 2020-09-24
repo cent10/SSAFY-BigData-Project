@@ -6,6 +6,9 @@ import MainFooter from "./components/MainFooter";
 import { Link } from "react-router-dom";
 
 function Home() {
+  const MainNav2 = MainNav;
+  const MainFooter2 = MainFooter;
+
   return (
     <div className="home">
       {/* <!-- Masthead--> */}
@@ -208,7 +211,7 @@ function Home() {
         <div className="container">Copyright © 멋진 신사들</div>
       </footer>
       {/* footer */}
-      <MainFooter />
+      <MainFooter2 />
     </div>
   );
 }

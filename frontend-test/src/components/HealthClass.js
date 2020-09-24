@@ -52,6 +52,8 @@ function HealthClass({ title, keyword, isLargeRow }) {
   //   // return <Redirect push to={`/video/${videoUrl}`}></Redirect>;
   // };
 
+  const ModalClass2 = ModalClass;
+
   return (
     <div className="rowrow">
       {/* title */}
@@ -76,7 +78,7 @@ function HealthClass({ title, keyword, isLargeRow }) {
           />
         ))}
       </div>
-      <ModalClass
+      <ModalClass2
         className="modal-calss"
         show={modalShow}
         onHide={() => {

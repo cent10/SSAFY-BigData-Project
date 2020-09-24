@@ -13,22 +13,22 @@ function Main({user}) {
   return (
     <div className="main">
       {/* Inform */}
-      <Inform />
+      <Inform2 />
 
       {/* Health Video */}
-      <HealthVideo
+      <HealthVideo2
         title="바나나먹는몽키님에게 추천되는 상체 발달 운동법 >"
         keyword="pushup posture"
       />
 
       {/* Health Class */}
-      <HealthClass
+      <HealthClass2
         title="바나나먹는몽키님이 관심있을 만한 클래스 >"
         keyword="yoga class"
       />
 
       {/* Best Coach */}
-      <BestCoach
+      <BestCoach2
         title="이달의 우수 PT 코치"
         bestCoach={{
           title: "태 영 휘 트 니 스",
@@ -42,10 +42,10 @@ function Main({user}) {
       />
 
       {/* Coaches */}
-      <Coaches title="바나나먹는몽키님과 성향이 일치하는 코치 >" />
+      <Coaches2 title="바나나먹는몽키님과 성향이 일치하는 코치 >" />
 
       {/* Footer */}
-      <MainFooter />
+      <MainFooter2 />
     </div>
   );
 }
