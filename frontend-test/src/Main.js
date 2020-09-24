@@ -9,7 +9,14 @@ import MainFooter from "./components/MainFooter";
 
 import "./static/css/Main.css";
 
-function Main({user}) {
+function Main({ user }) {
+  const HealthVideo2 = HealthVideo;
+  const HealthClass2 = HealthClass;
+  const Inform2 = Inform;
+  const BestCoach2 = BestCoach;
+  const Coaches2 = Coaches;
+  const MainFooter2 = MainFooter;
+
   return (
     <div className="main">
       {/* Inform */}

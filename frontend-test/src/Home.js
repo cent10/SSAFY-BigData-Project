@@ -6,7 +6,6 @@ import MainFooter from "./components/MainFooter";
 import { Link } from "react-router-dom";
 
 function Home() {
-  const MainNav2 = MainNav;
   const MainFooter2 = MainFooter;
 
   return (
