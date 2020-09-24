@@ -18,7 +18,8 @@ function ModalClass(props) {
         <Modal.Body>
           <h4>클래스 소개하기</h4>
           {/* 좌측 코치 사진 */}
-          <img src={props.src} />
+          {/* props.src 내장 주소라 에러 뜨는듯 ?? */}
+          {/* <img src={props.src} /> */}
           {/* 우측 코치 경력 */}
           <p>
             너 인성 문제있어? 너 인성 문제있어? 너 인성 문제있어? 너 인성
