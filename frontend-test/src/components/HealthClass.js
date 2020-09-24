@@ -5,54 +5,33 @@ import "../static/css/Row.css";
 
 import ModalClass from "./ModalClass";
 
-const API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY2;
+import Badge from "react-bootstrap/Badge";
 
 function HealthClass({ title, keyword, isLargeRow }) {
-  const [videos, setVideos] = useState([]);
-  // const [videoUrl, setVideoUrl] = useState("");
+  const [classes, setClasses] = useState([]);
   const [modalShow, setModalShow] = useState(false);
   const [src, setSrc] = useState("");
+  const [cltitle, setCltitle] = useState("");
+  const [coach, setCoach] = useState("");
+  const [tags, setTags] = useState([]);
 
   useEffect(() => {
     async function fetchVideo() {
       const request = await axios.get(
-        "https://www.googleapis.com/youtube/v3/search",
-        {
-          params: {
-            key: API_KEY,
-            part: "snippet",
-            type: "video",
-            q: keyword,
-            maxResults: 12,
-          },
-        }
+        "http://j3a501.p.ssafy.io:8888/pts/class"
       );
-      setVideos(request.data.items);
+      console.log(request.data);
+      setClasses(request.data);
       return request;
     }
     fetchVideo();
   }, [keyword]);
 
-  // console.log(keyword);
-  // console.log(videos);
-
-  // const opts = {
-  //   height: "390",
-  //   width: "100%",
-  //   playerVars: {
-  //     autoplay: 1,
-  //   },
-  // };
-
-  // const handleClick = (video) => {
-  //   if (videoUrl) {
-  //     setVideoUrl("");
-  //   } else setVideoUrl(video.id.videoId);
-  //   // setVideoUrl(video.id.videoId);
-  //   // return <Redirect push to={`/video/${videoUrl}`}></Redirect>;
-  // };
-
   const ModalClass2 = ModalClass;
+
+  function truncate(str, n) {
+    return str?.length > n ? str.substr(0, n - 1) + "..." : str;
+  }
 
   return (
     <div className="rowrow">
@@ -62,20 +41,63 @@ function HealthClass({ title, keyword, isLargeRow }) {
       {/* container -> posters */}
       <div className="row__posters">
         {/* several rwo_poster */}
-        {videos.map((video) => (
-          <img
-            key={video.id.videoId}
-            // onClick={() => handleClick(video)}
-            onClick={() => {
-              setSrc(video.snippet.thumbnails.high.url);
-              setModalShow(true);
-            }}
-            className={`row__class row__poster ${
-              isLargeRow && "row__posterLarge"
-            }`}
-            src={video.snippet.thumbnails.high.url}
-            alt={video?.snippet.title}
-          />
+        {classes.map((cl) => (
+          <div
+            className="row__class__poster"
+            style={{ width: "290px", height: "300px;" }}
+          >
+            <img
+              key={cl.id}
+              onClick={() => {
+                setSrc(cl.thumbnail);
+                setCltitle(cl.title);
+                setCoach(cl.coach);
+                setTags([cl.type1, cl.type2, cl.type3]);
+                setModalShow(true);
+              }}
+              className={`row__class row__poster ${
+                isLargeRow && "row__posterLarge"
+              }`}
+              src={cl.thumbnail}
+              alt={cl.title}
+              style={{ position: "absolute" }}
+            />
+            <h1
+              style={{
+                position: "absolute",
+                color: "red",
+                fontWeight: "bold",
+              }}
+            >
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              .
+            </h1>
+            <img
+              key={cl.id}
+              onClick={() => {
+                setSrc(cl.thumbnail);
+                setCltitle(cl.title);
+                setCoach(cl.coach);
+                setTags([cl.type1, cl.type2, cl.type3]);
+                setModalShow(true);
+              }}
+              className={`row__class row__poster ${
+                isLargeRow && "row__posterLarge"
+              }`}
+              src={cl.thumbnail}
+              alt={cl.title}
+            />
+            <h6 className="row__class__title" style={{ paddingTop: "200px;" }}>
+              {truncate(cl.title, 18)}
+            </h6>
+            <h6>
+              <span>
+                <Badge variant="light">{cl.type1}</Badge>{" "}
+                <Badge variant="light">{cl.type2}</Badge>{" "}
+                <Badge variant="light">{cl.type3}</Badge>
+              </span>
+            </h6>
+          </div>
         ))}
       </div>
       <ModalClass2
@@ -85,8 +107,10 @@ function HealthClass({ title, keyword, isLargeRow }) {
           setModalShow(false);
         }}
         src={src}
+        title={cltitle}
+        coach={coach}
+        tags={tags}
       />
-      {/* {videoUrl && <YouTube videoId={videoUrl} opts={opts} />} */}
     </div>
   );
 }
