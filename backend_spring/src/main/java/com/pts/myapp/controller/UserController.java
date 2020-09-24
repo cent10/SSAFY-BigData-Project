@@ -80,7 +80,7 @@ public class UserController {
 			response.setHeader("jwt-auth-token", token);
 			return new ResponseEntity<UserDto>(user, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
 	}
 		
