@@ -22,8 +22,8 @@ function Inform() {
   const Heatmap2 = Heatmap;
 
   return (
-    // background image
     <header className="inform">
+      {/* background image */}
       <div className="part part-one">
         <img src={bodyStyle01} alt="bodyStyle" className="body-style" />
         <span className="body-rank">⭐⭐⭐</span>

@@ -1,5 +1,5 @@
-import React from "react"
-import { Route, Redirect } from "react-router-dom"
+import React from "react";
+import { Route, Redirect } from "react-router-dom";
 
 function AuthRoute({ authenticated, component: Component, render, ...rest }) {
   return (
@@ -19,7 +19,7 @@ function AuthRoute({ authenticated, component: Component, render, ...rest }) {
         )
       }
     />
-  )
+  );
 }
 
-export default AuthRoute
+export default AuthRoute;
