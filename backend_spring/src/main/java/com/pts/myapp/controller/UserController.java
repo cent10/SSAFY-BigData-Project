@@ -78,7 +78,7 @@ public class UserController {
 		if (user != null) {
 			String token = jwtService.create(user);
 			response.setHeader("jwt-auth-token", token);
-			return new ResponseEntity<UserDto>(HttpStatus.OK);
+			return new ResponseEntity<UserDto>(HttpStatus.NO_CONTENT);
 		} else {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
