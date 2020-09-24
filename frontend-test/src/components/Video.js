@@ -34,11 +34,11 @@ function Video(props) {
           alert("asdf");
         }}
       />
-      <div className="youtube-back-button-wrap">
+      {/* <div className="youtube-back-button-wrap">
         <Link to={"/main"}>
           <button className="youtube-back-button">메인으로</button>
         </Link>
-      </div>
+      </div> */}
     </div>
   );
 }

@@ -35,20 +35,25 @@ function App() {
       <header>
         <MainNav2 isLoggedIn={user} logout={logout} />
       </header>
+
       <Route exact path="/" component={Home2} />
+
       {/* 밑에 AuthRoute 랑 겹쳐서 2개가 나온다 */}
       {/* <Route exact path="/main" component={Main} /> */}
+
       <Route
         path="/login"
         render={(props) => (
           <Login2 authenticated={authenticated} login={login} {...props} />
         )}
       />
+
       <AuthRoute
         authenticated={authenticated}
         path="/main"
         render={(props) => <Main2 user={user} {...props} />}
       />
+
       <Route exact path="/video/:videoUrl" component={Video2} />
     </Router>
     // <Router>

@@ -5,7 +5,7 @@ import "../static/css/Row.css";
 
 import ModalClass from "./ModalClass";
 
-const API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
+const API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY2;
 
 function HealthClass({ title, keyword, isLargeRow }) {
   const [videos, setVideos] = useState([]);

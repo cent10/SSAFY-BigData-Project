@@ -4,7 +4,7 @@ import { Icon } from "@iconify/react";
 import { Link } from "react-router-dom";
 import cardSearch from "@iconify/icons-mdi/card-search";
 import ModalUser from "./ModalUser";
-import { withRouter } from "react-router-dom"
+import { withRouter } from "react-router-dom";
 
 import "../static/css/MainNav.css";
 
@@ -14,9 +14,9 @@ function MainNav({ isLoggedIn, logout, history }) {
 
   // logout handling
   const handleClick = () => {
-    logout()
-    history.push("/")
-  }
+    logout();
+    history.push("/");
+  };
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -31,12 +31,17 @@ function MainNav({ isLoggedIn, logout, history }) {
 
   return (
     <div className={`nav__main ${show && "nav__white"}`}>
-      <img src={logo} alt="PTS logo" className="nav__logo" />
+      <Link className="nav__linkmain" to={"/main"}>
+        <img src={logo} alt="PTS logo" className="nav__logo" />
+      </Link>
+
       <div className="nav__right">
-        {!isLoggedIn && <Link to={"/login"}>
-          {/* {"로그인"} */}
-          <button className="start-button">로그인</button>
-        </Link>}
+        {!isLoggedIn && (
+          <Link to={"/login"}>
+            {/* {"로그인"} */}
+            <button className="start-button">로그인</button>
+          </Link>
+        )}
         {isLoggedIn && <Icon className="nav__search" icon={cardSearch} />}
         {isLoggedIn && <button onClick={handleClick}>Logout</button>}
         {isLoggedIn && (
