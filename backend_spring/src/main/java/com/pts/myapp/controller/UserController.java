@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pts.myapp.dto.UserDto;
+import com.pts.myapp.jwt.service.JwtService;
 import com.pts.myapp.service.UserService;
 
 import io.swagger.annotations.ApiOperation;
@@ -31,6 +32,9 @@ public class UserController {
 	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	JwtService jwtService;
 	
 	@ApiOperation(value = "회원가입")
 	@PostMapping("")
@@ -66,17 +70,20 @@ public class UserController {
 	
 	@ApiOperation(value = "로그인")
 	@PostMapping("/login")
-	private ResponseEntity<UserDto> login(@RequestBody UserDto userDto, HttpServletResponse response) {
+	private ResponseEntity<?> login(@RequestBody UserDto userDto, HttpServletResponse response) {
 		logger.debug("로그인");
-		UserDto user = userService.login(userDto);
 		
-		// JWT 부분
-		
-		///////////
-		
-		return new ResponseEntity<UserDto>(user, HttpStatus.OK);
+		UserDto user = userService.login(userDto); // 로그인
+
+		if (user != null) {
+			String token = jwtService.create(user);
+			response.setHeader("jwt-auth-token", token);
+			return new ResponseEntity<UserDto>(HttpStatus.NO_CONTENT);
+		} else {
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		}
 	}
-	
+		
 	@ApiOperation(value = "로그아웃")
 	@GetMapping("/logout")
 	private ResponseEntity<?> logout(@RequestBody UserDto userDto) {
