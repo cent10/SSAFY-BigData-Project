@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "../static/css/Inform.css";
 import bodyStyle01 from "../static/image/bodyForm/form-style01.svg";
-// import pentaGraph from "../static/image/penta-graph.gif";
-// import contributionGraph from "../static/image/contribution-graph.jpg";
+import pentaGraph from "../static/image/penta-graph.gif";
+import contributionGraph from "../static/image/contribution-graph.jpg";
 
 import RadialChart from "./RadialChart";
 import Heatmap from "./Heatmap";
@@ -16,10 +16,6 @@ function Inform() {
   // const [radar, setRadar] = useState([])
 
   // const [datedata, setDatedata] = useState([])
-
-  // react 배포 오류 떄문에 ??
-  const RadialChart2 = RadialChart;
-  const Heatmap2 = Heatmap;
 
   return (
     // background image
@@ -39,13 +35,7 @@ function Inform() {
       </div>
       <div className="part">
         {/* <img src={pentaGraph} alt="penta-graph" className="penta-graph" /> */}
-        <RadialChart2
-          upper={0.75}
-          core={0.9}
-          leg={0.99}
-          back={0.89}
-          arm={0.6}
-        />
+        <RadialChart upper={0.75} core={0.9} leg={0.99} back={0.89} arm={0.6} />
       </div>
       <div className="part">
         {/* <img
@@ -53,7 +43,7 @@ function Inform() {
           alt="contribution-graph"
           className="contribution-graph"
         /> */}
-        <Heatmap2
+        <Heatmap
           className="part-heatmap"
           datedata={[
             { date: "2020-09-01", count: 1 },

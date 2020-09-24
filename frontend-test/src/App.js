@@ -13,14 +13,11 @@ import Main from "./Main";
 import Video from "./components/Video";
 
 function App() {
-  const Home2 = Home;
-  const Main2 = Main;
-  const Video2 = Video;
   return (
     <Router>
-      <Route exact path="/" component={Home2} />
-      <Route exact path="/main" component={Main2} />
-      <Route exact path="/video/:videoUrl" component={Video2} />
+      <Route exact path="/" component={Home} />
+      <Route exact path="/main" component={Main} />
+      <Route exact path="/video/:videoUrl" component={Video} />
     </Router>
     // <Router>
     //   <div className="app">

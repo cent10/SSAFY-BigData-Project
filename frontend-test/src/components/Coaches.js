@@ -25,8 +25,6 @@ function Coaches({ title }) {
   // cosnt [coaches, setCoaches] = useState([]));
   const [modalShow, setModalShow] = useState(false);
   const [src, setSrc] = useState("");
-
-  const ModalCoach2 = ModalCoach;
   return (
     <div>
       <h2 className="title">{title}</h2>
@@ -46,7 +44,7 @@ function Coaches({ title }) {
           />
         ))}
       </div>
-      <ModalCoach2
+      <ModalCoach
         className="modal-coach"
         show={modalShow}
         onHide={() => {

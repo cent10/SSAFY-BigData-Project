@@ -7,12 +7,9 @@ import MainFooter from "./components/MainFooter";
 import { Link } from "react-router-dom";
 
 function Home() {
-  const MainNav2 = MainNav;
-  const MainFooter2 = MainFooter;
-
   return (
     <div className="home">
-      <MainNav2 isLoggedIn={false} />
+      <MainNav isLoggedIn={false} />
       {/* <!-- Masthead--> */}
       <header className="masthead" id="page-top">
         <div className="container d-flex h-100 align-items-center">
@@ -213,7 +210,7 @@ function Home() {
         <div className="container">Copyright © 멋진 신사들</div>
       </footer>
       {/* footer */}
-      <MainFooter2 />
+      <MainFooter />
     </div>
   );
 }
