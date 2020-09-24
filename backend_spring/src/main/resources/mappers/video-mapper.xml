@@ -13,7 +13,7 @@
     <select id="readAll" resultType="com.pts.myapp.dto.VideoDto">
         select * from VIDEOS
         order by `COUNT`
-        OFFSET 0 LIMIT 10
+        LIMIT 10 OFFSET 0
     </select>
 
     <update id="update" parameterType="com.pts.myapp.dto.VideoDto">
@@ -31,4 +31,8 @@
     <delete id="delete" parameterType="int">
         delete from VIDEOS where ID = #{id}
     </delete>
+
+    <select id="readBest" resultType="com.pts.myapp.dto.VideoDto">
+        select * from VIDEOS where TYPE1 = "정태영"
+    </select>
 </mapper>

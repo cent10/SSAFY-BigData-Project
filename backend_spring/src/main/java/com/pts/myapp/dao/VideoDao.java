@@ -18,4 +18,6 @@ public interface VideoDao {
 	int update(VideoDto video);
 
 	int delete(int id);
+
+	List<VideoDto> readBest();
 }

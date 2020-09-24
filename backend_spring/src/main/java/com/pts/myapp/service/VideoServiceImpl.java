@@ -19,6 +19,8 @@ public class VideoServiceImpl implements VideoService {
 
 	@Override
 	public void create(VideoDto video) {
+		String thumbNail = "https://i.ytimg.com/vi/" + video.getUrl() + "/hqdefault.jpg";
+		video.setThumbnail(thumbNail);
 		if(dao.create(video) < 1) {
 			throw new IncorrectFormatException(String.valueOf(video.getId()));
 		}
@@ -55,5 +57,10 @@ public class VideoServiceImpl implements VideoService {
 				throw new EntityNotFoundException(String.valueOf(id));
 			}
 		}
+	}
+
+	@Override
+	public List<VideoDto> readBest() {
+		return dao.readBest();
 	}
 }
