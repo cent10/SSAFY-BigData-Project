@@ -29,11 +29,15 @@ public class ClassDto {
 	@ApiModelProperty(value = "해시태그 3")
 	private String type3;
 
+	@ApiModelProperty(value = "활성화 여부")
+	private boolean isActive;
+
 	public ClassDto() {
 	}
 
 	public ClassDto(int id, String thumbnail, String title, String coachId, int level, String type1, String type2,
-			String type3) {
+			String type3, boolean isActive) {
+		super();
 		this.id = id;
 		this.thumbnail = thumbnail;
 		this.title = title;
@@ -42,6 +46,7 @@ public class ClassDto {
 		this.type1 = type1;
 		this.type2 = type2;
 		this.type3 = type3;
+		this.isActive = isActive;
 	}
 
 	public int getId() {
@@ -106,6 +111,14 @@ public class ClassDto {
 
 	public void setType3(String type3) {
 		this.type3 = type3;
+	}
+
+	public boolean isActive() {
+		return isActive;
+	}
+
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
 	}
 
 }

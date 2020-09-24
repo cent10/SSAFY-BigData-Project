@@ -3,25 +3,26 @@
 <mapper namespace="com.pts.myapp.dao.ClassDao">
 	
 	<select id="readAll" resultType="com.pts.myapp.dto.ClassDto">
-		select id, thumbnail, title, coach_id as coachId, level, type1, type2, type3
+		select id, thumbnail, title, coach_id as coachId, level, type1, type2, type3, is_active as isActive
 		from classes
 	</select>
 	
 	<!-- 확인 필요 -->
 	<select id="readById" resultType="com.pts.myapp.dto.ClassDto">
-		select id, thumbnail, title, coach_id as coachId, level, type1, type2, type3
+		select id, thumbnail, title, coach_id as coachId, level, type1, type2, type3, is_active as isActive
 		from classes
 		where id=#{id}
 	</select>
 
 	<insert id="create">
-		insert into classes (thumbnail, title, coach_id, level, type1, type2, type3)
-		values (#{thumbnail}, #{title}, #{coachId}, #{level}, #{type1}, #{type2}, #{type3})
+		insert into classes (thumbnail, title, coach_id, level, type1, type2, type3, is_active)
+		values (#{thumbnail}, #{title}, #{coachId}, #{level}, #{type1}, #{type2}, #{type3}, 1)
 	</insert>
 	
 	<update id="update">
 		update classes
-		set thumbnail=#{thumbnail}, title=#{title}, coach_id=#{coachId}, level=#{level}, type1=#{type1}, type2=#{type2}, type3=#{type3}
+		set thumbnail=#{thumbnail}, title=#{title}, coach_id=#{coachId}, level=#{level},
+			type1=#{type1}, type2=#{type2}, type3=#{type3}, is_active=#{isActive}
 		where id=#{id} and coach_id=#{coachId}
 	</update>
 	
