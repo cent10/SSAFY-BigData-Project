@@ -15,4 +15,6 @@ public interface VideoService {
 	void update(VideoDto video);
 
 	void delete(int id);
+
+	List<VideoDto> readBest();
 }
