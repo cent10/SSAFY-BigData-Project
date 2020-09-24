@@ -70,7 +70,7 @@ public class UserController {
 	
 	@ApiOperation(value = "로그인")
 	@PostMapping("/login")
-	private ResponseEntity<UserDto> login(@RequestBody UserDto userDto, HttpServletResponse response) {
+	private ResponseEntity<?> login(@RequestBody UserDto userDto, HttpServletResponse response) {
 		logger.debug("로그인");
 		
 		UserDto user = userService.login(userDto); // 로그인
@@ -78,7 +78,7 @@ public class UserController {
 		if (user != null) {
 			String token = jwtService.create(user);
 			response.setHeader("jwt-auth-token", token);
-			return new ResponseEntity<UserDto>(user, HttpStatus.OK);
+			return new ResponseEntity<UserDto>(HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}

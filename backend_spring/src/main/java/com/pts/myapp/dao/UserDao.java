@@ -7,16 +7,16 @@ import com.pts.myapp.dto.UserDto;
 @Mapper
 public interface UserDao {
 	// 회원가입
-	public void create(UserDto userDto);
+	public int create(UserDto userDto);
 	
 	// 회원 탈퇴
-	public void delete(String id);
+	public int delete(String id);
 	
 	// 회원정보 조회
 	public UserDto read(String id);
 	
 	// 회원정보 수정
-	public void update(UserDto userDto);
+	public int update(UserDto userDto);
 	
 	// 로그인
 	public UserDto login(UserDto userDto);
