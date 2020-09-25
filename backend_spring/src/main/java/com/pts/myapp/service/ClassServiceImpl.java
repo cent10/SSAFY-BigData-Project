@@ -35,8 +35,8 @@ public class ClassServiceImpl implements ClassService {
 	}
 
 	@Override
-	public void delete(int id, int coachId) {
-		dao.delete(id, coachId);
+	public void delete(int id) {
+		dao.delete(id);
 	}
 
 }
