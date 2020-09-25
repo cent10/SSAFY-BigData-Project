@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pts.myapp.dao.LogDao">
-	
-	
 
+    <insert id="create" parameterType="com.pts.myapp.dto.LogDto">
+        insert into LOGS (UID, POINT, DAY) VALUES
+            (#{uid}, #{point}, #{day})
+    </insert>
+	
+    <select id="readAll" parameterType="String" resultType="com.pts.myapp.dto.LogDto">
+        select * from LOGS where UID = #{uid}
+    </select>
 </mapper>

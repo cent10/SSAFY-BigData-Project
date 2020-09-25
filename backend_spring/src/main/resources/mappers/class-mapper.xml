@@ -2,6 +2,33 @@
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pts.myapp.dao.ClassDao">
 	
+	<select id="readAll" resultType="com.pts.myapp.dto.ClassDto">
+		select *
+		from CLASSES
+	</select>
 	
+	<!-- 확인 필요 -->
+	<select id="readById" resultType="com.pts.myapp.dto.ClassDto">
+		select *
+		from CLASSES
+		where id=#{id}
+	</select>
+
+	<insert id="create">
+		insert into CLASSES (THUMBNAIL, TITLE, COACH_ID, LEVEL, TYPE1, TYPE2, TYPE3, URL, IS_ACTIVE, STORY) VALUES
+		(#{thumbnail}, #{title}, #{coachId}, #{level}, #{type1}, #{type2}, #{type3}, #{url}, 1, #{story})
+	</insert>
+	
+	<update id="update">
+		update CLASSES
+		set THUMBNAIL=#{thumbnail}, TITLE=#{title}, COACH_ID=#{coachId}, LEVEL=#{level},
+			TYPE1=#{type1}, TYPE2=#{type2}, TYPE3=#{type3}, IS_ACTIVE=#{isActive}, URL=#{url}, STORY=#{story}
+		where id=#{id}
+	</update>
+	
+	<delete id="delete">
+		delete from CLASSES
+		where id=#{id}
+	</delete>
 
 </mapper>

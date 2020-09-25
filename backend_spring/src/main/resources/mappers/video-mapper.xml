@@ -1,7 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pts.myapp.dao.VideoDao">
-	
-	
+    <insert id="create" parameterType="com.pts.myapp.dto.VideoDto">
+        insert into VIDEOS (THUMBNAIL, TITLE, TYPE1, TYPE2, TYPE3, COUNT, URL) values
+            (#{thumbnail}, #{title}, #{type1}, #{type2}, #{type3}, 0, #{url})
+    </insert>
 
+    <select id="read" parameterType="int" resultType="com.pts.myapp.dto.VideoDto">
+        select * from VIDEOS where ID = #{id}
+    </select>
+
+    <select id="readAll" resultType="com.pts.myapp.dto.VideoDto">
+        select * from VIDEOS
+        order by `COUNT`
+        LIMIT 10 OFFSET 0
+    </select>
+
+    <update id="update" parameterType="com.pts.myapp.dto.VideoDto">
+        update VIDEOS
+        set THUMBNAIL = #{thumbnail},
+            TITLE = #{title},
+            TYPE1 = #{type1},
+            TYPE2 = #{type2},
+            TYPE3 = #{type3},
+            COUNT = #{count},
+            URL = #{url}
+            where ID = #{id}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        delete from VIDEOS where ID = #{id}
+    </delete>
+
+    <select id="readBest" resultType="com.pts.myapp.dto.VideoDto">
+        select * from VIDEOS where TYPE1 = "정태영"
+    </select>
 </mapper>

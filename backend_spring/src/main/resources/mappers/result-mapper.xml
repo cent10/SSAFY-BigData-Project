@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pts.myapp.dao.ResultDao">
-	
-	
+
+    <insert id="create" parameterType="com.pts.myapp.dto.ResultDto">
+        insert into RESULTS (UID, BMI, ARM, LEG, CORE, CHEST, FAT) VALUES
+            (#{uid}, #{bmi}, #{arm}, #{leg}, #{core}, #{chest}, #{fat})
+    </insert>
+
+    <select id="read" parameterType="String" resultType="com.pts.myapp.dto.ResultDto">
+        select * from RESULTS where UID = #{uid}
+    </select>
 
 </mapper>

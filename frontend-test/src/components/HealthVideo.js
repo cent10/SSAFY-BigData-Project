@@ -1,70 +1,71 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import "../static/css/Row.css";
-import YouTube from "react-youtube";
 
-const API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
+import Badge from "react-bootstrap/Badge";
 
 function HealthVideo({ title, keyword, isLargeRow }) {
   const [videos, setVideos] = useState([]);
-  const [videoUrl, setVideoUrl] = useState("");
 
   useEffect(() => {
     async function fetchVideo() {
       const request = await axios.get(
-        "https://www.googleapis.com/youtube/v3/search",
-        {
-          params: {
-            key: API_KEY,
-            part: "snippet",
-            type: "video",
-            q: keyword,
-            maxResults: 12,
-          },
-        }
+        "http://j3a501.p.ssafy.io:8888/pts/videos"
       );
-      setVideos(request.data.items);
+      setVideos(request.data);
       return request;
     }
     fetchVideo();
   }, [keyword]);
 
-  // console.log(keyword);
-  // console.log(videos);
-
-  const opts = {
-    height: "390",
-    width: "100%",
-    playerVars: {
-      autoplay: 1,
-    },
-  };
-
-  const handleClick = (video) => {
-    if (videoUrl) {
-      setVideoUrl("");
-    } else setVideoUrl(video.id.videoId);
-  };
+  function truncate(str, n) {
+    return str?.length > n ? str.substr(0, n - 1) + "..." : str;
+  }
 
   return (
-    <div className="row">
+    <div className="rowrow">
       {/* title */}
-      <h2>{title}</h2>
+      <h2 className="row__title">{title}</h2>
 
       {/* container -> posters */}
       <div className="row__posters">
         {/* several rwo_poster */}
         {videos.map((video) => (
-          <img
-            key={video.id.videoId}
-            onClick={() => handleClick(video)}
-            className={`row__poster ${isLargeRow && "row__posterLarge"}`}
-            src={video.snippet.thumbnails.high.url}
-            alt={video?.snippet.title}
-          />
+          <div
+            className="row__class__poster"
+            style={{ width: "290px", height: "300px;" }}
+          >
+            <Link
+              className="row__link"
+              to={{
+                pathname: `/video/${video.url}`,
+                state: {
+                  title: video.title,
+                  tags: [video.type1, video.type2, video.type3],
+                },
+              }}
+            >
+              <img
+                className="row__poster"
+                key={video.id}
+                src={video.thumbnail}
+                alt={video.title}
+              />
+            </Link>
+            <h6 className="row__class__title" style={{ paddingTop: "200px;" }}>
+              {truncate(video.title, 18)}
+            </h6>
+            <h6>
+              <span>
+                <Badge variant="light">{video.type1}</Badge>{" "}
+                <Badge variant="light">{video.type2}</Badge>{" "}
+                <Badge variant="light">{video.type3}</Badge>
+              </span>
+            </h6>
+          </div>
         ))}
       </div>
-      {videoUrl && <YouTube videoId={videoUrl} opts={opts} />}
     </div>
   );
 }

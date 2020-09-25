@@ -1,18 +1,30 @@
 import React from "react";
 import "../static/css/Inform.css";
 import bodyStyle01 from "../static/image/bodyForm/form-style01.svg";
-import pentaGraph from "../static/image/penta-graph.gif";
-import contributionGraph from "../static/image/contribution-graph.jpg";
+// import pentaGraph from "../static/image/penta-graph.gif";
+// import contributionGraph from "../static/image/contribution-graph.jpg";
+
+import RadialChart from "./RadialChart";
+import Heatmap from "./Heatmap";
 
 function Inform() {
   // function truncate(str, n) {
   //   return str?.length > n ? str.substr(0, n - 1) + "..." : str;
   // }
 
+  // 레이더 그래프 데이터 필요
+  // const [radar, setRadar] = useState([])
+
+  // const [datedata, setDatedata] = useState([])
+
+  // react 배포 오류 떄문에 ??
+  const RadialChart2 = RadialChart;
+  const Heatmap2 = Heatmap;
+
   return (
-    // background image
     <header className="inform">
-      <div className="part">
+      {/* background image */}
+      <div className="part part-one">
         <img src={bodyStyle01} alt="bodyStyle" className="body-style" />
         <span className="body-rank">⭐⭐⭐</span>
       </div>
@@ -26,13 +38,28 @@ function Inform() {
         </span>
       </div>
       <div className="part">
-        <img src={pentaGraph} alt="penta-graph" className="penta-graph" />
+        {/* <img src={pentaGraph} alt="penta-graph" className="penta-graph" /> */}
+        <RadialChart2
+          upper={0.75}
+          core={0.9}
+          leg={0.99}
+          back={0.89}
+          arm={0.6}
+        />
       </div>
       <div className="part">
-        <img
+        {/* <img
           src={contributionGraph}
           alt="contribution-graph"
           className="contribution-graph"
+        /> */}
+        <Heatmap2
+          className="part-heatmap"
+          datedata={[
+            { date: "2020-09-01", count: 1 },
+            { date: "2020-09-08", count: 6 },
+            { date: "2020-09-15", count: 10 },
+          ]}
         />
       </div>
     </header>

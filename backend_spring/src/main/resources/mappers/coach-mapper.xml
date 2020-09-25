@@ -2,6 +2,52 @@
 <!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.pts.myapp.dao.CoachDao">
 	
+	<!-- 코치 신청 -->
+	<insert id="createApplication">
+		INSERT INTO COACHES(UID, PROFILE_PHOTO, CAREER, IS_APPROVED)
+		VALUES(#{uid}, #{profile_photo}, #{career}, FALSE)
+	</insert>
 	
+	<!-- 코치 신청 리스트 조회 (미승인 상태의 코치 리스트 조회) -->
+	<select id="readAllApplication" resultType="com.pts.myapp.dto.CoachDto">
+		SELECT ID, UID, PROFILE_PHOTO, CAREER, IS_APPROVED
+		FROM COACHES
+		WHERE IS_APPROVED=FALSE
+	</select>
+	
+	<!-- 코치 승인 -->
+	<update id="approve">
+		UPDATE COACHES
+		SET IS_APPROVED=TRUE
+		WHERE ID=#{id}
+	</update>
+	
+	<!-- 코치 수정 -->
+	<update id="update">
+		UPDATE COACHES
+		SET PROFILE_PHOTO=#{profile_photo}, CAREER=#{career}
+		WHERE ID=#{id}
+	</update>
+	
+	<!-- 코치 삭제 -->
+	<delete id="delete">
+		DELETE
+		FROM COACHES
+		WHERE ID=#{id}
+	</delete>
+	
+	<!-- 코치 조회 -->
+	<select id="read" resultType="com.pts.myapp.dto.CoachDto">
+		SELECT ID, UID, PROFILE_PHOTO, CAREER, IS_APPROVED
+		FROM COACHES
+		WHERE ID=#{id}
+	</select>
+	
+	<!-- 코치 리스트 조회 -->
+	<select id="readAll" resultType="com.pts.myapp.dto.CoachDto">
+		SELECT ID, UID, PROFILE_PHOTO, CAREER, IS_APPROVED
+		FROM COACHES
+		WHERE IS_APPROVED=TRUE
+	</select>
 
 </mapper>
