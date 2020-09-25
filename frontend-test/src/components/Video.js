@@ -1,9 +1,9 @@
 import React from "react";
 import YouTube from "react-youtube";
 
-import { Link } from "react-router-dom";
-
 import "../static/css/Video.css";
+
+import Badge from "react-bootstrap/Badge";
 
 function Video(props) {
   console.log(props);
@@ -21,6 +21,16 @@ function Video(props) {
 
   return (
     <div className="youtube-video-player">
+      <h4 style={{ color: "white" }}>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        {props.location.state.title} &nbsp;&nbsp;{" "}
+        {props.location.state.tags.map((tag) => (
+          <>
+            <Badge variant="light">{tag}</Badge>
+            &nbsp;
+          </>
+        ))}
+      </h4>
       {/* <h1>youtube url {props.match.params.videoUrl}</h1> */}
       <YouTube
         videoId={props.match.params.videoUrl}

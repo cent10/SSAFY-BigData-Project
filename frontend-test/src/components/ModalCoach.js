@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+
+import axios from "axios";
+
 import { Modal, Button } from "react-bootstrap";
 
 function ModalClass(props) {
+  const [coach, setCoach] = useState({});
+  useEffect(() => {
+    async function fetchCoach() {
+      const request = await axios.get(
+        `http://j3a501.p.ssafy.io:8888/pts/coaches/${props.coachId}`
+      );
+      console.log("asdf", request.data);
+      setCoach(request.data);
+      return request;
+    }
+    fetchCoach();
+  }, []);
+
   return (
     <div>
       <Modal
@@ -12,14 +28,17 @@ function ModalClass(props) {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            제목 코치 김계란
+            코치 소개
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h4>코치 소개하기</h4>
-          {/* 좌측 코치 사진 */}
-          {/* <img src={props.src} /> */}
-          {/* 우측 코치 경력 */}
+          <h4>{coach.uid} 코치</h4>
+          <div>
+            {/* 좌측 코치 사진 */}
+            {/* <img src={coach.profile_photo} /> */}
+            {/* 우측 코치 경력 */}
+            <h4>{coach.career}</h4>
+          </div>
           <p>
             좋아~ 아주 좋아~좋아~ 아주 좋아~좋아~ 아주 좋아~좋아~ 아주
             좋아~좋아~ 아주 좋아~좋아~ 아주 좋아~좋아~ 아주 좋아~좋아~ 아주
