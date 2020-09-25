@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "../static/css/Inform.css";
 import bodyStyle01 from "../static/image/bodyForm/form-style01.svg";
 // import pentaGraph from "../static/image/penta-graph.gif";

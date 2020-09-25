@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "../static/css/Row.css";
 
+import Badge from "react-bootstrap/Badge";
+
 function HealthVideo({ title, keyword, isLargeRow }) {
   const [videos, setVideos] = useState([]);
 
@@ -17,6 +19,10 @@ function HealthVideo({ title, keyword, isLargeRow }) {
     fetchVideo();
   }, [keyword]);
 
+  function truncate(str, n) {
+    return str?.length > n ? str.substr(0, n - 1) + "..." : str;
+  }
+
   return (
     <div className="rowrow">
       {/* title */}
@@ -26,14 +32,38 @@ function HealthVideo({ title, keyword, isLargeRow }) {
       <div className="row__posters">
         {/* several rwo_poster */}
         {videos.map((video) => (
-          <Link className="row__link" to={`/video/${video.url}`}>
-            <img
-              className="row__poster"
-              key={video.id}
-              src={video.thumbnail}
-              alt={video.title}
-            />
-          </Link>
+          <div
+            className="row__class__poster"
+            style={{ width: "290px", height: "300px;" }}
+          >
+            <Link
+              className="row__link"
+              to={{
+                pathname: `/video/${video.url}`,
+                state: {
+                  title: video.title,
+                  tags: [video.type1, video.type2, video.type3],
+                },
+              }}
+            >
+              <img
+                className="row__poster"
+                key={video.id}
+                src={video.thumbnail}
+                alt={video.title}
+              />
+            </Link>
+            <h6 className="row__class__title" style={{ paddingTop: "200px;" }}>
+              {truncate(video.title, 18)}
+            </h6>
+            <h6>
+              <span>
+                <Badge variant="light">{video.type1}</Badge>{" "}
+                <Badge variant="light">{video.type2}</Badge>{" "}
+                <Badge variant="light">{video.type3}</Badge>
+              </span>
+            </h6>
+          </div>
         ))}
       </div>
     </div>

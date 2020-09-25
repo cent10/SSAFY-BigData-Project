@@ -12,7 +12,7 @@ function HealthClass({ title, keyword, isLargeRow }) {
   const [modalShow, setModalShow] = useState(false);
   const [src, setSrc] = useState("");
   const [cltitle, setCltitle] = useState("");
-  const [coach, setCoach] = useState("");
+  const [coach, setCoach] = useState({});
   const [tags, setTags] = useState([]);
 
   useEffect(() => {
@@ -26,6 +26,15 @@ function HealthClass({ title, keyword, isLargeRow }) {
     }
     fetchVideo();
   }, [keyword]);
+
+  async function fetchCoach(coachId) {
+    const request = await axios.get(
+      `http://j3a501.p.ssafy.io:8888/pts/coaches/${coachId}`
+    );
+    console.log("asdf", request.data);
+    setCoach(request.data);
+    return request;
+  }
 
   const ModalClass2 = ModalClass;
 
@@ -51,7 +60,7 @@ function HealthClass({ title, keyword, isLargeRow }) {
               onClick={() => {
                 setSrc(cl.thumbnail);
                 setCltitle(cl.title);
-                setCoach(cl.coach);
+                setCoach(fetchCoach(cl.coachId));
                 setTags([cl.type1, cl.type2, cl.type3]);
                 setModalShow(true);
               }}
@@ -74,13 +83,6 @@ function HealthClass({ title, keyword, isLargeRow }) {
             </h1>
             <img
               key={cl.id}
-              onClick={() => {
-                setSrc(cl.thumbnail);
-                setCltitle(cl.title);
-                setCoach(cl.coach);
-                setTags([cl.type1, cl.type2, cl.type3]);
-                setModalShow(true);
-              }}
               className={`row__class row__poster ${
                 isLargeRow && "row__posterLarge"
               }`}

@@ -3,30 +3,19 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "../static/css/BestCoachVideo.css";
 
-const API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY2;
-
-function BestCoachVideo({ title, keyword, isLargebcvideo }) {
+function BestCoachVideo({ title }) {
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
     async function fetchVideo() {
       const request = await axios.get(
-        "https://www.googleapis.com/youtube/v3/search",
-        {
-          params: {
-            key: API_KEY,
-            part: "snippet",
-            type: "video",
-            q: keyword,
-            maxResults: 12,
-          },
-        }
+        "http://j3a501.p.ssafy.io:8888/pts/videos/best"
       );
-      setVideos(request.data.items);
+      setVideos(request.data);
       return request;
     }
     fetchVideo();
-  }, [keyword]);
+  }, []);
 
   // console.log(keyword);
   // console.log(videos);
@@ -45,17 +34,25 @@ function BestCoachVideo({ title, keyword, isLargebcvideo }) {
       <div className="bcvideo__posters">
         {/* several rwo_poster */}
         {videos.map((video) => (
-          <Link className="bcvideo__link" to={`/video/${video.id.videoId}`}>
+          <Link
+            className="bcvideo__link"
+            to={{
+              pathname: `/video/${video.url}`,
+              state: {
+                title: video.title,
+                tags: [video.type1, video.type2, video.type3],
+              },
+            }}
+          >
             <img
               className="bcvideo__poster"
-              key={video.id.videoId}
-              src={video.snippet.thumbnails.high.url}
-              alt={video?.snippet.title}
+              key={video.id}
+              src={video.thumbnail}
+              alt={video.title}
             />
           </Link>
         ))}
       </div>
-      {/* {videoUrl && <YouTube videoId={videoUrl} opts={opts} />} */}
     </div>
   );
 }
