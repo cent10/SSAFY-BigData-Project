@@ -1,6 +1,8 @@
 import React from "react";
 import { Modal, Button } from "react-bootstrap";
 
+import Badge from "react-bootstrap/Badge";
+
 function ModalClass(props) {
   return (
     <div>
@@ -12,11 +14,17 @@ function ModalClass(props) {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            제목 김계란 클래스
+            {props.title}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h4>클래스 소개하기</h4>
+          <h4>
+            {props.tags.map((tag) => (
+              <>
+                <Badge variant="dark">{tag}</Badge>&nbsp;
+              </>
+            ))}
+          </h4>
           {/* 좌측 코치 사진 */}
           {/* props.src 내장 주소라 에러 뜨는듯 ?? */}
           {/* <img src={props.src} /> */}

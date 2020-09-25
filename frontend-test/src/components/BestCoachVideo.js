@@ -41,9 +41,6 @@ function BestCoachVideo({ title, keyword, isLargebcvideo }) {
 
   return (
     <div className="bcvideo">
-      {/* title */}
-      <h2 className="bcvideo__title">{title}</h2>
-
       {/* container -> posters */}
       <div className="bcvideo__posters">
         {/* several rwo_poster */}
