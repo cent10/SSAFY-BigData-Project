@@ -13,5 +13,5 @@ public interface ClassService {
 
 	public void update(ClassDto classDto);
 
-	public void delete(int id, int coachId);
+	public void delete(int id);
 }

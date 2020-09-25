@@ -36,6 +36,8 @@ public class ClassController {
 	@ApiOperation(value = "클래스 생성")
 	@PostMapping
 	private ResponseEntity<?> create(@RequestBody ClassDto classDto) {
+		logger.debug("클래스 생성");
+		System.out.println(classDto);
 		service.create(classDto);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
@@ -43,26 +45,30 @@ public class ClassController {
 	@ApiOperation(value = "전체 클래스 조회")
 	@GetMapping
 	private ResponseEntity<List<ClassDto>> readAll() {
+		logger.debug("전체 클래스 조회");
 		return new ResponseEntity<List<ClassDto>>(service.readAll(), HttpStatus.OK);
 	}
 
 	@ApiOperation(value = "ID로 클래스 조회")
 	@GetMapping("/{id}")
 	private ResponseEntity<ClassDto> readById(@PathVariable int id) {
+		logger.debug("ID로 클래스 조회");
 		return new ResponseEntity<ClassDto>(service.readById(id), HttpStatus.OK);
 	}
 
 	@ApiOperation(value = "클래스 수정")
 	@PutMapping("/{id}")
 	private ResponseEntity<ClassDto> update(@RequestBody ClassDto classDto) {
+		logger.debug("클래스 수정");
 		service.update(classDto);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@ApiOperation(value = "클래스 삭제")
-	@DeleteMapping("/{coachId}/{id}")
-	private ResponseEntity<?> delete(@PathVariable int id, @PathVariable int coachId) {
-		service.delete(id, coachId);
+	@DeleteMapping("/{id}")
+	private ResponseEntity<?> delete(@PathVariable int id) {
+		logger.debug("클래스 삭제");
+		service.delete(id);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 

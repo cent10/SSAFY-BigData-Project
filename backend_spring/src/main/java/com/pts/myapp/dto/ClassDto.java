@@ -15,7 +15,7 @@ public class ClassDto {
 	private String title;
 
 	@ApiModelProperty(value = "코치 ID")
-	private String coachId;
+	private int coachId;
 
 	@ApiModelProperty(value = "클래스 난이도")
 	private int level;
@@ -32,12 +32,16 @@ public class ClassDto {
 	@ApiModelProperty(value = "활성화 여부")
 	private boolean isActive;
 
-	public ClassDto() {
-	}
+	@ApiModelProperty(value = "클래스 설명")
+	private String story;
 
-	public ClassDto(int id, String thumbnail, String title, String coachId, int level, String type1, String type2,
-			String type3, boolean isActive) {
-		super();
+	@ApiModelProperty(value = "클래스 url")
+	private String url;
+
+	public ClassDto() {}
+
+	public ClassDto(int id, String thumbnail, String title, int coachId, int level, String type1, String type2,
+		String type3, boolean isActive, String story, String url) {
 		this.id = id;
 		this.thumbnail = thumbnail;
 		this.title = title;
@@ -47,6 +51,8 @@ public class ClassDto {
 		this.type2 = type2;
 		this.type3 = type3;
 		this.isActive = isActive;
+		this.story = story;
+		this.url = url;
 	}
 
 	public int getId() {
@@ -73,11 +79,11 @@ public class ClassDto {
 		this.title = title;
 	}
 
-	public String getCoachId() {
+	public int getCoachId() {
 		return coachId;
 	}
 
-	public void setCoachId(String coachId) {
+	public void setCoachId(int coachId) {
 		this.coachId = coachId;
 	}
 
@@ -117,8 +123,40 @@ public class ClassDto {
 		return isActive;
 	}
 
-	public void setActive(boolean isActive) {
-		this.isActive = isActive;
+	public void setActive(boolean active) {
+		isActive = active;
 	}
 
+	public String getStory() {
+		return story;
+	}
+
+	public void setStory(String story) {
+		this.story = story;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
+	@Override
+	public String toString() {
+		return "ClassDto{" +
+			"id=" + id +
+			", thumbnail='" + thumbnail + '\'' +
+			", title='" + title + '\'' +
+			", coachId='" + coachId + '\'' +
+			", level=" + level +
+			", type1='" + type1 + '\'' +
+			", type2='" + type2 + '\'' +
+			", type3='" + type3 + '\'' +
+			", isActive=" + isActive +
+			", story='" + story + '\'' +
+			", url='" + url + '\'' +
+			'}';
+	}
 }
