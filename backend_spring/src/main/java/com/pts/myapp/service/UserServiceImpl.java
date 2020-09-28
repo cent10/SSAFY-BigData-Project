@@ -57,13 +57,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserDto login(UserDto userDto) {
-		return userDao.login(userDto);
-	}
-
-	@Override
-	public void logout(String id) {
-		userDao.logout(id);
+	public UserDto login(UserDto userDto) {		
+		// 입력받은 비밀번호와 DB에 저장된 암호화된 비밀번호가 일치하는지 체크
+		if(passwordEncoder.matches(userDto.getPassword(), userDao.checkPassword(userDto.getId()))) {
+			return userDao.login(userDto);
+		} else {
+			return null;
+		}
 	}
 
 }

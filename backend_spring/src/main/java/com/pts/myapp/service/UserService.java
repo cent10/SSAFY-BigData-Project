@@ -17,7 +17,4 @@ public interface UserService {
 	
 	// 로그인
 	public UserDto login(UserDto userDto);
-	
-	// 로그아웃
-	public void logout(String id);
 }
