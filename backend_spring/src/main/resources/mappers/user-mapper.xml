@@ -5,7 +5,7 @@
 	<!-- 회원가입 -->
 	<insert id="create">
 		INSERT INTO USERS (ID, PASSWORD, NICKNAME, HEIGHT, WEIGHT, BIRTH_YEAR, GENDER, PROFILE)
-		VALUES(#{id}, #{password}, #{nickname} ,#{height}, #{weight}, #{birth_year}, #{gender}, #{profile})
+		VALUES(#{id}, #{password}, #{nickname} ,#{height}, #{weight}, #{birthYear}, #{gender}, #{profile})
 	</insert>
 	
 	<!-- 회원탈퇴 -->
@@ -33,7 +33,14 @@
 	<select id="login" resultType="com.pts.myapp.dto.UserDto">
 		SELECT *
 		FROM USERS
-		WHERE ID=#{id} AND PASSWORD=#{password};
+		WHERE ID=#{id};
+	</select>
+	
+	<!-- 해당 이메일(id)의 암호화된 비밀번호 조회 -->
+	<select id="checkPassword" resultType="String">
+		SELECT PASSWORD
+		FROM USERS
+		WHERE ID=#{id};
 	</select>
 
 </mapper>

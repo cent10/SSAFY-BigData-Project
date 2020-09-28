@@ -6,14 +6,14 @@ public class UserDto {
 	private String nickname;
 	private int height;
 	private int weight;
-	private int birth_year;
+	private int birthYear;
 	private boolean gender;
 	private String profile;
 	
 	public UserDto() {
 		super();
 	}
-	public UserDto(String id, String password, String nickname, int height, int weight, int birth_year, boolean gender,
+	public UserDto(String id, String password, String nickname, int height, int weight, int birthYear, boolean gender,
 			String profile) {
 		super();
 		this.id = id;
@@ -21,11 +21,10 @@ public class UserDto {
 		this.nickname = nickname;
 		this.height = height;
 		this.weight = weight;
-		this.birth_year = birth_year;
+		this.birthYear = birthYear;
 		this.gender = gender;
 		this.profile = profile;
 	}
-
 	public String getId() {
 		return id;
 	}
@@ -56,13 +55,13 @@ public class UserDto {
 	public void setWeight(int weight) {
 		this.weight = weight;
 	}
-	public int getBirth_year() {
-		return birth_year;
+	public int getBirthYear() {
+		return birthYear;
 	}
-	public void setBirth_year(int birth_year) {
-		this.birth_year = birth_year;
+	public void setBirthYear(int birthYear) {
+		this.birthYear = birthYear;
 	}
-	public boolean isGender() {
+	public boolean getGender() {
 		return gender;
 	}
 	public void setGender(boolean gender) {
@@ -78,7 +77,7 @@ public class UserDto {
 	@Override
 	public String toString() {
 		return "UserDto [id=" + id + ", password=" + password + ", nickname=" + nickname + ", height=" + height
-				+ ", weight=" + weight + ", birth_year=" + birth_year + ", gender=" + gender + ", profile=" + profile
+				+ ", weight=" + weight + ", birthYear=" + birthYear + ", gender=" + gender + ", profile=" + profile
 				+ "]";
 	}
 }
