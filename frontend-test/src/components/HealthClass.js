@@ -14,13 +14,14 @@ function HealthClass({ title, keyword, isLargeRow }) {
   const [cltitle, setCltitle] = useState("");
   const [coach, setCoach] = useState({});
   const [tags, setTags] = useState([]);
+  const [name, setName] = useState("");
 
   useEffect(() => {
     async function fetchVideo() {
       const request = await axios.get(
         "http://j3a501.p.ssafy.io:8888/pts/class"
       );
-      console.log(request.data);
+      // console.log(request.data);
       setClasses(request.data);
       return request;
     }
@@ -33,6 +34,16 @@ function HealthClass({ title, keyword, isLargeRow }) {
     );
     console.log("asdf", request.data);
     setCoach(request.data);
+    fetchName(request.data.uid);
+    return request;
+  }
+
+  async function fetchName(uid) {
+    const request = await axios.get(
+      `http://j3a501.p.ssafy.io:8888/pts/users/${uid}`
+    );
+    // console.log("asdf", request.data);
+    setName(request.data.nickname);
     return request;
   }
 
@@ -112,6 +123,7 @@ function HealthClass({ title, keyword, isLargeRow }) {
         title={cltitle}
         coach={coach}
         tags={tags}
+        name={name}
       />
     </div>
   );

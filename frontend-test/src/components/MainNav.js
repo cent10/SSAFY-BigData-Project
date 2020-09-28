@@ -6,6 +6,8 @@ import cardSearch from "@iconify/icons-mdi/card-search";
 import ModalUser from "./ModalUser";
 import { withRouter } from "react-router-dom";
 
+import SearchBox from "./SearchBox";
+
 import "../static/css/MainNav.css";
 
 function MainNav({ isLoggedIn, logout, history }) {
@@ -43,6 +45,7 @@ function MainNav({ isLoggedIn, logout, history }) {
           </Link>
         )}
         {isLoggedIn && <Icon className="nav__search" icon={cardSearch} />}
+        {/* {isLoggedIn && <SearchBox />} */}
         {isLoggedIn && <button onClick={handleClick}>Logout</button>}
         {isLoggedIn && (
           <img

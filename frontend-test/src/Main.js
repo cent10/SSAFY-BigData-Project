@@ -9,7 +9,7 @@ import MainFooter from "./components/MainFooter";
 
 import "./static/css/Main.css";
 
-function Main({ user }) {
+function Main({ user, history }) {
   const HealthVideo2 = HealthVideo;
   const HealthClass2 = HealthClass;
   const Inform2 = Inform;
@@ -26,6 +26,7 @@ function Main({ user }) {
       <HealthVideo2
         title="바나나먹는몽키님에게 추천되는 상체 발달 운동법 >"
         keyword="pushup posture"
+        history={history}
       />
 
       {/* Health Class */}
@@ -46,6 +47,7 @@ function Main({ user }) {
             "생활체육지도자3급",
           ],
         }}
+        history={history}
       />
 
       {/* Coaches */}

@@ -1,30 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../static/css/Coaches.css";
+
+import axios from "axios";
 
 import ModalCoach from "./ModalCoach";
 
-const coaches = [
-  { name: "김계란", image: "../static/image/coach.png" },
-  { name: "김계란", image: "../static/image/coach.png" },
-  { name: "김계란", image: "../static/image/coach.png" },
-  { name: "김계란", image: "../static/image/coach.png" },
-  { name: "김계란", image: "../static/image/coach.png" },
-  { name: "김계란", image: "../static/image/coach.png" },
-  { name: "김계란", image: "../static/image/coach.png" },
-  { name: "김계란", image: "../static/image/coach.png" },
-  { name: "김계란", image: "../static/image/coach.png" },
-  { name: "김계란", image: "../static/image/coach.png" },
-  { name: "김계란", image: "../static/image/coach.png" },
-  { name: "김계란", image: "../static/image/coach.png" },
-  { name: "김계란", image: "../static/image/coach.png" },
-];
-
-// coaches 원래 불러와야함
-// function Coaches({title, coaches}) {
 function Coaches({ title }) {
-  // cosnt [coaches, setCoaches] = useState([]));
+  const [coaches, setCoaches] = useState([]);
   const [modalShow, setModalShow] = useState(false);
+  const [coach, setCoach] = useState({});
   const [src, setSrc] = useState("");
+  const [name, setName] = useState("");
+
+  useEffect(() => {
+    async function fetchCoaches() {
+      const request = await axios.get(
+        "http://j3a501.p.ssafy.io:8888/pts/coaches"
+      );
+      // console.log(request.data);
+      setCoaches(request.data);
+      return request;
+    }
+    fetchCoaches();
+  }, []);
+
+  async function fetchName(uid) {
+    const request = await axios.get(
+      `http://j3a501.p.ssafy.io:8888/pts/users/${uid}`
+    );
+    // console.log("asdf", request.data);
+    setName(request.data.nickname);
+    return request;
+  }
 
   const ModalCoach2 = ModalCoach;
   return (
@@ -36,13 +43,14 @@ function Coaches({ title }) {
             className="coach__poster"
             onClick={() => {
               // coach.image 가 로컬 경로라 적용 안됨  ??
-              setSrc(coach.image);
+              setCoach(coach);
+              fetchName(coach.uid);
+              setSrc(coach.profile_photo);
               setModalShow(true);
-              console.log(src);
             }}
             // src={require("" + coach.image)}
             src={require("../static/image/coach.png")}
-            alt={coach.name}
+            alt={coach.uid}
           />
         ))}
       </div>
@@ -52,7 +60,9 @@ function Coaches({ title }) {
         onHide={() => {
           setModalShow(false);
         }}
+        coach={coach}
         src={src}
+        name={name}
       />
     </div>
   );
