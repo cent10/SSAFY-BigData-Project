@@ -2,6 +2,7 @@ package com.pts.myapp.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.pts.myapp.dao.UserDao;
@@ -14,8 +15,15 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	UserDao userDao;
 	
+	@Autowired
+	PasswordEncoder passwordEncoder;
+	
 	@Override
 	public void create(UserDto userDto) {
+		// 패스워드 암호화
+		String encodedPassword = passwordEncoder.encode(userDto.getPassword());
+		userDto.setPassword(encodedPassword);
+		
 		if (userDao.create(userDto) < 0) {
 			throw new IncorrectFormatException(String.valueOf(userDto.getId()));
 		}
