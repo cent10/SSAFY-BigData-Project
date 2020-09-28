@@ -3,20 +3,20 @@ package com.pts.myapp.dto;
 public class CoachDto {
 	private int id;					// 아이디 (AI)
 	private String uid;				// 유저 아이디 (이메일)
-	private String profile_photo;	// 프로필 이미지
+	private String profilePhoto;	// 프로필 이미지
 	private String career;			// 경력사항
-	private boolean is_approved;	// 코치 승인 여부 (true:승인, false:미승인)
+	private boolean isApproved;	// 코치 승인 여부 (true:승인, false:미승인)
 	
 	public CoachDto() {
 		super();
 	}
-	public CoachDto(int id, String uid, String profile_photo, String career, boolean is_approved) {
+	public CoachDto(int id, String uid, String profilePhoto, String career, boolean isApproved) {
 		super();
 		this.id = id;
 		this.uid = uid;
-		this.profile_photo = profile_photo;
+		this.profilePhoto = profilePhoto;
 		this.career = career;
-		this.is_approved = is_approved;
+		this.isApproved = isApproved;
 	}
 	
 	public int getId() {
@@ -31,11 +31,11 @@ public class CoachDto {
 	public void setUid(String uid) {
 		this.uid = uid;
 	}
-	public String getProfile_photo() {
-		return profile_photo;
+	public String getProfilePhoto() {
+		return profilePhoto;
 	}
-	public void setProfile_photo(String profile_photo) {
-		this.profile_photo = profile_photo;
+	public void setProfilePhoto(String profilePhoto) {
+		this.profilePhoto = profilePhoto;
 	}
 	public String getCareer() {
 		return career;
@@ -43,16 +43,16 @@ public class CoachDto {
 	public void setCareer(String career) {
 		this.career = career;
 	}
-	public boolean isIs_approved() {
-		return is_approved;
+	public boolean isApproved() {
+		return isApproved;
 	}
-	public void setIs_approved(boolean is_approved) {
-		this.is_approved = is_approved;
+	public void setApproved(boolean isApproved) {
+		this.isApproved = isApproved;
 	}
 	
 	@Override
 	public String toString() {
-		return "CoachDto [id=" + id + ", uid=" + uid + ", profile_photo=" + profile_photo + ", career=" + career
-				+ ", is_approved=" + is_approved + "]";
+		return "CoachDto [id=" + id + ", uid=" + uid + ", profilePhoto=" + profilePhoto + ", career=" + career
+				+ ", isApproved=" + isApproved + "]";
 	}
 }
