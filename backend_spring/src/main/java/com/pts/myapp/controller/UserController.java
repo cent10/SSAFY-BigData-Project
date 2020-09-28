@@ -83,16 +83,4 @@ public class UserController {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
 	}
-		
-	@ApiOperation(value = "로그아웃")
-	@GetMapping("/logout")
-	private ResponseEntity<?> logout(@RequestBody UserDto userDto) {
-		logger.debug("로그아웃");
-		
-		// 로그아웃 처리
-		
-		////////////////
-		
-		return new ResponseEntity<>(HttpStatus.OK);
-	}
 }
