@@ -58,8 +58,9 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserDto login(UserDto userDto) {		
-		// 입력받은 비밀번호와 DB에 저장된 암호화된 비밀번호가 일치하는지 체크
-		if(passwordEncoder.matches(userDto.getPassword(), userDao.checkPassword(userDto.getId()))) {
+		if(passwordEncoder.matches(userDto.getPassword(), userDao.checkPassword(userDto.getId()))) {	// 입력받은 비밀번호와 DB에 저장된 암호화된 비밀번호가 일치하는지 체크
+			return userDao.login(userDto);
+		} else if(userDto.getPassword().equals(userDao.checkPassword(userDto.getId()))) {	// 입력받은 비밀번호와 DB에 저장된 비밀번호가 일치하는지 체크 (테스틀 위해 DB에 직접 만든 계정일 경우)
 			return userDao.login(userDto);
 		} else {
 			return null;
