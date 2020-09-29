@@ -13,6 +13,12 @@
 		from CLASSES
 		where id=#{id}
 	</select>
+	
+	<select id="search" resultType="com.pts.myapp.dto.ClassDto">
+		SELECT *
+		FROM CLASSES
+		WHERE #{word} IN (TYPE1, TYPE2, TYPE3)
+	</select>
 
 	<insert id="create">
 		insert into CLASSES (THUMBNAIL, TITLE, COACH_ID, LEVEL, TYPE1, TYPE2, TYPE3, URL, IS_ACTIVE, STORY) VALUES

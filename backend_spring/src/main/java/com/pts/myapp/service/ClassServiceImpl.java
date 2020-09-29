@@ -28,6 +28,11 @@ public class ClassServiceImpl implements ClassService {
 	public ClassDto readById(int id) {
 		return dao.readById(id);
 	}
+	
+	@Override
+	public List<ClassDto> search(String word) {
+		return dao.search(word);
+	}
 
 	@Override
 	public void update(ClassDto classDto) {

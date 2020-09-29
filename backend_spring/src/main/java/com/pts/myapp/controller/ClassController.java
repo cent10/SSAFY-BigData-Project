@@ -55,6 +55,13 @@ public class ClassController {
 		logger.debug("ID로 클래스 조회");
 		return new ResponseEntity<ClassDto>(service.readById(id), HttpStatus.OK);
 	}
+	
+	@ApiOperation(value = "검색으로 클래스 조회")
+	@GetMapping("/search/{word}")
+	private ResponseEntity<?> search(@PathVariable String word) {
+		logger.debug("검색으로 클래스 조회");
+		return new ResponseEntity<List<ClassDto>>(service.search(word), HttpStatus.OK);
+	}
 
 	@ApiOperation(value = "클래스 수정")
 	@PutMapping("/{id}")
