@@ -45,9 +45,9 @@
 	
 	<!-- 코치 리스트 조회 -->
 	<select id="search" resultType="com.pts.myapp.dto.CoachDto">
-		SELECT ID, UID, PROFILE_PHOTO, CAREER, IS_APPROVED
-		FROM COACHES
-		WHERE UID LIKE '%'+#{searchword}+'%'
+		SELECT COACHES.ID, COACHES.UID, COACHES.PROFILE_PHOTO, COACHES.CAREER, COACHES.IS_APPROVED
+		FROM USERS, COACHES
+		WHERE USERS.ID = COACHES.UID AND USERS.NICKNAME LIKE CONCAT('%', #{searchword}, '%')
 	</select>
 
 </mapper>
