@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.pts.myapp.dao.CoachDao;
 import com.pts.myapp.dto.CoachDto;
+import com.pts.myapp.error.exception.EntityNotFoundException;
+import com.pts.myapp.error.exception.IncorrectFormatException;
 
 @Service
 public class CoachServiceImpl implements CoachService {
@@ -16,7 +18,9 @@ public class CoachServiceImpl implements CoachService {
 	
 	@Override
 	public void createApplication(CoachDto coachDto) {
-		coachDao.createApplication(coachDto);
+		if(coachDao.createApplication(coachDto) < 1) {
+			throw new IncorrectFormatException(String.valueOf(coachDto.getId()));
+		}
 	}
 	
 	@Override
@@ -26,17 +30,35 @@ public class CoachServiceImpl implements CoachService {
 	
 	@Override
 	public void approve(int id) {
-		coachDao.approve(id);
+		try {
+			coachDao.approve(id);
+		} catch (Exception e) {
+			if(e.getMessage().contains("For")) {
+				throw new EntityNotFoundException(String.valueOf(id));
+			}
+		}
 	}
 
 	@Override
 	public void update(CoachDto coachDto) {
-		coachDao.update(coachDto);
+		try {
+			coachDao.update(coachDto);
+		} catch (Exception e) {
+			if(e.getMessage().contains("For")) {
+				throw new EntityNotFoundException(String.valueOf(coachDto.getId()));
+			}
+		}
 	}
 
 	@Override
 	public void delete(int id) {
-		coachDao.delete(id);
+		try {
+			coachDao.delete(id);
+		} catch (Exception e) {
+			if(e.getMessage().contains("For")) {
+				throw new EntityNotFoundException(String.valueOf(id));
+			}
+		}
 	}
 
 	@Override
