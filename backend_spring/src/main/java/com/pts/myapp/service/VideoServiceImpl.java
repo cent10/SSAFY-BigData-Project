@@ -63,4 +63,9 @@ public class VideoServiceImpl implements VideoService {
 	public List<VideoDto> readBest() {
 		return dao.readBest();
 	}
+
+	@Override
+	public List<VideoDto> search(String searchword) {
+		return dao.search(searchword);
+	}
 }

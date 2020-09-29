@@ -17,4 +17,6 @@ public interface VideoService {
 	void delete(int id);
 
 	List<VideoDto> readBest();
+	
+	List<VideoDto> search(String searchword);
 }

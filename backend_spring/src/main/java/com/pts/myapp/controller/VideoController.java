@@ -48,7 +48,7 @@ public class VideoController {
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}", produces = "application/json")
 	@ApiOperation(value = "영상 조회", notes = "영상 조회")
 	@ApiResponses({
-		@ApiResponse(code = 201, message = "영상 조회"),
+		@ApiResponse(code = 200, message = "영상 조회"),
 		@ApiResponse(code = 400, message = "잘못된 요청입니다"),
 		@ApiResponse(code = 401, message = "로그인 후 이용해 주세요"),
 		@ApiResponse(code = 404, message = "영상 조회 실패")
@@ -62,7 +62,7 @@ public class VideoController {
 	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
 	@ApiOperation(value = "영상 리스트 조회", notes = "영상 리스트 조회")
 	@ApiResponses({
-		@ApiResponse(code = 201, message = "영상 리스트 조회"),
+		@ApiResponse(code = 200, message = "영상 리스트 조회"),
 		@ApiResponse(code = 400, message = "잘못된 요청입니다"),
 		@ApiResponse(code = 401, message = "로그인 후 이용해 주세요"),
 		@ApiResponse(code = 404, message = "영상 리스트 조회 실패")
@@ -105,7 +105,7 @@ public class VideoController {
 	@RequestMapping(method = RequestMethod.GET, value = "/best", produces = "application/json")
 	@ApiOperation(value = "이달의 베스트 코치 영상 조회", notes = "이달의 베스트 영상 조회")
 	@ApiResponses({
-		@ApiResponse(code = 201, message = "이달의 베스트 코치 영상 조회"),
+		@ApiResponse(code = 200, message = "이달의 베스트 코치 영상 조회"),
 		@ApiResponse(code = 400, message = "잘못된 요청입니다"),
 		@ApiResponse(code = 401, message = "로그인 후 이용해 주세요"),
 		@ApiResponse(code = 403, message = "권한이 없습니다"),
@@ -114,6 +114,20 @@ public class VideoController {
 	private ResponseEntity<?> readBest() {
 		logger.debug("이달의 베스트 코치 영상 조회");
 		List<VideoDto> list =  service.readBest();
+		return new ResponseEntity<>(list, HttpStatus.OK);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value="/search/{searchword}", produces = "application/json")
+	@ApiOperation(value = "영상 이름(TITLE)로 검색", notes = "영상 이름(TITLE)로 검색")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "영상 이름(TITLE)로 검색"),
+		@ApiResponse(code = 400, message = "잘못된 요청입니다"),
+		@ApiResponse(code = 401, message = "로그인 후 이용해 주세요"),
+		@ApiResponse(code = 404, message = "영상 이름(TITLE)로 검색 실패")
+	})
+	private ResponseEntity<?> search(@PathVariable(value = "searchword") String searchword) {
+		logger.debug("영상 이름(TITLE)로 검색");
+		List<VideoDto> list = service.search(searchword);
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 }
