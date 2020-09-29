@@ -26,4 +26,7 @@ public interface CoachService {
 	
 	// 코치 리스트 조회 (승인 상태의 코치 리스트 조회)
 	public List<CoachDto> readAll();
+	
+	// 코치 이름으로 검색
+	public List<CoachDto> search(String searchword);
 }

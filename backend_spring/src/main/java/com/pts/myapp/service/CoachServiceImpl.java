@@ -70,4 +70,9 @@ public class CoachServiceImpl implements CoachService {
 	public List<CoachDto> readAll() {
 		return coachDao.readAll();
 	}
+
+	@Override
+	public List<CoachDto> search(String searchword) {
+		return coachDao.search(searchword);
+	}
 }

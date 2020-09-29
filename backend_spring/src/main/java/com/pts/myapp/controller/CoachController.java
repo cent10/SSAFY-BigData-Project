@@ -88,4 +88,11 @@ static final Logger logger = LoggerFactory.getLogger(CoachController.class);
 		return new ResponseEntity<List<CoachDto>>(coachDtoList, HttpStatus.OK);
 	}
 	
+	@ApiOperation(value = "코치 이름으로 검색", response = CoachDto.class)
+	@GetMapping("/search/{searchword}")
+	private ResponseEntity<List<CoachDto>> search(@PathVariable("searchword") String searchword) {
+		logger.debug("코치 이름으로 검색");
+		List<CoachDto> coachDtoList = coachService.search(searchword);
+		return new ResponseEntity<List<CoachDto>>(coachDtoList, HttpStatus.OK);
+	}
 }
