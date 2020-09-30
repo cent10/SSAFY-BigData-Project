@@ -28,6 +28,18 @@ public class ResultDto {
 	@ApiModelProperty(value = "체지방", example = "21.34")
 	private float fat;
 
+	public ResultDto() {}
+
+	public ResultDto(String uid, float bmi, int arm, int leg, int core, int chest, float fat) {
+		this.uid = uid;
+		this.bmi = bmi;
+		this.arm = arm;
+		this.leg = leg;
+		this.core = core;
+		this.chest = chest;
+		this.fat = fat;
+	}
+
 	public int getId() {
 		return id;
 	}
