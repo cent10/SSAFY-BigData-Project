@@ -4,7 +4,7 @@ import backdropImage from "../static/image/bestcoach.png";
 
 import BestCoachVideo from "./BestCoachVideo";
 
-function BestCoach({ title, bestCoach }) {
+function BestCoach({ title, bestCoach, history }) {
   const BestCoachVideo2 = BestCoachVideo;
 
   return (
@@ -27,7 +27,11 @@ function BestCoach({ title, bestCoach }) {
             <h1 className="bcoach__description">{line}</h1>
           ))}
           {/* videos 구현 예정*/}
-          <BestCoachVideo2 className="bcoach__video" keyword="lofi" />
+          <BestCoachVideo2
+            className="bcoach__video"
+            keyword="lofi"
+            history={history}
+          />
         </div>
       </div>
     </div>

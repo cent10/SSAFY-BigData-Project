@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import "../static/css/Row.css";
 
 import Badge from "react-bootstrap/Badge";
 
-function HealthVideo({ title, keyword, isLargeRow }) {
+function HealthVideo({ title, keyword, isLargeRow, history }) {
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
@@ -36,23 +35,19 @@ function HealthVideo({ title, keyword, isLargeRow }) {
             className="row__class__poster"
             style={{ width: "290px", height: "300px;" }}
           >
-            <Link
-              className="row__link"
-              to={{
-                pathname: `/video/${video.url}`,
-                state: {
+            <img
+              className="row__poster"
+              key={video.id}
+              src={video.thumbnail}
+              alt={video.title}
+              onClick={() => {
+                history.push(`/video/${video.url}`, {
                   title: video.title,
                   tags: [video.type1, video.type2, video.type3],
-                },
+                });
               }}
-            >
-              <img
-                className="row__poster"
-                key={video.id}
-                src={video.thumbnail}
-                alt={video.title}
-              />
-            </Link>
+            />
+            {/* </Link> */}
             <h6 className="row__class__title" style={{ paddingTop: "200px;" }}>
               {truncate(video.title, 18)}
             </h6>
