@@ -10,6 +10,8 @@ public interface ClassService {
 	public List<ClassDto> readAll();
 
 	public ClassDto readById(int id);
+	
+	public List<ClassDto> search(String word);
 
 	public void update(ClassDto classDto);
 
