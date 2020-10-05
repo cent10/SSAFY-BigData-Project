@@ -14,6 +14,9 @@ import Search from "./Search";
 import Video from "./components/Video";
 import Login from "./components/Login";
 import MainNav from "./components/MainNav";
+
+import Sorry from "./Sorry";
+
 // 로그인 인증
 import { signIn } from "./components/auth";
 import AuthRoute from "./components/AuthRoute";
@@ -32,13 +35,17 @@ function App() {
   const Search2 = Search;
   const MainNav2 = MainNav;
 
+  const Sorry2 = Sorry;
+
+  const windowWidth = window.innerWidth;
+
   return (
     <Router>
       <header>
-        <MainNav2 isLoggedIn={user} logout={logout} />
+        {windowWidth > 992 && <MainNav2 isLoggedIn={user} logout={logout} />}
       </header>
 
-      <Route exact path="/" component={Home2} />
+      <Route exact path="/" component={windowWidth > 992 ? Home2 : Sorry2} />
 
       {/* 밑에 AuthRoute 랑 겹쳐서 2개가 나온다 */}
       {/* <Route exact path="/main" component={Main} /> */}
@@ -55,8 +62,16 @@ function App() {
         path="/main"
         render={(props) => <Main2 user={user} {...props} />}
       />
-      <Route exact path="/search/:keyword" component={Search2} />
-      <Route exact path="/video/:videoUrl" component={Video2} />
+      <Route
+        exact
+        path="/search/:keyword"
+        component={windowWidth > 992 ? Search2 : Sorry2}
+      />
+      <Route
+        exact
+        path="/video/:videoUrl"
+        component={windowWidth > 992 ? Video2 : Sorry2}
+      />
     </Router>
     // <Router>
     //   <div className="app">

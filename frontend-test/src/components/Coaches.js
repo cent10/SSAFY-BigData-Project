@@ -4,6 +4,7 @@ import "../static/css/Coaches.css";
 import axios from "axios";
 
 import ModalCoach from "./ModalCoach";
+import Carousel from "react-bootstrap/Carousel";
 
 function Coaches({ title }) {
   const [coaches, setCoaches] = useState([]);
@@ -11,6 +12,11 @@ function Coaches({ title }) {
   const [coach, setCoach] = useState({});
   const [src, setSrc] = useState("");
   const [name, setName] = useState("");
+  const [index, setIndex] = useState(0);
+
+  const handleSelect = (selectedIndex, e) => {
+    setIndex(selectedIndex);
+  };
 
   useEffect(() => {
     async function fetchCoaches() {
@@ -35,25 +41,55 @@ function Coaches({ title }) {
 
   const ModalCoach2 = ModalCoach;
   return (
-    <div>
-      <h2 className="title">{title}</h2>
-      <div className="coach__posters">
-        {coaches.map((coach) => (
-          <img
-            className="coach__poster"
-            onClick={() => {
-              // coach.image 가 로컬 경로라 적용 안됨  ??
-              setCoach(coach);
-              fetchName(coach.uid);
-              setSrc(coach.profilePhoto);
-              setModalShow(true);
-            }}
-            src={coach.profilePhoto}
-            // src={require("../static/image/coach.png")}
-            alt={coach.uid}
-          />
-        ))}
-      </div>
+    <div className="coaches">
+      <h2 className="title">
+        {title} <h4 className="hover">></h4>
+      </h2>
+      <Carousel
+        activeIndex={index}
+        onSelect={handleSelect}
+        controls={false}
+        interval={2000}
+      >
+        <Carousel.Item>
+          <div className="coach__posters">
+            {coaches.slice(0, 7).map((coach) => (
+              <img
+                className="coach__poster"
+                onClick={() => {
+                  // coach.image 가 로컬 경로라 적용 안됨  ??
+                  setCoach(coach);
+                  fetchName(coach.uid);
+                  setSrc(coach.profilePhoto);
+                  setModalShow(true);
+                }}
+                src={coach.profilePhoto}
+                // src={require("../static/image/coach.png")}
+                alt={coach.uid}
+              />
+            ))}
+          </div>
+        </Carousel.Item>
+        <Carousel.Item>
+          <div className="coach__posters">
+            {coaches.slice(7).map((coach) => (
+              <img
+                className="coach__poster"
+                onClick={() => {
+                  // coach.image 가 로컬 경로라 적용 안됨  ??
+                  setCoach(coach);
+                  fetchName(coach.uid);
+                  setSrc(coach.profilePhoto);
+                  setModalShow(true);
+                }}
+                src={coach.profilePhoto}
+                // src={require("../static/image/coach.png")}
+                alt={coach.uid}
+              />
+            ))}
+          </div>
+        </Carousel.Item>
+      </Carousel>
       <ModalCoach2
         className="modal-coach"
         show={modalShow}

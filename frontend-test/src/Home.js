@@ -1,16 +1,62 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./static/css/Home.css";
 
 import MainFooter from "./components/MainFooter";
 
 import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
 function Home() {
   const MainFooter2 = MainFooter;
 
+  const pageHeight = window.innerHeight;
+  var position = window.scrollY;
+
+  function handleScroll(e) {
+    var scroll = window.scrollY;
+    if (scroll > position) {
+      if (scroll % pageHeight == 0) {
+      } else if (scroll < pageHeight) {
+        window.scroll({ top: pageHeight, behavior: "auto" });
+        // window.scrollTo(0, pageHeight);
+      } else if (scroll < pageHeight * 2) {
+        window.scrollTo(0, pageHeight * 2);
+      } else if (scroll < pageHeight * 3) {
+        window.scrollTo(0, pageHeight * 3);
+      } else {
+        window.scrollTo(0, document.body.scrollHeight);
+      }
+    } else {
+      if (scroll % pageHeight == 0) {
+      } else if (scroll < pageHeight) {
+        window.scrollTo(0, 0);
+      } else if (scroll < pageHeight * 2) {
+        window.scrollTo(0, pageHeight);
+      } else if (scroll < pageHeight * 3) {
+        window.scrollTo(0, pageHeight * 2);
+      } else {
+        window.scrollTo(0, pageHeight * 3);
+      }
+    }
+    position = scroll;
+  }
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  });
+
   return (
     <div className="home">
       {/* <!-- Masthead--> */}
+      <Button
+        variant="secondary"
+        style={{ position: "fixed", right: 20, bottom: 20 }}
+        onClick={() => {
+          window.scrollTo(0, 0);
+        }}
+      >
+        ▲
+      </Button>
       <header className="masthead" id="page-top">
         <div className="container d-flex h-100 align-items-center">
           <div className="mx-auto text-center">
@@ -39,15 +85,15 @@ function Home() {
         <div className="container">
           <div className="row">
             <div className="col-lg-8 mx-auto">
-              <h2 className="text-white mb-4">Built with Bootstrap 4</h2>
+              <h2 className="text-white mb-4">PTS와 함께하세요</h2>
               <p className="text-white-50">
-                Grayscale is a free Bootstrap theme created by Start Bootstrap.
-                It can be yours right now, simply download the template on
-                <a href="https://startbootstrap.com/template-overviews/grayscale/">
-                  the preview page
-                </a>
-                . The theme is open source, and you can use it for any purpose,
-                personal or commercial.
+                PTS는 시공간의 제약을 받는 오프라인 영역의
+                {/* <br /> */}
+                PT와 GX에 빅데이터를 접목시켜
+                {/* <br /> */}
+                온라인에서 저렴한 가격으로 이용할 수 있는
+                {/* <br /> */}
+                고객 맞춤형 트레이닝 서비스 플랫폼입니다
               </p>
             </div>
           </div>
@@ -60,8 +106,12 @@ function Home() {
       </section>
       {/* <!-- Projects--> */}
       <section className="projects-section bg-light" id="projects">
-        <div className="container">
+        <div
+          className="container"
+          style={{ margin: "auto", padding: "10rem 0" }}
+        >
           {/* <!-- Featured Project Row--> */}
+
           <div className="row align-items-center no-gutters mb-4 mb-lg-5">
             <div className="col-xl-8 col-lg-7">
               <img
@@ -81,6 +131,13 @@ function Home() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+      <section className="projects-section bg-light" id="projects">
+        <div
+          className="container"
+          style={{ margin: "auto", padding: "2rem 0" }}
+        >
           {/* <!-- Project One Row--> */}
           <div className="row justify-content-center no-gutters mb-5 mb-lg-0">
             <div className="col-lg-6">
@@ -133,7 +190,7 @@ function Home() {
         </div>
       </section>
       {/* <!-- Signup--> */}
-      <section className="signup-section" id="signup">
+      {/* <section className="signup-section" id="signup">
         <div className="container">
           <div className="row">
             <div className="col-md-10 col-lg-8 mx-auto text-center">
@@ -153,9 +210,9 @@ function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
       {/* <!-- Contact--> */}
-      <section className="contact-section bg-black">
+      {/* <section className="contact-section bg-black">
         <div className="container">
           <div className="row">
             <div className="col-md-4 mb-3 mb-md-0">
@@ -208,7 +265,7 @@ function Home() {
       </section>
       <footer className="footer bg-black small text-center text-white-50">
         <div className="container">Copyright © 멋진 신사들</div>
-      </footer>
+      </footer> */}
       {/* footer */}
       <MainFooter2 />
     </div>

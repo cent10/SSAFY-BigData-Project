@@ -32,17 +32,21 @@ function ModalClass(props) {
                 float: "left",
                 objectFit: "cover",
                 width: 400,
+                marginRight: 20,
               }}
               src={props.coach.profilePhoto}
               alt={""}
             />
             {/* 우측 코치 경력 */}
-            <div style={{ float: "left", width: 20, height: 400 }}></div>
             <div>
               <h2>{props.name} 코치</h2>
-              <h4>{props.coach.career}</h4>
+              <h4>
+                <pre style={{ whiteSpace: "pre-wrap" }}>
+                  {props.coach.career}
+                </pre>
+              </h4>
               <br />
-              <p>{props.story}</p>
+              <pre style={{ whiteSpace: "pre-Wrap" }}>{props.coach.story}</pre>
             </div>
           </div>
         </Modal.Body>
@@ -52,7 +56,7 @@ function ModalClass(props) {
           </Button>
           {/* 함수 설정할 것 */}
           <Button variant="info" onClick={() => {}}>
-            신청하기
+            참여하기
           </Button>
         </Modal.Footer>
       </Modal>

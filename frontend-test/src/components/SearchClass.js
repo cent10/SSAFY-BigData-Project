@@ -56,7 +56,9 @@ function HealthClass({ title, keyword, history }) {
   return (
     <div className="rowrow">
       {/* title */}
-      <h2 className="row__title">{title}</h2>
+      <h2 className="row__title">
+        {title} <h4 className="hover">></h4>
+      </h2>
 
       {/* container -> posters */}
       <div className="row__posters">

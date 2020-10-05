@@ -19,20 +19,20 @@ function Main({ user, history, match }) {
       </h1>
       {/* Health Video */}
       <SearchVideo2
-        title={`${match.params.keyword}(으)로 검색한 운동비디오 >`}
+        title={`${match.params.keyword}(으)로 검색한 운동비디오`}
         history={history}
         keyword={match.params.keyword}
       />
 
       {/* Health Class */}
       <SearchClass2
-        title={`${match.params.keyword}(으)로 검색한 클래스 >`}
+        title={`${match.params.keyword}(으)로 검색한 클래스`}
         history={history}
         keyword={match.params.keyword}
       />
       {/* Coaches */}
       <SearchCoaches2
-        title={`${match.params.keyword}(으)로 검색한 코치 >`}
+        title={`${match.params.keyword}(으)로 검색한 코치`}
         keyword={match.params.keyword}
       />
     </div>

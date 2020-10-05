@@ -21,20 +21,34 @@ function Inform() {
   const RadialChart2 = RadialChart;
   const Heatmap2 = Heatmap;
 
+  function bodyrank(num) {
+    if (num == 1) {
+      return `⭐`;
+    } else if (num == 2) {
+      return `⭐⭐`;
+    } else if (num == 3) {
+      return `⭐⭐⭐`;
+    } else if (num == 4) {
+      return `⭐⭐⭐⭐`;
+    } else {
+      return `⭐⭐⭐⭐⭐`;
+    }
+  }
+
   return (
     <header className="inform">
       {/* background image */}
       <div className="part part-one">
         <img src={bodyStyle01} alt="bodyStyle" className="body-style" />
-        <span className="body-rank">⭐⭐⭐</span>
+        <span className="body-rank">{bodyrank(4)}</span>
       </div>
       <div className="part">
         <span className="body-name">하체발달형</span>
         <span className="body-description">
-          바나나먹는몽키님은 대한민국에서 상위 35%에 속해있습니다. 현재 고객님의
-          하체근력은 상당히 많이 발달했지만 BMI 지수가 조금 높아 식단조절과
-          운동을 병행해야 되요. 또한, 팔과 상체 발달점수가 전체 점수에 비해 낮기
-          때문에 저희 PTS는 상체 위주의 운동 코스를 추천드려요.
+          {"바나나먹는몽키"}님은 대한민국에서 상위 35%에 속해있습니다. 현재
+          고객님의 하체근력은 상당히 많이 발달했지만 BMI 지수가 조금 높아
+          식단조절과 운동을 병행해야 되요. 또한, 팔과 상체 발달점수가 전체
+          점수에 비해 낮기 때문에 저희 PTS는 상체 위주의 운동 코스를 추천드려요.
         </span>
       </div>
       <div className="part">
