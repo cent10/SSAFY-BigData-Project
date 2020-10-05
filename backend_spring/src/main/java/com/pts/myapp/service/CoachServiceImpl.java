@@ -99,10 +99,10 @@ public class CoachServiceImpl implements CoachService {
 		}
 		String goal = "건강";	// 운동 목표
 		String like = "초급자";	// 좋아하는 운동
-//		if (favoriteDto != null) {
-//			goal = favoriteDto.getGoal();
-//			like = favoriteDto.getLike();
-//		}
+		if (favoriteDto != null) {
+			goal = favoriteDto.getGoal();
+			like = favoriteDto.getLike();
+		}
 		
 		switch (number) {
 		case 1:	// I : 슬림한 몸매에 적당한 근육
