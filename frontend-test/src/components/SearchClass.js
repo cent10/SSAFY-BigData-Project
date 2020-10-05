@@ -7,7 +7,7 @@ import ModalClass from "./ModalClass";
 
 import Badge from "react-bootstrap/Badge";
 
-function HealthClass({ title, keyword, isLargeRow }) {
+function HealthClass({ title, keyword, history }) {
   const [classes, setClasses] = useState([]);
   const [modalShow, setModalShow] = useState(false);
   const [story, setStory] = useState("");
@@ -19,7 +19,7 @@ function HealthClass({ title, keyword, isLargeRow }) {
   useEffect(() => {
     async function fetchVideo() {
       const request = await axios.get(
-        "http://j3a501.p.ssafy.io:8888/pts/class"
+        "http://j3a501.p.ssafy.io:8888/pts/class/search/" + keyword
       );
       // console.log(request.data);
       setClasses(request.data);
@@ -61,12 +61,22 @@ function HealthClass({ title, keyword, isLargeRow }) {
       {/* container -> posters */}
       <div className="row__posters">
         {/* several rwo_poster */}
+        {!classes.length && (
+          <h3
+            style={{
+              margin: "auto",
+              color: "white",
+            }}
+          >
+            검색된 클래스가 없습니다
+          </h3>
+        )}
         {classes.map((cl) => (
           <div
             className="row__class__poster"
             style={{ width: "290px", height: "300px;" }}
           >
-            {/* <img
+            <img
               key={cl.id}
               onClick={() => {
                 setStory(cl.story);
@@ -75,9 +85,7 @@ function HealthClass({ title, keyword, isLargeRow }) {
                 setTags([cl.type1, cl.type2, cl.type3]);
                 setModalShow(true);
               }}
-              className={`row__class row__poster ${
-                isLargeRow && "row__posterLarge"
-              }`}
+              className={`row__class row__poster`}
               src={cl.thumbnail}
               alt={cl.title}
               style={{ position: "absolute" }}
@@ -91,35 +99,13 @@ function HealthClass({ title, keyword, isLargeRow }) {
             >
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               .
-            </h1> */}
-            {/* <img
+            </h1>
+            <img
               key={cl.id}
               className={`row__class row__poster`}
               src={cl.thumbnail}
               alt={cl.title}
-            /> */}
-            <div
-              className={`row__class row__poster`}
-              style={{
-                backgroundSize: "cover",
-                backgroundImage: `url(${cl.thumbnail})`,
-                backgroundRepeat: "no-repeat",
-                width: "270px",
-                height: "200px",
-                display: "flex",
-              }}
-            >
-              <span
-                style={{
-                  fontSize: "30px",
-                  fontWeight: "bold",
-                  color: "red",
-                  marginLeft: "240px",
-                }}
-              >
-                .
-              </span>
-            </div>
+            />
             <h6 className="row__class__title" style={{ paddingTop: "200px;" }}>
               {truncate(cl.title, 18)}
             </h6>

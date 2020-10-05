@@ -19,10 +19,9 @@ function ModalClass(props) {
         <Modal.Body>
           <div>
             {/* 좌측 코치 사진 */}
-            {/* <img src={props.coach.profile_photo} alt={""}/> */}
             <img
-              style={{ float: "left" }}
-              src={require("../static/image/coach.png")}
+              style={{ float: "left", objectFit: "contain", width: "400px" }}
+              src={props.coach.profilePhoto}
               alt={""}
             />
             <div style={{ float: "left", width: 20, height: 400 }}></div>
@@ -30,14 +29,7 @@ function ModalClass(props) {
             {/* 우측 코치 경력 */}
             <h2>{props.name} 코치</h2>
             <h4>{props.coach.career}</h4>
-            <p>
-              좋아~ 아주 좋아~좋아~ 아주 좋아~좋아~ 아주 좋아~좋아~ 아주
-              좋아~좋아~ 아주 좋아~좋아~ 아주 좋아~좋아~ 아주 좋아~좋아~ 아주
-              좋아~좋아~ 아주 좋아~좋아~ 아주 좋아~좋아~ 아주 좋아~좋아~ 아주
-              좋아~좋아~ 아주 좋아~좋아~ 아주 좋아~좋아~ 아주 좋아~좋아~ 아주
-              좋아~좋아~ 아주 좋아~좋아~ 아주 좋아~좋아~ 아주 좋아~좋아~ 아주
-              좋아~좋아~ 아주 좋아~좋아~ 아주 좋아~
-            </p>
+            <p>{props.coach.story}</p>
           </div>
         </Modal.Body>
         <Modal.Footer>

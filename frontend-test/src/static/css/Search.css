@@ -1,0 +1,13 @@
+. {
+  margin: 0;
+}
+
+.search {
+  background-color: #000;
+}
+
+.search__title {
+  margin-top: 80px;
+  margin-left: 20px;
+  color: white;
+}
