@@ -1,6 +1,8 @@
 package com.pts.myapp.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,10 +11,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pts.myapp.common.component.UserCheck;
+import com.pts.myapp.dto.UserDto;
 import com.pts.myapp.dto.VideoDto;
 import com.pts.myapp.service.VideoService;
 import io.swagger.annotations.Api;
@@ -30,6 +35,9 @@ public class VideoController {
 
 	@Autowired
 	VideoService service;
+
+	@Autowired
+	UserCheck userCheck;
 
 	@RequestMapping(method = RequestMethod.POST, produces = "application/json")
 	@ApiOperation(value = "영상 생성", notes = "영상 저장")
@@ -67,9 +75,14 @@ public class VideoController {
 		@ApiResponse(code = 401, message = "로그인 후 이용해 주세요"),
 		@ApiResponse(code = 404, message = "영상 리스트 조회 실패")
 	})
-	private ResponseEntity<?> readAll() {
+	private ResponseEntity<?> readAll(@RequestHeader(value = "jwt-auth-token") String token) {
 		logger.debug("영상 리스트 조회");
-		List<VideoDto> list = service.readAll();
+		List<VideoDto> list = new ArrayList<>();
+		UserDto user = userCheck.check(token);
+		service.readAll(list, user.getId());
+		if(list.size() >= 13) {
+			list = list.subList(0, 13);
+		}
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 

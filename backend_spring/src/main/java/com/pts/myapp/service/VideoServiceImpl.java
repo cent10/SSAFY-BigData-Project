@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.pts.myapp.common.annotation.UserVideo;
 import com.pts.myapp.dao.VideoDao;
 import com.pts.myapp.dto.VideoDto;
 import com.pts.myapp.error.exception.EntityNotFoundException;
@@ -31,10 +32,9 @@ public class VideoServiceImpl implements VideoService {
 		return dao.read(id);
 	}
 
+	@UserVideo
 	@Override
-	public List<VideoDto> readAll() {
-		return dao.readAll();
-	}
+	public void readAll(List<VideoDto> list, String userId) {}
 
 	@Override
 	public void update(VideoDto video) {
