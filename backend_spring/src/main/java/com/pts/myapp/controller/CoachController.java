@@ -1,5 +1,6 @@
 package com.pts.myapp.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,18 +19,23 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pts.myapp.common.component.UserCheck;
 import com.pts.myapp.dto.CoachDto;
+import com.pts.myapp.dto.UserDto;
 import com.pts.myapp.jwt.service.JwtService;
 import com.pts.myapp.service.CoachService;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin(origins = { "*" }, maxAge = 6000)
 @RestController
 @RequestMapping("/pts/coaches")
+@Api(tags = "Coach", value = "Coach Controller")
 public class CoachController {
 	
 static final Logger logger = LoggerFactory.getLogger(CoachController.class);
@@ -39,6 +45,9 @@ static final Logger logger = LoggerFactory.getLogger(CoachController.class);
 	
 	@Autowired
 	JwtService jwtService;
+
+	@Autowired
+	UserCheck userCheck;
 	
 	@ApiOperation(value = "코치 신청")
 	@PostMapping("")
@@ -90,23 +99,11 @@ static final Logger logger = LoggerFactory.getLogger(CoachController.class);
 	
 	@ApiOperation(value = "코치 리스트 조회 (승인 상태의 코치 리스트 조회)", response = CoachDto.class)
 	@GetMapping("")
-	private ResponseEntity<List<CoachDto>> readAll(HttpServletRequest request) {
+	private ResponseEntity<List<CoachDto>> readAll(@RequestHeader(value = "jwt-auth-token") String token) {
 		logger.debug("코치 리스트 조회 (승인 상태의 코치 리스트 조회)");
-		String temp = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsb2dpblRva2VuIiwiZXhwIjoxNjAxODg5ODEzLCJVc2VyRHRvIjp7ImlkIjoiYSIsInBhc3N3b3JkIjoiJDJhJDEwJEI4d2hHdGNyR0hlZHU2MmQxaUhpaGVjWUV3Q3lNbkZtM3BZVWQvVi5DZjVMamUzNm9tNXNxIiwibmlja25hbWUiOiJhIiwiaGVpZ2h0IjowLCJ3ZWlnaHQiOjAsImJpcnRoWWVhciI6MCwiZ2VuZGVyIjp0cnVlLCJwcm9maWxlIjoiYSJ9fQ.Ocg_DmxaOZ9SLUYWgwn6QmJI7MfuTdyVv2xTY0wpamA";
-		Map<String, Object> map = new HashMap<String, Object>();	// 유저 정보를 저장할 맵
-		String id = "";	// 사용자 아이디
-		try {
-//			map.putAll(jwtService.get(request.getHeader("token")));
-			map.putAll(jwtService.get(temp));
-//			System.out.println(map.entrySet());
-			map = (Map<String, Object>)map.get("UserDto");
-			id = (String) map.get("id");
-//			System.out.println(map.entrySet());
-//			System.out.println("id= " + id);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		List<CoachDto> coachDtoList = coachService.recommend(id);
+		List<CoachDto> coachDtoList = new ArrayList<>();
+		UserDto user = userCheck.check(token);
+		coachService.recommend(coachDtoList, user.getId());
 		return new ResponseEntity<List<CoachDto>>(coachDtoList, HttpStatus.OK);
 	}
 	

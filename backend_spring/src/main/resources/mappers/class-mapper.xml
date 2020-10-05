@@ -5,6 +5,7 @@
 	<select id="readAll" resultType="com.pts.myapp.dto.ClassDto">
 		select *
 		from CLASSES
+		where IS_ACTIVE = 1
 	</select>
 	
 	<!-- 확인 필요 -->
@@ -17,7 +18,9 @@
 	<select id="search" resultType="com.pts.myapp.dto.ClassDto">
 		SELECT *
 		FROM CLASSES
-		WHERE #{word} IN (TYPE1, TYPE2, TYPE3)
+		WHERE TITLE LIKE CONCAT('%', #{word}, '%') OR TYPE1 LIKE CONCAT('%', #{word}, '%')
+			OR TYPE2 LIKE CONCAT('%', #{word}, '%') OR TYPE3 LIKE CONCAT('%', #{word}, '%')
+			OR STORY LIKE CONCAT('%', #{word}, '%')
 	</select>
 
 	<insert id="create">

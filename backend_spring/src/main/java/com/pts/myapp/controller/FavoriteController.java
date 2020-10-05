@@ -16,11 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pts.myapp.dto.FavoriteDto;
 import com.pts.myapp.service.FavoriteService;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin(origins = { "*" }, maxAge = 6000)
 @RestController
 @RequestMapping("/pts/favorites")
+@Api(tags = "Favorite", value = "Favorite Controller")
 public class FavoriteController {
 	
 	static final Logger logger = LoggerFactory.getLogger(FavoriteController.class);

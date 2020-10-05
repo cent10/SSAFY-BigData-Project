@@ -7,7 +7,7 @@ import com.pts.myapp.dto.ClassDto;
 public interface ClassService {
 	public void create(ClassDto classDto);
 
-	public List<ClassDto> readAll();
+	public void readAll(List<ClassDto> list, String id);
 
 	public ClassDto readById(int id);
 	
