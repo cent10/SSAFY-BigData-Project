@@ -1,12 +1,17 @@
 package com.pts.myapp.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pts.myapp.dao.CoachDao;
+import com.pts.myapp.dao.FavoriteDao;
+import com.pts.myapp.dao.SilhouetteDao;
 import com.pts.myapp.dto.CoachDto;
+import com.pts.myapp.dto.FavoriteDto;
+import com.pts.myapp.dto.SilhouetteDto;
 import com.pts.myapp.error.exception.EntityNotFoundException;
 import com.pts.myapp.error.exception.IncorrectFormatException;
 
@@ -15,6 +20,12 @@ public class CoachServiceImpl implements CoachService {
 	
 	@Autowired
 	CoachDao coachDao;
+	
+	@Autowired
+	SilhouetteDao silhouetteDao;
+	
+	@Autowired
+	FavoriteDao favoriteDao;
 	
 	@Override
 	public void createApplication(CoachDto coachDto) {
@@ -74,5 +85,51 @@ public class CoachServiceImpl implements CoachService {
 	@Override
 	public List<CoachDto> search(String searchword) {
 		return coachDao.search(searchword);
+	}
+	
+	@Override
+	public List<CoachDto> recommend(String id) {
+		List<CoachDto> coachList = new ArrayList<CoachDto>();	// 추천해줄 14명의 코치
+		
+		SilhouetteDto silhouetteDto = silhouetteDao.read(id);
+		FavoriteDto favoriteDto = favoriteDao.read(id);
+		int number = 1;		// 바디 유형
+		if (silhouetteDto != null) {
+			number = silhouetteDto.getNumber();
+		}
+		String goal = "건강";	// 운동 목표
+		String like = "초급자";	// 좋아하는 운동
+//		if (favoriteDto != null) {
+//			goal = favoriteDto.getGoal();
+//			like = favoriteDto.getLike();
+//		}
+		
+		switch (number) {
+		case 1:	// I : 슬림한 몸매에 적당한 근육
+			coachList = coachDao.recommend1(goal, like);
+			break;
+		case 2:	// b : 마른 비만형
+			coachList = coachDao.recommend2(goal, like);
+			break;
+		case 3:	// R : 부실한 하체와 늘어진 뱃살
+			coachList = coachDao.recommend3(goal, like);
+			break;
+		case 4:	// B : 가슴까지 살이 오른 아기돼지 스타일
+			coachList = coachDao.recommend4(goal, like);
+			break;
+		case 5:	// S : 땀 흘리는 거대 덩치
+			coachList = coachDao.recommend5(goal, like);
+			break;
+		case 6:	// D : 고칼로리로 채운 풍선 같은 배
+			coachList = coachDao.recommend6(goal, like);
+			break;
+		case 7:	// i : 키가 작고 어깨가 좁은 스타일
+			coachList = coachDao.recommend7(goal, like);
+			break;
+		default:
+			break;
+		}
+		
+		return coachList;
 	}
 }
