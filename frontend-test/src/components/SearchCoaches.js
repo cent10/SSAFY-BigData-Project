@@ -35,8 +35,10 @@ function Coaches({ title, keyword }) {
 
   const ModalCoach2 = ModalCoach;
   return (
-    <div>
-      <h2 className="title">{title}</h2>
+    <div className="coaches">
+      <h2 className="title">
+        {title} <h4 className="hover">></h4>
+      </h2>
       <div className="coach__posters">
         {!coaches.length && (
           <h3

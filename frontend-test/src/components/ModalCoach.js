@@ -3,6 +3,7 @@ import React from "react";
 import { Modal, Button } from "react-bootstrap";
 
 function ModalClass(props) {
+  // console.log(props.coach.career);
   return (
     <div>
       <Modal
@@ -20,16 +21,23 @@ function ModalClass(props) {
           <div>
             {/* 좌측 코치 사진 */}
             <img
-              style={{ float: "left", objectFit: "contain", width: "400px" }}
+              style={{
+                float: "left",
+                objectFit: "contain",
+                width: "400px",
+                marginRight: 20,
+              }}
               src={props.coach.profilePhoto}
               alt={""}
             />
-            <div style={{ float: "left", width: 20, height: 400 }}></div>
 
             {/* 우측 코치 경력 */}
             <h2>{props.name} 코치</h2>
-            <h4>{props.coach.career}</h4>
-            <p>{props.coach.story}</p>
+            <h4>
+              <pre style={{ whiteSpace: "pre-wrap" }}>{props.coach.career}</pre>
+            </h4>
+            <br />
+            <pre style={{ whiteSpace: "pre-wrap" }}>{props.coach.story}</pre>
           </div>
         </Modal.Body>
         <Modal.Footer>

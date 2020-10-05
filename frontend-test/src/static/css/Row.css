@@ -4,6 +4,15 @@
   color: white;
 }
 
+.hover {
+  display: none;
+  font-style: bold;
+}
+
+.rowrow:hover .hover {
+  display: inline;
+}
+
 .row__title {
 }
 

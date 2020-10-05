@@ -24,14 +24,14 @@ function Main({ user, history }) {
 
       {/* Health Video */}
       <HealthVideo2
-        title="바나나먹는몽키님에게 추천되는 상체 발달 운동법 >"
+        title={`${"바나나먹는몽키"}님에게 추천되는 상체 발달 운동법`}
         keyword="pushup posture"
         history={history}
       />
 
       {/* Health Class */}
       <HealthClass2
-        title="바나나먹는몽키님이 관심있을 만한 클래스 >"
+        title={`${"바나나먹는몽키"}님이 관심있을 만한 클래스`}
         keyword="yoga class"
       />
 
@@ -51,7 +51,7 @@ function Main({ user, history }) {
       />
 
       {/* Coaches */}
-      <Coaches2 title="바나나먹는몽키님과 성향이 일치하는 코치 >" />
+      <Coaches2 title={`${"바나나먹는몽키"}님과 성향이 일치하는 코치`} />
 
       {/* Footer */}
       <MainFooter2 />
