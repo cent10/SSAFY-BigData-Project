@@ -29,4 +29,7 @@ public interface CoachService {
 	
 	// 코치 이름으로 검색
 	public List<CoachDto> search(String searchword);
+	
+	// 사용자 체형별 코치 추천 (14명)
+	public List<CoachDto> recommend(String id);
 }
