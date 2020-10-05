@@ -8,6 +8,7 @@
   overflow-y: hidden;
   overflow-x: scroll;
   padding: 20px;
+  height: 540px;
 }
 
 .coach__posters::-webkit-scrollbar {
@@ -15,7 +16,7 @@
 }
 
 .coach__poster {
-  object-fit: contain;
+  object-fit: cover;
   width: 250px;
   height: 500px;
   margin-right: 25px;

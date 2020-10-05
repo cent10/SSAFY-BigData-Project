@@ -4,13 +4,23 @@ import "../static/css/Row.css";
 
 import Badge from "react-bootstrap/Badge";
 
-function HealthVideo({ title, keyword, isLargeRow, history }) {
-  const [videos, setVideos] = useState([]);
+function HealthVideo({ title, keyword, history }) {
+  const [videos, setVideos] = useState([
+    // {
+    //   id: 0,
+    //   thumbnail:
+    //     "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSJuIYqiLdVHQ6lcAD2ricU7XzyZkpk9TPQRg&usqp=CAU",
+    //   title: "검색 결과가 없습니다",
+    //   type1: "단어 오타",
+    //   type2: "다른 키워드",
+    //   type3: null,
+    // },
+  ]);
 
   useEffect(() => {
     async function fetchVideo() {
       const request = await axios.get(
-        "http://j3a501.p.ssafy.io:8888/pts/videos"
+        "http://j3a501.p.ssafy.io:8888/pts/videos/search/" + keyword
       );
       setVideos(request.data);
       return request;
@@ -30,6 +40,16 @@ function HealthVideo({ title, keyword, isLargeRow, history }) {
       {/* container -> posters */}
       <div className="row__posters">
         {/* several rwo_poster */}
+        {!videos.length && (
+          <h3
+            style={{
+              margin: "auto",
+              color: "white",
+            }}
+          >
+            검색된 비디오가 없습니다
+          </h3>
+        )}
         {videos.map((video) => (
           <div
             className="row__class__poster"
@@ -41,10 +61,12 @@ function HealthVideo({ title, keyword, isLargeRow, history }) {
               src={video.thumbnail}
               alt={video.title}
               onClick={() => {
-                history.push(`/video/${video.url}`, {
-                  title: video.title,
-                  tags: [video.type1, video.type2, video.type3],
-                });
+                if (video.title != "검색 결과가 없습니다") {
+                  history.push(`/video/${video.url}`, {
+                    title: video.title,
+                    tags: [video.type1, video.type2, video.type3],
+                  });
+                }
               }}
             />
             {/* </Link> */}

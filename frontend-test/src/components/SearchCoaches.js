@@ -5,7 +5,7 @@ import axios from "axios";
 
 import ModalCoach from "./ModalCoach";
 
-function Coaches({ title }) {
+function Coaches({ title, keyword }) {
   const [coaches, setCoaches] = useState([]);
   const [modalShow, setModalShow] = useState(false);
   const [coach, setCoach] = useState({});
@@ -15,7 +15,7 @@ function Coaches({ title }) {
   useEffect(() => {
     async function fetchCoaches() {
       const request = await axios.get(
-        "http://j3a501.p.ssafy.io:8888/pts/coaches"
+        "http://j3a501.p.ssafy.io:8888/pts/coaches/search/" + keyword
       );
       // console.log(request.data);
       setCoaches(request.data);
@@ -38,6 +38,16 @@ function Coaches({ title }) {
     <div>
       <h2 className="title">{title}</h2>
       <div className="coach__posters">
+        {!coaches.length && (
+          <h3
+            style={{
+              margin: "auto",
+              color: "white",
+            }}
+          >
+            검색된 코치가 없습니다
+          </h3>
+        )}
         {coaches.map((coach) => (
           <img
             className="coach__poster"

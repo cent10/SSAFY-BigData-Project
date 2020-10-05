@@ -10,6 +10,7 @@ import {
 
 import Home from "./Home";
 import Main from "./Main";
+import Search from "./Search";
 import Video from "./components/Video";
 import Login from "./components/Login";
 import MainNav from "./components/MainNav";
@@ -28,6 +29,7 @@ function App() {
   const Main2 = Main;
   const Video2 = Video;
   const Login2 = Login;
+  const Search2 = Search;
   const MainNav2 = MainNav;
 
   return (
@@ -53,7 +55,7 @@ function App() {
         path="/main"
         render={(props) => <Main2 user={user} {...props} />}
       />
-
+      <Route exact path="/search/:keyword" component={Search2} />
       <Route exact path="/video/:videoUrl" component={Video2} />
     </Router>
     // <Router>

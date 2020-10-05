@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import "../static/css/BestCoachVideo.css";
 
-function BestCoachVideo({ title }) {
+function BestCoachVideo({ title, history }) {
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
@@ -34,23 +33,18 @@ function BestCoachVideo({ title }) {
       <div className="bcvideo__posters">
         {/* several rwo_poster */}
         {videos.map((video) => (
-          <Link
-            className="bcvideo__link"
-            to={{
-              pathname: `/video/${video.url}`,
-              state: {
+          <img
+            className="bcvideo__poster"
+            key={video.id}
+            src={video.thumbnail}
+            alt={video.title}
+            onClick={() => {
+              history.push(`/video/${video.url}`, {
                 title: video.title,
                 tags: [video.type1, video.type2, video.type3],
-              },
+              });
             }}
-          >
-            <img
-              className="bcvideo__poster"
-              key={video.id}
-              src={video.thumbnail}
-              alt={video.title}
-            />
-          </Link>
+          />
         ))}
       </div>
     </div>
