@@ -5,6 +5,7 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.util.List;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
@@ -21,10 +22,14 @@ import org.springframework.stereotype.Component;
 
 import com.pts.myapp.dto.MeasureDto;
 import com.pts.myapp.dto.ResultDto;
+import com.pts.myapp.dto.SilhouetteDto;
 import com.pts.myapp.dto.UserDto;
+import com.pts.myapp.dto.VideoDto;
 import com.pts.myapp.service.MeasureService;
 import com.pts.myapp.service.ResultService;
+import com.pts.myapp.service.SilhouetteService;
 import com.pts.myapp.service.UserService;
+import com.pts.myapp.service.VideoService;
 
 @Aspect
 @Component
@@ -38,9 +43,15 @@ public class AspectConfig {
 	@Autowired
 	UserService userService;
 
+	@Autowired
+	SilhouetteService silhouetteService;
+
+	@Autowired
+	VideoService videoService;
+
 	@After("@annotation(com.pts.myapp.common.annotation.UserSetData)")
 	private void userChecking(JoinPoint point) {
-		logger.debug("유저의 결과값을 내고 저장하는 메서");
+		logger.debug("유저의 결과값을 내고 저장하는 메서드");
 		Object[] parameterValues = point.getArgs();
 		MeasureDto measure = (MeasureDto)parameterValues[0];
 		UserDto user = userService.read(measure.getUid());
@@ -102,6 +113,42 @@ public class AspectConfig {
 			getScore(chest), fat);
 		logger.debug("결과값 저장 중");
 		resultService.create(result);
+	}
+
+	@Before("@annotation(com.pts.myapp.common.annotation.UserVideo)")
+	private void SetUserVideo(JoinPoint point) {
+		logger.debug("유저에 적합한 영상을 추천하는 메서드");
+		Object[] parameterValues = point.getArgs();
+		String id = (String)parameterValues[1];
+		List<VideoDto> videoList = (List<VideoDto>)parameterValues[0];
+		SilhouetteDto silhouette = silhouetteService.read(id);
+		int number = silhouette.getNumber();
+		switch (number) {
+			case 1:	// I : 슬림한 몸매에 적당한 근육
+				videoList.addAll(videoService.search("근력"));
+				break;
+			case 2:	// b : 마른 비만형
+				videoList = videoService.search("코어");
+				break;
+			case 3:	// R : 부실한 하체와 늘어진 뱃살
+				videoList = videoService.search("다리");
+				break;
+			case 4:	// B : 가슴까지 살이 오른 아기돼지 스타일
+				videoList = videoService.search("상체");
+				break;
+			case 5:	// S : 땀 흘리는 거대 덩치
+				videoList = videoService.search("유산소");
+				break;
+			case 6:	// D : 고칼로리로 채운 풍선 같은 배
+				videoList = videoService.search("다이어트");
+				break;
+			case 7:	// i : 키가 작고 어깨가 좁은 스타일
+				videoList = videoService.search("가슴");
+				break;
+			default:
+				break;
+		}
+
 	}
 
 	private int getScore(float avg) {
