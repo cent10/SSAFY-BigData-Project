@@ -36,6 +36,13 @@ public class SilhouetteDto {
 	public void setStar(int star) {
 		this.star = star;
 	}
+	
+	public SilhouetteDto(int number, String uid, int star) {
+		super();
+		this.number = number;
+		this.uid = uid;
+		this.star = star;
+	}
 
 	@Override
 	public String toString() {
