@@ -3,7 +3,7 @@ import React from "react";
 import { Modal, Button } from "react-bootstrap";
 
 function ModalClass(props) {
-  console.log(props.coach.career);
+  // console.log(props.coach.career);
   return (
     <div>
       <Modal

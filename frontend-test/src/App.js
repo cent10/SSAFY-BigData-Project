@@ -20,6 +20,7 @@ import Sorry from "./Sorry";
 // 로그인 인증
 import { signIn } from "./components/auth";
 import AuthRoute from "./components/AuthRoute";
+import { useEffect } from "react";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -37,7 +38,26 @@ function App() {
 
   const Sorry2 = Sorry;
 
-  const windowWidth = window.innerWidth;
+  var windowWidth = window.innerWidth;
+
+  useEffect(() => {
+    window.addEventListener(
+      "resize",
+      function () {
+        windowWidth = window.innerWidth;
+        console.log("innerWidth", windowWidth);
+        if (windowWidth > 922) {
+          // console.log("asdf", this);
+          this.location.reload();
+        } else {
+          // console.log("qwer", this);
+          this.location.reload();
+        }
+      },
+      true
+    );
+    return () => window.removeEventListener("resize", function () {});
+  });
 
   return (
     <Router>
@@ -46,6 +66,8 @@ function App() {
       </header>
 
       <Route exact path="/" component={windowWidth > 992 ? Home2 : Sorry2} />
+
+      <Route exact path="/sorry" component={Sorry2} />
 
       {/* 밑에 AuthRoute 랑 겹쳐서 2개가 나온다 */}
       {/* <Route exact path="/main" component={Main} /> */}
@@ -60,7 +82,9 @@ function App() {
       <AuthRoute
         authenticated={authenticated}
         path="/main"
-        render={(props) => <Main2 user={user} {...props} />}
+        render={(props) =>
+          windowWidth > 992 ? <Main2 user={user} {...props} /> : <Sorry2 />
+        }
       />
       <Route
         exact
