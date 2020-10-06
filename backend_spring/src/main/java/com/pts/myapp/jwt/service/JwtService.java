@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Component;
 
 import com.pts.myapp.dto.UserDto;
@@ -73,8 +74,9 @@ public class JwtService {
     	Jws<Claims> claims = null;
         try {
             claims = Jwts.parser().setSigningKey(salt.getBytes()).parseClaimsJws(jwt);
-        } catch (final Exception e) {
-            throw new RuntimeException();
+        } catch (final DataAccessException e) {
+            System.out.println(e.getMessage());
+            throw e;
         }
 
 //        log.trace("claims: {}", claims);
