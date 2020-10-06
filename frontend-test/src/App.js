@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 
 import {
   BrowserRouter as Router,
   Route,
-  // Switch,
+  Switch,
   // Link,
   // Redirect,
 } from "react-router-dom";
@@ -11,19 +11,18 @@ import {
 import Home from "./Home";
 import Main from "./Main";
 import Video from "./components/Video";
-import Login from "./components/Login";
+import Login from "./components/LoginComponent";
 import MainNav from "./components/MainNav";
 // 로그인 인증
-import { signIn } from "./components/auth";
-import AuthRoute from "./components/AuthRoute";
+import AuthRoute from "./components/AuthenticatedRoute";
+import RegiRoute from "./components/RegisteredRoute";
+// 회원가입
+import SignUp from "./components/SignUp";
+import SignUp2 from "./components/SignUp2";
+import Servey from "./components/Servey";
+import Measures from "./components/measures";
 
 function App() {
-  const [user, setUser] = useState(null);
-  const authenticated = user != null;
-
-  const login = ({ email, password }) => setUser(signIn({ email, password }));
-  const logout = () => setUser(null);
-
   const Home2 = Home;
   const Main2 = Main;
   const Video2 = Video;
@@ -33,28 +32,25 @@ function App() {
   return (
     <Router>
       <header>
-        <MainNav2 isLoggedIn={user} logout={logout} />
+        <MainNav2 isLoggedIn={false} />
       </header>
+      <Switch>
+        <Route exact path="/" component={Home2} />
 
-      <Route exact path="/" component={Home2} />
+        {/* 밑에 AuthRoute 랑 겹쳐서 2개가 나온다 */}
+        {/* <Route exact path="/main" component={Main} /> */}
 
-      {/* 밑에 AuthRoute 랑 겹쳐서 2개가 나온다 */}
-      {/* <Route exact path="/main" component={Main} /> */}
+        <Route path="/login" component={Login2}/>
+        <Route path="/signup" component={SignUp}/>
+        <RegiRoute path="/signup2" component={SignUp2}/>
+        <RegiRoute path="/servey" component={Servey}/>
+        <RegiRoute path="/measures" component={Measures}/>
 
-      <Route
-        path="/login"
-        render={(props) => (
-          <Login2 authenticated={authenticated} login={login} {...props} />
-        )}
-      />
+        <AuthRoute path="/main" component={Main2}/>
 
-      <AuthRoute
-        authenticated={authenticated}
-        path="/main"
-        render={(props) => <Main2 user={user} {...props} />}
-      />
+        <Route exact path="/video/:videoUrl" component={Video2} />
 
-      <Route exact path="/video/:videoUrl" component={Video2} />
+      </Switch>
     </Router>
     // <Router>
     //   <div className="app">
