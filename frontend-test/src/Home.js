@@ -77,7 +77,7 @@ function Home() {
             <h2 className="text-white-50 mx-auto mt-2 mb-5">
               온라인 고객 맞춤형 트레이닝 서비스 플랫폼
             </h2>
-            <Link to={"/main"}>
+            <Link to={"/signup"}>
               {/* {"시작하기"} */}
               <button className="start-button">시작하기</button>
             </Link>

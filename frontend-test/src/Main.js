@@ -6,16 +6,17 @@ import Inform from "./components/Inform";
 import BestCoach from "./components/BestCoach";
 import Coaches from "./components/Coaches";
 import MainFooter from "./components/MainFooter";
-
+import AuthenticationService from './components/AuthenticationService.js'
 import "./static/css/Main.css";
 
-function Main({ user, history }) {
+function Main() {
   const HealthVideo2 = HealthVideo;
   const HealthClass2 = HealthClass;
   const Inform2 = Inform;
   const BestCoach2 = BestCoach;
   const Coaches2 = Coaches;
   const MainFooter2 = MainFooter;
+  const id = AuthenticationService.getLoggedInid();
 
   return (
     <div className="main">
