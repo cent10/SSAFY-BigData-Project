@@ -45,7 +45,7 @@ public class ResultController {
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
-	@RequestMapping(method = RequestMethod.POST, value = "/{uid}", produces = "application/json")
+	@RequestMapping(method = RequestMethod.GET, value = "/{uid}", produces = "application/json")
 	@ApiOperation(value = "결과 조회", notes = "사용자의 결과 조회")
 	@ApiResponses({
 		@ApiResponse(code = 201, message = "결과 조회"),
