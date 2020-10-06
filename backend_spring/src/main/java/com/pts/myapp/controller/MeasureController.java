@@ -44,7 +44,7 @@ public class MeasureController {
 	})
 	private ResponseEntity<?> create(MeasureDto measure) {
 		logger.debug("체력측정 생성");
-		service.create(measure);
+		service. create(measure);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
