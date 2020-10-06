@@ -46,7 +46,7 @@ function ModalClass(props) {
                 </pre>
               </h4>
               <br />
-              <pre style={{ whiteSpace: "pre-Wrap" }}>{props.coach.story}</pre>
+              <pre style={{ whiteSpace: "pre-Wrap" }}>{props.story}</pre>
             </div>
           </div>
         </Modal.Body>
