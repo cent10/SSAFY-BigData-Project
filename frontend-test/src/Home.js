@@ -17,25 +17,32 @@ function Home() {
     if (scroll > position) {
       if (scroll % pageHeight == 0) {
       } else if (scroll < pageHeight) {
-        window.scroll({ top: pageHeight, behavior: "auto" });
+        window.scroll({ top: pageHeight, behavior: "smooth" });
         // window.scrollTo(0, pageHeight);
       } else if (scroll < pageHeight * 2) {
-        window.scrollTo(0, pageHeight * 2);
+        window.scroll({ top: pageHeight * 2, behavior: "smooth" });
+        // window.scrollTo(0, pageHeight * 2);
       } else if (scroll < pageHeight * 3) {
-        window.scrollTo(0, pageHeight * 3);
+        window.scroll({ top: pageHeight * 3, behavior: "smooth" });
+        // window.scrollTo(0, pageHeight * 3);
       } else {
-        window.scrollTo(0, document.body.scrollHeight);
+        window.scroll({ top: pageHeight * 4, behavior: "smooth" });
+        // window.scrollTo(0, document.body.scrollHeight);
       }
     } else {
       if (scroll % pageHeight == 0) {
       } else if (scroll < pageHeight) {
-        window.scrollTo(0, 0);
+        window.scroll({ top: 0, behavior: "smooth" });
+        // window.scrollTo(0, 0);
       } else if (scroll < pageHeight * 2) {
-        window.scrollTo(0, pageHeight);
+        window.scroll({ top: pageHeight, behavior: "smooth" });
+        // window.scrollTo(0, pageHeight);
       } else if (scroll < pageHeight * 3) {
-        window.scrollTo(0, pageHeight * 2);
+        window.scroll({ top: pageHeight * 2, behavior: "smooth" });
+        // window.scrollTo(0, pageHeight * 2);
       } else {
-        window.scrollTo(0, pageHeight * 3);
+        window.scroll({ top: pageHeight * 3, behavior: "smooth" });
+        // window.scrollTo(0, pageHeight * 3);
       }
     }
     position = scroll;

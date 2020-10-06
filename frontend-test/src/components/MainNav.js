@@ -63,18 +63,23 @@ function MainNav({ isLoggedIn, logout, history }) {
                   setValue("");
                 }
               }}
+              style={{ height: 38 }}
             />
             <InputGroup.Append
               onClick={() => {
                 history.push("/search/" + value);
                 setValue("");
               }}
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer", height: 38 }}
             >
               <InputGroup.Text id="basic-addon2">검색</InputGroup.Text>
             </InputGroup.Append>
             &nbsp;
-            <Button onClick={handleClick} variant="light">
+            <Button
+              onClick={handleClick}
+              variant="light"
+              style={{ height: 38 }}
+            >
               Logout
             </Button>
             &nbsp;
@@ -86,6 +91,7 @@ function MainNav({ isLoggedIn, logout, history }) {
               onClick={() => {
                 setModalShow(true);
               }}
+              style={{ height: 38 }}
             />
           </InputGroup>
         )}
