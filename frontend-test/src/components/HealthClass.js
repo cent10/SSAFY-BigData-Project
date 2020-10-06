@@ -7,7 +7,7 @@ import ModalClass from "./ModalClass";
 
 import Badge from "react-bootstrap/Badge";
 
-function HealthClass({ title, keyword, isLargeRow }) {
+function HealthClass({ title, keyword, token }) {
   const [classes, setClasses] = useState([]);
   const [modalShow, setModalShow] = useState(false);
   const [story, setStory] = useState("");
@@ -19,7 +19,12 @@ function HealthClass({ title, keyword, isLargeRow }) {
   useEffect(() => {
     async function fetchVideo() {
       const request = await axios.get(
-        "http://j3a501.p.ssafy.io:8888/pts/class"
+        "http://j3a501.p.ssafy.io:8888/pts/class",
+        {
+          headers: {
+            "jwt-auth-token": token,
+          },
+        }
       );
       // console.log(request.data);
       setClasses(request.data);
