@@ -22,7 +22,7 @@ function Coaches({ title, keyword }) {
       return request;
     }
     fetchCoaches();
-  }, []);
+  }, [keyword]);
 
   async function fetchName(uid) {
     const request = await axios.get(

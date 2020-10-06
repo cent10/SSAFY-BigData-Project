@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import HealthVideo from "./components/HealthVideo";
 import HealthClass from "./components/HealthClass";
@@ -9,6 +9,8 @@ import MainFooter from "./components/MainFooter";
 import AuthenticationService from "./components/AuthenticationService.js";
 import "./static/css/Main.css";
 
+import axios from "axios";
+
 function Main({ history }) {
   const HealthVideo2 = HealthVideo;
   const HealthClass2 = HealthClass;
@@ -18,22 +20,42 @@ function Main({ history }) {
   const MainFooter2 = MainFooter;
   const id = AuthenticationService.getLoggedInid();
 
+  const uid = localStorage.getItem("authenticatedId");
+  const [nickname, setNickname] = useState(null);
+
+  const token = localStorage.getItem("token");
+
+  // console.log("token\n", token);
+
+  useEffect(() => {
+    async function fetchNickname() {
+      const request = await axios.get(
+        `http://j3a501.p.ssafy.io:8888/pts/users/${uid}`
+      );
+      setNickname(request.data.nickname);
+      return request;
+    }
+    fetchNickname();
+  }, []);
+
   return (
     <div className="main">
       {/* Inform */}
-      <Inform2 />
+      <Inform2 uid={uid} nickname={nickname} />
 
       {/* Health Video */}
       <HealthVideo2
-        title={`${"바나나먹는몽키"}님에게 추천되는 상체 발달 운동법`}
+        title={`${nickname}님에게 추천되는 상체 발달 운동법`}
         keyword="pushup posture"
         history={history}
+        token={token}
       />
 
       {/* Health Class */}
       <HealthClass2
-        title={`${"바나나먹는몽키"}님이 관심있을 만한 클래스`}
+        title={`${nickname}님이 관심있을 만한 클래스`}
         keyword="yoga class"
+        token={token}
       />
 
       {/* Best Coach */}
@@ -52,7 +74,7 @@ function Main({ history }) {
       />
 
       {/* Coaches */}
-      <Coaches2 title={`${"바나나먹는몽키"}님과 성향이 일치하는 코치`} />
+      <Coaches2 title={`${nickname}님과 성향이 일치하는 코치`} token={token} />
 
       {/* Footer */}
       <MainFooter2 />
