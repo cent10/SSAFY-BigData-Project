@@ -72,8 +72,7 @@ public class AspectConfig {
 		Object[] parameterValues = point.getArgs();
 		MeasureDto measure = (MeasureDto)parameterValues[0];
 		UserDto user = userService.read(measure.getUid());
-		System.out.println(measure.toString());
-		System.out.println(user.toString());
+
 		int height = user.getHeight();
 		int weight = user.getWeight();
 		int sitUp = resultService.readCore1(height, weight, user.getGender() ? 'M' : 'F');
