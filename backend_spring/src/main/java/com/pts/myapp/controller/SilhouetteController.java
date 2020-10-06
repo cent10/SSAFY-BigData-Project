@@ -50,10 +50,8 @@ public class SilhouetteController {
 	private ResponseEntity<?> create(@PathVariable(value = "uid") String uid) {
 		logger.debug("실루엣 생성");
 		ResultDto rDto = rService.read(uid);
-		int star = getStar(rDto);
-		int number = getBody(rDto.getBmi(), star);
 
-		service.create(new SilhouetteDto(number, uid, star));
+		service.create(rDto);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
@@ -70,23 +68,5 @@ public class SilhouetteController {
 		logger.debug("실루엣 조회");
 		HashMap<String, String> map = service.read(uid);
 		return new ResponseEntity<>(map, HttpStatus.OK);
-	}
-	
-	private int getStar(ResultDto rDto) {
-		return Math.round((rDto.getArm() + rDto.getLeg() + rDto.getCore() + rDto.getChest()) / 4);
-	}
-	
-	private int getBody(float bmi, int star) {
-		int number;
-		
-		if (bmi > 30 - star) number = 5;
-		else if (bmi > 27.5 - star) number = 6;
-		else if (bmi > 25 - star) number = 4;
-		else if (bmi > 24 - star) number = 3;
-		else if (bmi > 23 - star) number = 2;
-		else if (bmi > 18.5 - star) number = 1;
-		else number = 7;
-		
-		return number;
 	}
 }

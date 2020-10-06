@@ -7,6 +7,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.pts.myapp.dao.SilhouetteDao;
+import com.pts.myapp.dto.ResultDto;
 import com.pts.myapp.dto.SilhouetteDto;
 import com.pts.myapp.error.exception.EntityNotFoundException;
 import com.pts.myapp.error.exception.InvalidValueException;
@@ -18,7 +19,12 @@ public class SilhouetteServiceImpl implements SilhouetteService {
 	SilhouetteDao dao;
 
 	@Override
-	public void create(SilhouetteDto silhouette) {
+	public void create(ResultDto rDto) {
+
+		int star = getStar(rDto);
+		int number = getBody(rDto.getBmi(), star);
+
+		SilhouetteDto silhouette = new SilhouetteDto(number, rDto.getUid(), star);
 		try {
 			dao.create(silhouette);
 		} catch (DataAccessException e) {
@@ -39,5 +45,23 @@ public class SilhouetteServiceImpl implements SilhouetteService {
 			}
 		}
 		return map;
+	}
+
+	private int getStar(ResultDto rDto) {
+		return Math.round((rDto.getArm() + rDto.getLeg() + rDto.getCore() + rDto.getChest()) / 4);
+	}
+
+	private int getBody(float bmi, int star) {
+		int number;
+
+		if (bmi > 30 - star) number = 5;
+		else if (bmi > 27.5 - star) number = 6;
+		else if (bmi > 25 - star) number = 4;
+		else if (bmi > 24 - star) number = 3;
+		else if (bmi > 23 - star) number = 2;
+		else if (bmi > 18.5 - star) number = 1;
+		else number = 7;
+
+		return number;
 	}
 }
