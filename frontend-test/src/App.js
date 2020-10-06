@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import {
   BrowserRouter as Router,
@@ -59,41 +59,39 @@ function App() {
 
   return (
     <Router>
-      <header>
-        {windowWidth > 992 && <MainNav2/>}
-      </header>
+      <header>{windowWidth > 992 && <MainNav2 />}</header>
       <Switch>
         <Route exact path="/" component={Home2} />
 
-      <Route exact path="/" component={windowWidth > 992 ? Home2 : Sorry2} />
+        <Route exact path="/" component={windowWidth > 992 ? Home2 : Sorry2} />
 
-      <Route exact path="/sorry" component={Sorry2} />
+        <Route exact path="/sorry" component={Sorry2} />
 
-        <Route path="/login" component={Login2}/>
-        <Route path="/signup" component={SignUp}/>
-        <RegiRoute path="/signup2" component={SignUp2}/>
-        <RegiRoute path="/servey" component={Servey}/>
-        <RegiRoute path="/measures" component={Measures}/>
+        <Route path="/login" component={Login2} />
+        <Route path="/signup" component={SignUp} />
+        <RegiRoute path="/signup2" component={SignUp2} />
+        <RegiRoute path="/servey" component={Servey} />
+        <RegiRoute path="/measures" component={Measures} />
 
-        <AuthRoute path="/main" component={Main2}/>
+        <AuthRoute path="/main" component={Main2} />
 
         <Route exact path="/video/:videoUrl" component={Video2} />
         <AuthRoute
-            path="/main"
-            render={(props) =>
-              windowWidth > 992 ? <Main2 user={user} {...props} /> : <Sorry2 />
-            }
-          />
-          <Route
-            exact
-            path="/search/:keyword"
-            component={windowWidth > 992 ? Search2 : Sorry2}
-          />
-          <Route
-            exact
-            path="/video/:videoUrl"
-            component={windowWidth > 992 ? Video2 : Sorry2}
-          />
+          path="/main"
+          render={(props) =>
+            windowWidth > 992 ? <Main2 {...props} /> : <Sorry2 />
+          }
+        />
+        <Route
+          exact
+          path="/search/:keyword"
+          component={windowWidth > 992 ? Search2 : Sorry2}
+        />
+        <Route
+          exact
+          path="/video/:videoUrl"
+          component={windowWidth > 992 ? Video2 : Sorry2}
+        />
       </Switch>
     </Router>
     // <Router>

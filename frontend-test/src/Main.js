@@ -6,10 +6,10 @@ import Inform from "./components/Inform";
 import BestCoach from "./components/BestCoach";
 import Coaches from "./components/Coaches";
 import MainFooter from "./components/MainFooter";
-import AuthenticationService from './components/AuthenticationService.js'
+import AuthenticationService from "./components/AuthenticationService.js";
 import "./static/css/Main.css";
 
-function Main() {
+function Main({ history }) {
   const HealthVideo2 = HealthVideo;
   const HealthClass2 = HealthClass;
   const Inform2 = Inform;
