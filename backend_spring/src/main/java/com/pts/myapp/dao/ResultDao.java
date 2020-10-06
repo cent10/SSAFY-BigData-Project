@@ -12,24 +12,24 @@ public interface ResultDao {
 
 	ResultDto read(String uid);
 
-	int readArm(@Param(value = "age") int age, @Param(value = "gender") boolean gender);
+	Integer readArm(@Param(value = "age") int age, @Param(value = "gender") boolean gender);
 
-	int readLeg1(@Param(value = "height") int height, @Param(value = "weight") int weight,
+	Integer readLeg1(@Param(value = "height") int height, @Param(value = "weight") int weight,
 		@Param(value = "gender") char gender);
 
-	int readLeg2(@Param(value = "height") int height, @Param(value = "weight") int weight,
+	Integer readLeg2(@Param(value = "height") int height, @Param(value = "weight") int weight,
 		@Param(value = "gender") char gender);
 
-	int readLeg3(@Param(value = "height") int height, @Param(value = "weight") int weight,
+	Integer readLeg3(@Param(value = "height") int height, @Param(value = "weight") int weight,
 		@Param(value = "gender") char gender);
 
-	int readCore1(@Param(value = "height") int height, @Param(value = "weight") int weight,
+	Integer readCore1(@Param(value = "height") int height, @Param(value = "weight") int weight,
 		@Param(value = "gender") char gender);
 
-	int readCore2(@Param(value = "height") int height, @Param(value = "weight") int weight,
+	Integer readCore2(@Param(value = "height") int height, @Param(value = "weight") int weight,
 		@Param(value = "gender") char gender);
 
-	int readChest(@Param(value = "age") int age, @Param(value = "gender") boolean gender);
+	Integer readChest(@Param(value = "age") int age, @Param(value = "gender") boolean gender);
 
 	float readFat(@Param(value = "height") int height, @Param(value = "weight") int weight,
 		@Param(value = "gender") char gender);
