@@ -1,23 +1,9 @@
-import React, { useEffect, useState } from "react";
-
-import axios from "axios";
+import React from "react";
 
 import { Modal, Button } from "react-bootstrap";
 
 function ModalClass(props) {
-  const [coach, setCoach] = useState({});
-  useEffect(() => {
-    async function fetchCoach() {
-      const request = await axios.get(
-        `http://j3a501.p.ssafy.io:8888/pts/coaches/${props.coachId}`
-      );
-      console.log("asdf", request.data);
-      setCoach(request.data);
-      return request;
-    }
-    fetchCoach();
-  }, []);
-
+  // console.log(props.coach.career);
   return (
     <div>
       <Modal
@@ -32,21 +18,27 @@ function ModalClass(props) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h4>{coach.uid} 코치</h4>
           <div>
             {/* 좌측 코치 사진 */}
-            {/* <img src={coach.profile_photo} /> */}
+            <img
+              style={{
+                float: "left",
+                objectFit: "contain",
+                width: "400px",
+                marginRight: 20,
+              }}
+              src={props.coach.profilePhoto}
+              alt={""}
+            />
+
             {/* 우측 코치 경력 */}
-            <h4>{coach.career}</h4>
+            <h2>{props.name} 코치</h2>
+            <h4>
+              <pre style={{ whiteSpace: "pre-wrap" }}>{props.coach.career}</pre>
+            </h4>
+            <br />
+            <pre style={{ whiteSpace: "pre-wrap" }}>{props.coach.story}</pre>
           </div>
-          <p>
-            좋아~ 아주 좋아~좋아~ 아주 좋아~좋아~ 아주 좋아~좋아~ 아주
-            좋아~좋아~ 아주 좋아~좋아~ 아주 좋아~좋아~ 아주 좋아~좋아~ 아주
-            좋아~좋아~ 아주 좋아~좋아~ 아주 좋아~좋아~ 아주 좋아~좋아~ 아주
-            좋아~좋아~ 아주 좋아~좋아~ 아주 좋아~좋아~ 아주 좋아~좋아~ 아주
-            좋아~좋아~ 아주 좋아~좋아~ 아주 좋아~좋아~ 아주 좋아~좋아~ 아주
-            좋아~좋아~ 아주 좋아~좋아~ 아주 좋아~
-          </p>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="danger" onClick={props.onHide}>

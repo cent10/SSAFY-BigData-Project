@@ -1,6 +1,8 @@
 package com.pts.myapp.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,10 +11,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pts.myapp.common.component.UserCheck;
+import com.pts.myapp.dto.UserDto;
 import com.pts.myapp.dto.VideoDto;
 import com.pts.myapp.service.VideoService;
 import io.swagger.annotations.Api;
@@ -31,6 +36,9 @@ public class VideoController {
 	@Autowired
 	VideoService service;
 
+	@Autowired
+	UserCheck userCheck;
+
 	@RequestMapping(method = RequestMethod.POST, produces = "application/json")
 	@ApiOperation(value = "영상 생성", notes = "영상 저장")
 	@ApiResponses({
@@ -48,7 +56,7 @@ public class VideoController {
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}", produces = "application/json")
 	@ApiOperation(value = "영상 조회", notes = "영상 조회")
 	@ApiResponses({
-		@ApiResponse(code = 201, message = "영상 조회"),
+		@ApiResponse(code = 200, message = "영상 조회"),
 		@ApiResponse(code = 400, message = "잘못된 요청입니다"),
 		@ApiResponse(code = 401, message = "로그인 후 이용해 주세요"),
 		@ApiResponse(code = 404, message = "영상 조회 실패")
@@ -62,14 +70,19 @@ public class VideoController {
 	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
 	@ApiOperation(value = "영상 리스트 조회", notes = "영상 리스트 조회")
 	@ApiResponses({
-		@ApiResponse(code = 201, message = "영상 리스트 조회"),
+		@ApiResponse(code = 200, message = "영상 리스트 조회"),
 		@ApiResponse(code = 400, message = "잘못된 요청입니다"),
 		@ApiResponse(code = 401, message = "로그인 후 이용해 주세요"),
 		@ApiResponse(code = 404, message = "영상 리스트 조회 실패")
 	})
-	private ResponseEntity<?> readAll() {
+	private ResponseEntity<?> readAll(@RequestHeader(value = "jwt-auth-token") String token) {
 		logger.debug("영상 리스트 조회");
-		List<VideoDto> list = service.readAll();
+		List<VideoDto> list = new ArrayList<>();
+		UserDto user = userCheck.check(token);
+		service.readAll(list, user.getId());
+		if(list.size() >= 13) {
+			list = list.subList(0, 13);
+		}
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 
@@ -105,7 +118,7 @@ public class VideoController {
 	@RequestMapping(method = RequestMethod.GET, value = "/best", produces = "application/json")
 	@ApiOperation(value = "이달의 베스트 코치 영상 조회", notes = "이달의 베스트 영상 조회")
 	@ApiResponses({
-		@ApiResponse(code = 201, message = "이달의 베스트 코치 영상 조회"),
+		@ApiResponse(code = 200, message = "이달의 베스트 코치 영상 조회"),
 		@ApiResponse(code = 400, message = "잘못된 요청입니다"),
 		@ApiResponse(code = 401, message = "로그인 후 이용해 주세요"),
 		@ApiResponse(code = 403, message = "권한이 없습니다"),
@@ -114,6 +127,20 @@ public class VideoController {
 	private ResponseEntity<?> readBest() {
 		logger.debug("이달의 베스트 코치 영상 조회");
 		List<VideoDto> list =  service.readBest();
+		return new ResponseEntity<>(list, HttpStatus.OK);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value="/search/{searchword}", produces = "application/json")
+	@ApiOperation(value = "영상 이름(TITLE)로 검색", notes = "영상 이름(TITLE)로 검색")
+	@ApiResponses({
+		@ApiResponse(code = 200, message = "영상 이름(TITLE)로 검색"),
+		@ApiResponse(code = 400, message = "잘못된 요청입니다"),
+		@ApiResponse(code = 401, message = "로그인 후 이용해 주세요"),
+		@ApiResponse(code = 404, message = "영상 이름(TITLE)로 검색 실패")
+	})
+	private ResponseEntity<?> search(@PathVariable(value = "searchword") String searchword) {
+		logger.debug("영상 이름(TITLE)로 검색");
+		List<VideoDto> list = service.search(searchword);
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 }

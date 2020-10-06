@@ -21,6 +21,6 @@ public interface UserDao {
 	// 로그인
 	public UserDto login(UserDto userDto);
 	
-	// 로그아웃
-	public void logout(String id);
+	// 해당 이메일(id)의 암호화된 비밀번호 조회
+	public String checkPassword(String id);
 }

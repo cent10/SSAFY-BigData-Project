@@ -35,4 +35,11 @@
     <select id="readBest" resultType="com.pts.myapp.dto.VideoDto">
         select * from VIDEOS where TYPE1 = "정태영"
     </select>
+    
+	<select id="search" resultType="com.pts.myapp.dto.VideoDto">
+		SELECT ID, THUMBNAIL, TITLE, TYPE1, TYPE2, TYPE3, COUNT, URL
+		FROM VIDEOS
+		WHERE TITLE LIKE CONCAT('%', #{searchword}, '%') OR TYPE1 LIKE CONCAT('%', #{searchword}, '%')
+		    OR TYPE2 LIKE CONCAT('%', #{searchword}, '%') OR TYPE3 LIKE CONCAT('%', #{searchword}, '%')
+	</select>
 </mapper>

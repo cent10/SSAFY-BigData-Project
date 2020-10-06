@@ -1,5 +1,7 @@
 package com.pts.myapp.service;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
@@ -27,15 +29,15 @@ public class SilhouetteServiceImpl implements SilhouetteService {
 	}
 
 	@Override
-	public SilhouetteDto read(String uid) {
-		SilhouetteDto silhouette = new SilhouetteDto();
+	public HashMap<String, String> read(String uid) {
+		HashMap<String, String> map = new HashMap<String, String>();
 		try {
-			silhouette = dao.read(uid);
+			map = dao.read(uid);
 		} catch (DataAccessException e) {
 			if(e.getMessage().contains("For")) {
-				throw new EntityNotFoundException(silhouette.getUid());
+				throw new EntityNotFoundException(uid);
 			}
 		}
-		return silhouette;
+		return map;
 	}
 }

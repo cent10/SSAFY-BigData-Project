@@ -10,17 +10,18 @@ import Badge from "react-bootstrap/Badge";
 function HealthClass({ title, keyword, isLargeRow }) {
   const [classes, setClasses] = useState([]);
   const [modalShow, setModalShow] = useState(false);
-  const [src, setSrc] = useState("");
+  const [story, setStory] = useState("");
   const [cltitle, setCltitle] = useState("");
   const [coach, setCoach] = useState({});
   const [tags, setTags] = useState([]);
+  const [name, setName] = useState("");
 
   useEffect(() => {
     async function fetchVideo() {
       const request = await axios.get(
         "http://j3a501.p.ssafy.io:8888/pts/class"
       );
-      console.log(request.data);
+      // console.log(request.data);
       setClasses(request.data);
       return request;
     }
@@ -33,6 +34,16 @@ function HealthClass({ title, keyword, isLargeRow }) {
     );
     console.log("asdf", request.data);
     setCoach(request.data);
+    fetchName(request.data.uid);
+    return request;
+  }
+
+  async function fetchName(uid) {
+    const request = await axios.get(
+      `http://j3a501.p.ssafy.io:8888/pts/users/${uid}`
+    );
+    // console.log("asdf", request.data);
+    setName(request.data.nickname);
     return request;
   }
 
@@ -45,7 +56,9 @@ function HealthClass({ title, keyword, isLargeRow }) {
   return (
     <div className="rowrow">
       {/* title */}
-      <h2 className="row__title">{title}</h2>
+      <h2 className="row__title">
+        {title} <h4 className="hover">></h4>
+      </h2>
 
       {/* container -> posters */}
       <div className="row__posters">
@@ -55,10 +68,10 @@ function HealthClass({ title, keyword, isLargeRow }) {
             className="row__class__poster"
             style={{ width: "290px", height: "300px;" }}
           >
-            <img
+            {/* <img
               key={cl.id}
               onClick={() => {
-                setSrc(cl.thumbnail);
+                setStory(cl.story);
                 setCltitle(cl.title);
                 setCoach(fetchCoach(cl.coachId));
                 setTags([cl.type1, cl.type2, cl.type3]);
@@ -80,15 +93,42 @@ function HealthClass({ title, keyword, isLargeRow }) {
             >
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               .
-            </h1>
-            <img
+            </h1> */}
+            {/* <img
               key={cl.id}
-              className={`row__class row__poster ${
-                isLargeRow && "row__posterLarge"
-              }`}
+              className={`row__class row__poster`}
               src={cl.thumbnail}
               alt={cl.title}
-            />
+            /> */}
+            <div
+              className={`row__class row__poster`}
+              style={{
+                backgroundSize: "cover",
+                backgroundImage: `url(${cl.thumbnail})`,
+                backgroundRepeat: "no-repeat",
+                width: "270px",
+                height: "200px",
+                display: "flex",
+              }}
+              onClick={() => {
+                setStory(cl.story);
+                setCltitle(cl.title);
+                setCoach(fetchCoach(cl.coachId));
+                setTags([cl.type1, cl.type2, cl.type3]);
+                setModalShow(true);
+              }}
+            >
+              <span
+                style={{
+                  fontSize: "30px",
+                  fontWeight: "bold",
+                  color: "red",
+                  marginLeft: "240px",
+                }}
+              >
+                .
+              </span>
+            </div>
             <h6 className="row__class__title" style={{ paddingTop: "200px;" }}>
               {truncate(cl.title, 18)}
             </h6>
@@ -108,10 +148,11 @@ function HealthClass({ title, keyword, isLargeRow }) {
         onHide={() => {
           setModalShow(false);
         }}
-        src={src}
+        story={story}
         title={cltitle}
         coach={coach}
         tags={tags}
+        name={name}
       />
     </div>
   );

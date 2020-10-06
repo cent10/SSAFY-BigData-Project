@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.pts.myapp.common.annotation.UserClass;
 import com.pts.myapp.dao.ClassDao;
 import com.pts.myapp.dto.ClassDto;
 
@@ -19,14 +20,18 @@ public class ClassServiceImpl implements ClassService {
 		dao.create(classDto);
 	}
 
+	@UserClass
 	@Override
-	public List<ClassDto> readAll() {
-		return dao.readAll();
-	}
+	public void readAll(List<ClassDto> list, String id) {}
 
 	@Override
 	public ClassDto readById(int id) {
 		return dao.readById(id);
+	}
+	
+	@Override
+	public List<ClassDto> search(String word) {
+		return dao.search(word);
 	}
 
 	@Override

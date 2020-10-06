@@ -4,13 +4,13 @@
 	
 	<!-- 코치 신청 -->
 	<insert id="createApplication">
-		INSERT INTO COACHES(UID, PROFILE_PHOTO, CAREER, IS_APPROVED)
-		VALUES(#{uid}, #{profile_photo}, #{career}, FALSE)
+		INSERT INTO COACHES(UID, PROFILE_PHOTO, CAREER, IS_APPROVED, STORY, TYPE1, TYPE2, TYPE3)
+		VALUES(#{uid}, #{profilePhoto}, #{career}, FALSE, #{TYPE1}, #{TYPE2}, #{TYPE3})
 	</insert>
 	
 	<!-- 코치 신청 리스트 조회 (미승인 상태의 코치 리스트 조회) -->
 	<select id="readAllApplication" resultType="com.pts.myapp.dto.CoachDto">
-		SELECT ID, UID, PROFILE_PHOTO, CAREER, IS_APPROVED
+		SELECT *
 		FROM COACHES
 		WHERE IS_APPROVED=FALSE
 	</select>
@@ -25,7 +25,7 @@
 	<!-- 코치 수정 -->
 	<update id="update">
 		UPDATE COACHES
-		SET PROFILE_PHOTO=#{profile_photo}, CAREER=#{career}
+		SET PROFILE_PHOTO=#{profilePhoto}, CAREER=#{career}, STORY=#{story}, TYPE1={type1}, TYPE2={type2}, TYPE3={type3}
 		WHERE ID=#{id}
 	</update>
 	
@@ -38,16 +38,87 @@
 	
 	<!-- 코치 조회 -->
 	<select id="read" resultType="com.pts.myapp.dto.CoachDto">
-		SELECT ID, UID, PROFILE_PHOTO, CAREER, IS_APPROVED
+		SELECT *
 		FROM COACHES
 		WHERE ID=#{id}
 	</select>
 	
 	<!-- 코치 리스트 조회 -->
 	<select id="readAll" resultType="com.pts.myapp.dto.CoachDto">
-		SELECT ID, UID, PROFILE_PHOTO, CAREER, IS_APPROVED
+		SELECT * FROM COACHES
+		WHERE IS_APPROVED=1
+	</select>
+
+	<!-- 코치 검색 조회 -->
+	<select id="search" resultType="com.pts.myapp.dto.CoachDto">
+		SELECT *
+		FROM USERS, COACHES
+		WHERE USERS.ID = COACHES.UID AND USERS.NICKNAME LIKE CONCAT('%', #{searchword}, '%')
+	</select>
+	
+	<!-- 사용자 체형별 코치 추천 (14명) -->
+	<!-- I : 슬림한 몸매에 적당한 근육 -->
+	<select id="recommend1" resultType="com.pts.myapp.dto.CoachDto">
+		SELECT *
 		FROM COACHES
-		WHERE IS_APPROVED=TRUE
+		WHERE TYPE1 in (#{goal}, #{like}, "등", "끈기있는", "중급자", "건강", "웨이트")
+			OR TYPE2 in (#{goal}, #{like}, "등", "끈기있는", "중급자", "건강", "웨이트")
+			OR TYPE3 in (#{goal}, #{like}, "등", "끈기있는", "중급자", "건강", "웨이트")
+		LIMIT 14
+	</select>
+	<!-- b : 마른 비만형 -->
+	<select id="recommend2" resultType="com.pts.myapp.dto.CoachDto">
+		SELECT *
+		FROM COACHES
+		WHERE TYPE1 in (#{goal}, #{like}, "유산소", "전신", "어깨")
+			OR TYPE2 in (#{goal}, #{like}, "유산소", "전신", "어깨")
+			OR TYPE3 in (#{goal}, #{like}, "유산소", "전신", "어깨")
+		LIMIT 14
+	</select>
+	<!-- R : 부실한 하체와 늘어진 뱃살 -->
+	<select id="recommend3" resultType="com.pts.myapp.dto.CoachDto">
+		SELECT *
+		FROM COACHES
+		WHERE TYPE1 in (#{goal}, #{like}, "코어", "하체", "다리")
+			OR TYPE2 in (#{goal}, #{like}, "코어", "하체", "다리")
+			OR TYPE3 in (#{goal}, #{like}, "코어", "하체", "다리")
+		LIMIT 14
+	</select>
+	<!-- B : 가슴까지 살이 오른 아기돼지 스타일 -->
+	<select id="recommend4" resultType="com.pts.myapp.dto.CoachDto">
+		SELECT *
+		FROM COACHES
+		WHERE TYPE1 in (#{goal}, #{like}, "유산소", "전신", "체중감량", "다이어트")
+			OR TYPE2 in (#{goal}, #{like}, "유산소", "전신", "체중감량", "다이어트")
+			OR TYPE3 in (#{goal}, #{like}, "유산소", "전신", "체중감량", "다이어트")
+		LIMIT 14
+	</select>
+	<!-- // S : 땀 흘리는 거대 덩치 -->
+	<select id="recommend5" resultType="com.pts.myapp.dto.CoachDto">
+		SELECT *
+		FROM COACHES
+		WHERE TYPE1 in (#{goal}, #{like}, "유산소", "체중감량", "다이어트", "초급자")
+			OR TYPE2 in (#{goal}, #{like}, "유산소", "체중감량", "다이어트", "초급자")
+			OR TYPE3 in (#{goal}, #{like}, "유산소", "체중감량", "다이어트", "초급자")
+		LIMIT 14
+	</select>
+	<!-- // D : 고칼로리로 채운 풍선 같은 배 -->
+	<select id="recommend6" resultType="com.pts.myapp.dto.CoachDto">
+		SELECT *
+		FROM COACHES
+		WHERE TYPE1 in (#{goal}, #{like}, "유산소", "체중감량", "다이어트", "체력증진", "맨몸", "초급자")
+			OR TYPE2 in (#{goal}, #{like}, "유산소", "체중감량", "다이어트", "체력증진", "맨몸", "초급자")
+			OR TYPE3 in (#{goal}, #{like}, "유산소", "체중감량", "다이어트", "체력증진", "맨몸", "초급자")
+		LIMIT 14
+	</select>
+	<!-- // i : 키가 작고 어깨가 좁은 스타일 -->
+	<select id="recommend7" resultType="com.pts.myapp.dto.CoachDto">
+		SELECT *
+		FROM COACHES
+		WHERE TYPE1 in (#{goal}, #{like}, "상체", "하체", "가슴", "어깨", "체형관리", "벌크업")
+			OR TYPE2 in (#{goal}, #{like}, "상체", "하체", "가슴", "어깨", "체형관리", "벌크업")
+			OR TYPE3 in (#{goal}, #{like}, "상체", "하체", "가슴", "어깨", "체형관리", "벌크업")
+		LIMIT 14
 	</select>
 
 </mapper>

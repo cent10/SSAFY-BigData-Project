@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import "../static/css/Row.css";
 
 import Badge from "react-bootstrap/Badge";
+import Carousel from "react-bootstrap/Carousel";
 
-function HealthVideo({ title, keyword, isLargeRow }) {
+function HealthVideo({ title, keyword, isLargeRow, history }) {
   const [videos, setVideos] = useState([]);
+  const [index, setIndex] = useState(0);
+
+  const handleSelect = (selectedIndex, e) => {
+    setIndex(selectedIndex);
+  };
 
   useEffect(() => {
     async function fetchVideo() {
@@ -26,46 +31,94 @@ function HealthVideo({ title, keyword, isLargeRow }) {
   return (
     <div className="rowrow">
       {/* title */}
-      <h2 className="row__title">{title}</h2>
+      <h2 className="row__title">
+        {title} <h4 className="hover">></h4>
+      </h2>
 
       {/* container -> posters */}
-      <div className="row__posters">
-        {/* several rwo_poster */}
-        {videos.map((video) => (
-          <div
-            className="row__class__poster"
-            style={{ width: "290px", height: "300px;" }}
-          >
-            <Link
-              className="row__link"
-              to={{
-                pathname: `/video/${video.url}`,
-                state: {
-                  title: video.title,
-                  tags: [video.type1, video.type2, video.type3],
-                },
-              }}
-            >
-              <img
-                className="row__poster"
-                key={video.id}
-                src={video.thumbnail}
-                alt={video.title}
-              />
-            </Link>
-            <h6 className="row__class__title" style={{ paddingTop: "200px;" }}>
-              {truncate(video.title, 18)}
-            </h6>
-            <h6>
-              <span>
-                <Badge variant="light">{video.type1}</Badge>{" "}
-                <Badge variant="light">{video.type2}</Badge>{" "}
-                <Badge variant="light">{video.type3}</Badge>
-              </span>
-            </h6>
+      <Carousel
+        activeIndex={index}
+        onSelect={handleSelect}
+        controls={false}
+        interval={2000}
+      >
+        <Carousel.Item>
+          <div className="row__posters">
+            {/* several rwo_poster */}
+            {videos.slice(0, 7).map((video) => (
+              <div
+                className="row__class__poster"
+                style={{ width: "290px", height: "300px;" }}
+              >
+                <img
+                  className="row__poster"
+                  key={video.id}
+                  src={video.thumbnail}
+                  alt={video.title}
+                  onClick={() => {
+                    history.push(`/video/${video.url}`, {
+                      title: video.title,
+                      tags: [video.type1, video.type2, video.type3],
+                    });
+                  }}
+                />
+                {/* </Link> */}
+                <h6
+                  className="row__class__title"
+                  style={{ paddingTop: "200px;" }}
+                >
+                  {truncate(video.title, 18)}
+                </h6>
+                <h6>
+                  <span>
+                    <Badge variant="light">{video.type1}</Badge>{" "}
+                    <Badge variant="light">{video.type2}</Badge>{" "}
+                    <Badge variant="light">{video.type3}</Badge>
+                  </span>
+                </h6>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </Carousel.Item>
+        <Carousel.Item>
+          <div className="row__posters">
+            {/* several rwo_poster */}
+            {videos.slice(6).map((video) => (
+              <div
+                className="row__class__poster"
+                style={{ width: "290px", height: "300px;" }}
+              >
+                <img
+                  className="row__poster"
+                  key={video.id}
+                  src={video.thumbnail}
+                  alt={video.title}
+                  onClick={() => {
+                    history.push(`/video/${video.url}`, {
+                      title: video.title,
+                      tags: [video.type1, video.type2, video.type3],
+                    });
+                  }}
+                />
+                {/* </Link> */}
+                <h6
+                  className="row__class__title"
+                  style={{ paddingTop: "200px;" }}
+                >
+                  {truncate(video.title, 18)}
+                </h6>
+                <h6>
+                  <span>
+                    <Badge variant="light">{video.type1}</Badge>{" "}
+                    <Badge variant="light">{video.type2}</Badge>{" "}
+                    <Badge variant="light">{video.type3}</Badge>
+                  </span>
+                </h6>
+              </div>
+            ))}
+          </div>
+        </Carousel.Item>
+      </Carousel>
     </div>
   );
 }

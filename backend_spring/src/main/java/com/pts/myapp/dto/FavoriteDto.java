@@ -2,8 +2,8 @@ package com.pts.myapp.dto;
 
 public class FavoriteDto {
 	private String uid;			// 유저 아이디
-	private boolean is_solo;	// (true:개인 운동, false:단체 운동)
-	private boolean is_active;	// (true:동적인 운동, false:정적인 운동)
+	private boolean isSolo;	// (true:개인 운동, false:단체 운동)
+	private boolean isActive;	// (true:동적인 운동, false:정적인 운동)
 	private String like;		// 좋아하는 운동
 	private String goal;		// 운동 목표
 	private String dislike;		// 싫어하는 운동
@@ -11,33 +11,33 @@ public class FavoriteDto {
 	public FavoriteDto() {
 		super();
 	}
-	public FavoriteDto(String uid, boolean is_solo, boolean is_active, String like, String goal, String dislike) {
+	public FavoriteDto(String uid, boolean isSolo, boolean isActive, String like, String goal, String dislike) {
 		super();
 		this.uid = uid;
-		this.is_solo = is_solo;
-		this.is_active = is_active;
+		this.isSolo = isSolo;
+		this.isActive = isActive;
 		this.like = like;
 		this.goal = goal;
 		this.dislike = dislike;
 	}
-	
+
 	public String getUid() {
 		return uid;
 	}
 	public void setUid(String uid) {
 		this.uid = uid;
 	}
-	public boolean isIs_solo() {
-		return is_solo;
+	public boolean isSolo() {
+		return isSolo;
 	}
-	public void setIs_solo(boolean is_solo) {
-		this.is_solo = is_solo;
+	public void setSolo(boolean isSolo) {
+		this.isSolo = isSolo;
 	}
-	public boolean isIs_active() {
-		return is_active;
+	public boolean isActive() {
+		return isActive;
 	}
-	public void setIs_active(boolean is_active) {
-		this.is_active = is_active;
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
 	}
 	public String getLike() {
 		return like;
@@ -57,10 +57,10 @@ public class FavoriteDto {
 	public void setDislike(String dislike) {
 		this.dislike = dislike;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "FavoriteDto [uid=" + uid + ", is_solo=" + is_solo + ", is_active=" + is_active + ", like=" + like
+		return "FavoriteDto [uid=" + uid + ", isSolo=" + isSolo + ", isActive=" + isActive + ", like=" + like
 				+ ", goal=" + goal + ", dislike=" + dislike + "]";
 	}
 }

@@ -10,9 +10,13 @@ import {
 
 import Home from "./Home";
 import Main from "./Main";
+import Search from "./Search";
 import Video from "./components/Video";
 import Login from "./components/LoginComponent";
 import MainNav from "./components/MainNav";
+
+import Sorry from "./Sorry";
+
 // 로그인 인증
 import AuthRoute from "./components/AuthenticatedRoute";
 import RegiRoute from "./components/RegisteredRoute";
@@ -27,18 +31,43 @@ function App() {
   const Main2 = Main;
   const Video2 = Video;
   const Login2 = Login;
+  const Search2 = Search;
   const MainNav2 = MainNav;
+
+  const Sorry2 = Sorry;
+
+  var windowWidth = window.innerWidth;
+
+  useEffect(() => {
+    window.addEventListener(
+      "resize",
+      function () {
+        windowWidth = window.innerWidth;
+        console.log("innerWidth", windowWidth);
+        if (windowWidth > 922) {
+          // console.log("asdf", this);
+          this.location.reload();
+        } else {
+          // console.log("qwer", this);
+          this.location.reload();
+        }
+      },
+      true
+    );
+    return () => window.removeEventListener("resize", function () {});
+  });
 
   return (
     <Router>
       <header>
-        <MainNav2 isLoggedIn={false} />
+        {windowWidth > 992 && <MainNav2/>}
       </header>
       <Switch>
         <Route exact path="/" component={Home2} />
 
-        {/* 밑에 AuthRoute 랑 겹쳐서 2개가 나온다 */}
-        {/* <Route exact path="/main" component={Main} /> */}
+      <Route exact path="/" component={windowWidth > 992 ? Home2 : Sorry2} />
+
+      <Route exact path="/sorry" component={Sorry2} />
 
         <Route path="/login" component={Login2}/>
         <Route path="/signup" component={SignUp}/>
@@ -49,7 +78,22 @@ function App() {
         <AuthRoute path="/main" component={Main2}/>
 
         <Route exact path="/video/:videoUrl" component={Video2} />
-
+        <AuthRoute
+            path="/main"
+            render={(props) =>
+              windowWidth > 992 ? <Main2 user={user} {...props} /> : <Sorry2 />
+            }
+          />
+          <Route
+            exact
+            path="/search/:keyword"
+            component={windowWidth > 992 ? Search2 : Sorry2}
+          />
+          <Route
+            exact
+            path="/video/:videoUrl"
+            component={windowWidth > 992 ? Video2 : Sorry2}
+          />
       </Switch>
     </Router>
     // <Router>
