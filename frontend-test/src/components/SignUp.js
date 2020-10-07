@@ -27,7 +27,7 @@ class registerComponent extends Component {
                     : event.target.value,
                 disabled: (this.state.id !== '') &&
                     (this.state.password !== '') && (this.state.password.length >= 6)
-                    && (this.state.name.length >= 2),
+                    && (this.state.name.length >= 1),
                 idPlaceholder : (this.state.idPlaceholder === 'ID 중복')?'ID':this.state.idPlaceholder
             }
         )
