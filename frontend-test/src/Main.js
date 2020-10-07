@@ -45,7 +45,7 @@ function Main({ history }) {
 
       {/* Health Video */}
       <HealthVideo2
-        title={`${nickname}님에게 추천되는 상체 발달 운동법`}
+        title={`${nickname}님에게 추천되는 운동비디오`}
         keyword="pushup posture"
         history={history}
         token={token}

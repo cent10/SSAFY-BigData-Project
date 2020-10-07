@@ -6,6 +6,8 @@ import Badge from "react-bootstrap/Badge";
 import axios from "axios";
 
 function ModalClass(props) {
+  console.log(props);
+
   function getFormatDate(date) {
     var year = date.getFullYear();
     var month = 1 + date.getMonth();
@@ -64,7 +66,7 @@ function ModalClass(props) {
           <Button
             variant="danger"
             onClick={props.onHide}
-            style={{ height: 38 }}
+            style={{ height: 38, verticalAlign: "center" }}
           >
             닫기
           </Button>
@@ -86,7 +88,7 @@ function ModalClass(props) {
                 null
               );
             }}
-            style={{ height: 38 }}
+            style={{ height: 38, verticalAlign: "center" }}
           >
             참여하기
           </Button>

@@ -4,7 +4,9 @@ import "../static/css/BestCoachVideo.css";
 
 import Carousel from "react-bootstrap/Carousel";
 
-function BestCoachVideo({ title, history }) {
+import moment from "moment-timezone/builds/moment-timezone-with-data";
+
+function BestCoachVideo({ title, history, uid }) {
   const [videos, setVideos] = useState([]);
   const [index, setIndex] = useState(0);
 
@@ -57,6 +59,17 @@ function BestCoachVideo({ title, history }) {
                     title: video.title,
                     tags: [video.type1, video.type2, video.type3],
                   });
+                  var today = moment().tz("Asia/Seoul").format("YYYY-MM-DD");
+                  // console.log(today);
+                  axios.post(
+                    "http://j3a501.p.ssafy.io:8888/pts/logs",
+                    {
+                      day: today,
+                      point: 1,
+                      uid: uid,
+                    },
+                    null
+                  );
                 }}
               />
             ))}
@@ -76,6 +89,17 @@ function BestCoachVideo({ title, history }) {
                     title: video.title,
                     tags: [video.type1, video.type2, video.type3],
                   });
+                  var today = moment().tz("Asia/Seoul").format("YYYY-MM-DD");
+                  // console.log(today);
+                  axios.post(
+                    "http://j3a501.p.ssafy.io:8888/pts/logs",
+                    {
+                      day: today,
+                      point: 1,
+                      uid: uid,
+                    },
+                    null
+                  );
                 }}
               />
             ))}

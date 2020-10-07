@@ -28,16 +28,17 @@ function HealthClass({ title, keyword, token, uid }) {
       );
       // console.log(request.data);
       setClasses(request.data);
+      // console.log(request.data);
       return request;
     }
     fetchVideo();
-  }, [keyword]);
+  }, [token]);
 
   async function fetchCoach(coachId) {
     const request = await axios.get(
       `http://j3a501.p.ssafy.io:8888/pts/coaches/${coachId}`
     );
-    console.log("asdf", request.data);
+    // console.log("asdf", request.data);
     setCoach(request.data);
     fetchName(request.data.uid);
     return request;
@@ -73,38 +74,6 @@ function HealthClass({ title, keyword, token, uid }) {
             className="row__class__poster"
             style={{ width: "290px", height: "300px;" }}
           >
-            {/* <img
-              key={cl.id}
-              onClick={() => {
-                setStory(cl.story);
-                setCltitle(cl.title);
-                setCoach(fetchCoach(cl.coachId));
-                setTags([cl.type1, cl.type2, cl.type3]);
-                setModalShow(true);
-              }}
-              className={`row__class row__poster ${
-                isLargeRow && "row__posterLarge"
-              }`}
-              src={cl.thumbnail}
-              alt={cl.title}
-              style={{ position: "absolute" }}
-            />
-            <h1
-              style={{
-                position: "absolute",
-                color: "red",
-                fontWeight: "bold",
-              }}
-            >
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              .
-            </h1> */}
-            {/* <img
-              key={cl.id}
-              className={`row__class row__poster`}
-              src={cl.thumbnail}
-              alt={cl.title}
-            /> */}
             <div
               className={`row__class row__poster`}
               style={{
@@ -118,7 +87,7 @@ function HealthClass({ title, keyword, token, uid }) {
               onClick={() => {
                 setStory(cl.story);
                 setCltitle(cl.title);
-                setCoach(fetchCoach(cl.coachId));
+                setCoach(fetchCoach(cl.url));
                 setTags([cl.type1, cl.type2, cl.type3]);
                 setModalShow(true);
               }}
