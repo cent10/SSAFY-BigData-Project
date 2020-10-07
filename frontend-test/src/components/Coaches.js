@@ -112,6 +112,9 @@ function Coaches({ title, token, uid }) {
         onShow2={() => {
           setShow2(true);
         }}
+        closeShow2={() => {
+          setShow2(false);
+        }}
         uid={uid}
       />
     </div>

@@ -18,7 +18,13 @@ function ModalCoach(props) {
         centered
       >
         {props.show2 && (
-          <Alert variant="info" onClose={() => {}} dismissible>
+          <Alert
+            variant="info"
+            onClose={() => {
+              props.closeShow2();
+            }}
+            dismissible
+          >
             <Alert.Heading>{props.name} 코치님께 연락되었습니다.</Alert.Heading>
           </Alert>
         )}
@@ -64,7 +70,7 @@ function ModalCoach(props) {
             onClick={() => {
               props.onShow2(true);
               axios.post(
-                "http://j3a501.p.ssafy.io/pts/coaches/contacts",
+                "http://j3a501.p.ssafy.io:8888/pts/coaches/contacts",
                 {
                   coachId: props.coach.uid,
                   uid: props.uid,
