@@ -25,7 +25,15 @@
 	<!-- 회원정보 수정 -->
 	<update id="update">
 		UPDATE USERS
-		SET PASSWORD=#{password}, NICKNAME=#{nickname}, HEIGHT=#{height}, WEIGHT=#{weight}, PROFILE=#{profile}
+		SET
+		<choose>
+			<when test='nickname neq null and nickname neq ""'>
+				NICKNAME=#{nickname}
+			</when>
+			<otherwise>
+				PROFILE=#{profile}
+			</otherwise>
+		</choose>
 		WHERE ID=#{id}
 	</update>
 	
