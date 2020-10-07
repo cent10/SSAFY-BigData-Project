@@ -83,7 +83,7 @@ function HealthClass({ title, keyword, history }) {
               onClick={() => {
                 setStory(cl.story);
                 setCltitle(cl.title);
-                setCoach(fetchCoach(cl.coachId));
+                setCoach(fetchCoach(cl.url));
                 setTags([cl.type1, cl.type2, cl.type3]);
                 setModalShow(true);
               }}
