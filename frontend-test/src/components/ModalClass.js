@@ -66,9 +66,9 @@ function ModalClass(props) {
           <Button
             variant="danger"
             onClick={props.onHide}
-            style={{ height: 38, verticalAlign: "middle", lineHeight: 38 }}
+            style={{ height: 38, verticalAlign: "middle" }}
           >
-            닫기
+            <span>닫기</span>
           </Button>
           {/* 함수 설정할 것 */}
           <Button
@@ -88,9 +88,9 @@ function ModalClass(props) {
                 null
               );
             }}
-            style={{ height: 38, verticalAlign: "middle", lineHeight: 38 }}
+            style={{ height: 38, verticalAlign: "middle" }}
           >
-            참여하기
+            <span>참여하기</span>
           </Button>
         </Modal.Footer>
       </Modal>
