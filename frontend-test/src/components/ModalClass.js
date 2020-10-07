@@ -66,7 +66,7 @@ function ModalClass(props) {
           <Button
             variant="danger"
             onClick={props.onHide}
-            style={{ height: 38, verticalAlign: "middle" }}
+            style={{ height: 38, verticalAlign: "middle", lineHeight: 38 }}
           >
             닫기
           </Button>
@@ -88,7 +88,7 @@ function ModalClass(props) {
                 null
               );
             }}
-            style={{ height: 38, verticalAlign: "middle" }}
+            style={{ height: 38, verticalAlign: "middle", lineHeight: 38 }}
           >
             참여하기
           </Button>
