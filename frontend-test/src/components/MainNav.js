@@ -32,11 +32,31 @@ function MainNav({ history }) {
 
   const uid = sessionStorage.getItem("authenticatedId");
   const [profile, setProfile] = useState(null);
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(null);
   const [nickname, setNickname] = useState(null);
   // logout handling
+  // console.log(profile);
+
+  const [contact, setContact] = useState(null);
 
   useEffect(() => {
+    async function fetchProfile() {
+      const request = await axios.get(
+        `http://j3a501.p.ssafy.io:8888/pts/users/${uid}`
+      );
+      setProfile(request.data.profile);
+      setNickname(request.data.nickname);
+      // setUser(request.data)
+
+      const request2 = await axios.get(
+        `http://j3a501.p.ssafy.io:8888/pts/coaches/contacts/${uid}`
+      );
+      setContact(request2.data);
+
+      return request;
+    }
+    fetchProfile();
+
     window.addEventListener("scroll", () => {
       if (window.scrollY > 100) {
         handleShow(true);
@@ -45,37 +65,26 @@ function MainNav({ history }) {
     return () => {
       window.removeEventListener("scroll", null);
     };
-  }, []);
-
-  async function fetchProfile() {
-    const request = await axios.get(
-      `http://j3a501.p.ssafy.io:8888/pts/users/${uid}`
-    );
-    setProfile(request.data.profile);
-    setNickname(request.data.nickname)
-    // setUser(request.data)
-    return request;
-  }
-  fetchProfile();
+  }, [uid, modalShow]);
 
   function profile2(num) {
-    if (num == 1) {
+    if (num == "1") {
       return Profile1;
-    } else if (num == 2) {
+    } else if (num == "2") {
       return Profile2;
-    } else if (num == 3) {
+    } else if (num == "3") {
       return Profile3;
-    } else if (num == 4) {
+    } else if (num == "4") {
       return Profile4;
-    } else if (num == 5) {
+    } else if (num == "5") {
       return Profile5;
-    } else if (num == 6) {
+    } else if (num == "6") {
       return Profile6;
-    } else if (num == 7) {
+    } else if (num == "7") {
       return Profile7;
-    } else if (num == 8) {
+    } else if (num == "8") {
       return Profile8;
-    } else if (num == 9) {
+    } else if (num == "9") {
       return Profile9;
     } else {
       return Profile1;
@@ -157,6 +166,7 @@ function MainNav({ history }) {
         }}
         nickname={nickname}
         profile={profile2(profile)}
+        contact={contact}
       />
     </div>
   );

@@ -7,6 +7,9 @@ import Carousel from "react-bootstrap/Carousel";
 
 import AuthenticationService from "./AuthenticationService.js";
 
+// import moment from "moment";
+import moment from "moment-timezone/builds/moment-timezone-with-data";
+
 function HealthVideo({ title, keyword, isLargeRow, history, token, uid }) {
   const [videos, setVideos] = useState([]);
   const [index, setIndex] = useState(0);
@@ -78,13 +81,12 @@ function HealthVideo({ title, keyword, isLargeRow, history, token, uid }) {
                       title: video.title,
                       tags: [video.type1, video.type2, video.type3],
                     });
-                    var today = new Date();
+                    var today = moment().tz("Asia/Seoul").format("YYYY-MM-DD");
                     // console.log(today);
-                    // console.log(getFormatDate(today));
                     axios.post(
                       "http://j3a501.p.ssafy.io:8888/pts/logs",
                       {
-                        day: getFormatDate(today),
+                        day: today,
                         point: 1,
                         uid: uid,
                       },
