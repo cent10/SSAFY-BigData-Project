@@ -42,7 +42,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserDto read(String id) {
-		return userDao.read(id);
+		UserDto user = userDao.read(id);
+		if(user == null) {
+			throw new EntityNotFoundException(id);
+		}
+		return user;
 	}
 
 	@Override

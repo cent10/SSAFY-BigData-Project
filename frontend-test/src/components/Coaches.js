@@ -6,7 +6,7 @@ import axios from "axios";
 import ModalCoach from "./ModalCoach";
 import Carousel from "react-bootstrap/Carousel";
 
-function Coaches({ title }) {
+function Coaches({ title, token }) {
   const [coaches, setCoaches] = useState([]);
   const [modalShow, setModalShow] = useState(false);
   const [coach, setCoach] = useState({});
@@ -21,7 +21,12 @@ function Coaches({ title }) {
   useEffect(() => {
     async function fetchCoaches() {
       const request = await axios.get(
-        "http://j3a501.p.ssafy.io:8888/pts/coaches"
+        "http://j3a501.p.ssafy.io:8888/pts/coaches",
+        {
+          headers: {
+            "jwt-auth-token": token,
+          },
+        }
       );
       // console.log(request.data);
       setCoaches(request.data);
@@ -70,25 +75,27 @@ function Coaches({ title }) {
             ))}
           </div>
         </Carousel.Item>
-        <Carousel.Item>
-          <div className="coach__posters">
-            {coaches.slice(7).map((coach) => (
-              <img
-                className="coach__poster"
-                onClick={() => {
-                  // coach.image 가 로컬 경로라 적용 안됨  ??
-                  setCoach(coach);
-                  fetchName(coach.uid);
-                  setSrc(coach.profilePhoto);
-                  setModalShow(true);
-                }}
-                src={coach.profilePhoto}
-                // src={require("../static/image/coach.png")}
-                alt={coach.uid}
-              />
-            ))}
-          </div>
-        </Carousel.Item>
+        {coaches[7] && (
+          <Carousel.Item>
+            <div className="coach__posters">
+              {coaches.slice(7).map((coach) => (
+                <img
+                  className="coach__poster"
+                  onClick={() => {
+                    // coach.image 가 로컬 경로라 적용 안됨  ??
+                    setCoach(coach);
+                    fetchName(coach.uid);
+                    setSrc(coach.profilePhoto);
+                    setModalShow(true);
+                  }}
+                  src={coach.profilePhoto}
+                  // src={require("../static/image/coach.png")}
+                  alt={coach.uid}
+                />
+              ))}
+            </div>
+          </Carousel.Item>
+        )}
       </Carousel>
       <ModalCoach2
         className="modal-coach"

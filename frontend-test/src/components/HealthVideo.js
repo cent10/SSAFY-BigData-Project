@@ -5,7 +5,9 @@ import "../static/css/Row.css";
 import Badge from "react-bootstrap/Badge";
 import Carousel from "react-bootstrap/Carousel";
 
-function HealthVideo({ title, keyword, isLargeRow, history }) {
+import AuthenticationService from "./AuthenticationService.js";
+
+function HealthVideo({ title, keyword, isLargeRow, history, token }) {
   const [videos, setVideos] = useState([]);
   const [index, setIndex] = useState(0);
 
@@ -15,14 +17,21 @@ function HealthVideo({ title, keyword, isLargeRow, history }) {
 
   useEffect(() => {
     async function fetchVideo() {
-      const request = await axios.get(
-        "http://j3a501.p.ssafy.io:8888/pts/videos"
-      );
-      setVideos(request.data);
+      const request = await axios
+        .get("http://j3a501.p.ssafy.io:8888/pts/videos", {
+          headers: {
+            "jwt-auth-token": token,
+          },
+        })
+        // .then()
+        .catch(AuthenticationService.logout);
+      if (request) {
+        setVideos(request.data);
+      }
       return request;
     }
     fetchVideo();
-  }, [keyword]);
+  }, []);
 
   function truncate(str, n) {
     return str?.length > n ? str.substr(0, n - 1) + "..." : str;
@@ -80,44 +89,46 @@ function HealthVideo({ title, keyword, isLargeRow, history }) {
             ))}
           </div>
         </Carousel.Item>
-        <Carousel.Item>
-          <div className="row__posters">
-            {/* several rwo_poster */}
-            {videos.slice(6).map((video) => (
-              <div
-                className="row__class__poster"
-                style={{ width: "290px", height: "300px;" }}
-              >
-                <img
-                  className="row__poster"
-                  key={video.id}
-                  src={video.thumbnail}
-                  alt={video.title}
-                  onClick={() => {
-                    history.push(`/video/${video.url}`, {
-                      title: video.title,
-                      tags: [video.type1, video.type2, video.type3],
-                    });
-                  }}
-                />
-                {/* </Link> */}
-                <h6
-                  className="row__class__title"
-                  style={{ paddingTop: "200px;" }}
+        {videos[6] && (
+          <Carousel.Item>
+            <div className="row__posters">
+              {/* several rwo_poster */}
+              {videos.slice(6).map((video) => (
+                <div
+                  className="row__class__poster"
+                  style={{ width: "290px", height: "300px;" }}
                 >
-                  {truncate(video.title, 18)}
-                </h6>
-                <h6>
-                  <span>
-                    <Badge variant="light">{video.type1}</Badge>{" "}
-                    <Badge variant="light">{video.type2}</Badge>{" "}
-                    <Badge variant="light">{video.type3}</Badge>
-                  </span>
-                </h6>
-              </div>
-            ))}
-          </div>
-        </Carousel.Item>
+                  <img
+                    className="row__poster"
+                    key={video.id}
+                    src={video.thumbnail}
+                    alt={video.title}
+                    onClick={() => {
+                      history.push(`/video/${video.url}`, {
+                        title: video.title,
+                        tags: [video.type1, video.type2, video.type3],
+                      });
+                    }}
+                  />
+                  {/* </Link> */}
+                  <h6
+                    className="row__class__title"
+                    style={{ paddingTop: "200px;" }}
+                  >
+                    {truncate(video.title, 18)}
+                  </h6>
+                  <h6>
+                    <span>
+                      <Badge variant="light">{video.type1}</Badge>{" "}
+                      <Badge variant="light">{video.type2}</Badge>{" "}
+                      <Badge variant="light">{video.type3}</Badge>
+                    </span>
+                  </h6>
+                </div>
+              ))}
+            </div>
+          </Carousel.Item>
+        )}
       </Carousel>
     </div>
   );

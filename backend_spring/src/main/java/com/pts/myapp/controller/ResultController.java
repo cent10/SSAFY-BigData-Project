@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,13 +39,13 @@ public class ResultController {
 		@ApiResponse(code = 401, message = "로그인 후 이용해 주세요"),
 		@ApiResponse(code = 404, message = "결과 생성 실패")
 	})
-	private ResponseEntity<?> create(ResultDto result) {
+	private ResponseEntity<?> create(@RequestBody ResultDto result) {
 		logger.debug("결과 생성");
 		service.create(result);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
-	@RequestMapping(method = RequestMethod.POST, value = "/{uid}", produces = "application/json")
+	@RequestMapping(method = RequestMethod.GET, value = "/{uid}", produces = "application/json")
 	@ApiOperation(value = "결과 조회", notes = "사용자의 결과 조회")
 	@ApiResponses({
 		@ApiResponse(code = 201, message = "결과 조회"),

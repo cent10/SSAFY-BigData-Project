@@ -62,8 +62,6 @@ function App() {
     <Router>
       <header>{windowWidth > 992 && <MainNav2 />}</header>
       <Switch>
-        <Route exact path="/" component={windowWidth < 992 ? Sorry2 : Home2} />
-
         <Route exact path="/" component={windowWidth > 992 ? Home2 : Sorry2} />
 
         <Route exact path="/sorry" component={Sorry2} />
@@ -73,7 +71,6 @@ function App() {
         <RegiRoute path="/signup2" component={windowWidth < 992 ? Sorry2 : SignUp2} />
         <RegiRoute path="/servey" component={windowWidth < 992 ? Sorry2 : Servey} />
         <RegiRoute path="/measures" component={windowWidth < 992 ? Sorry2 : Measures} />
-
         <AuthRoute
           path="/main"
           render={(props) =>
