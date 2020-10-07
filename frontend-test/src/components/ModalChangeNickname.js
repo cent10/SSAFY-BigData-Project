@@ -63,7 +63,7 @@ function ModalChangeNickname(props) {
                   fetchUserNickname(change);
                   props.onSetting(change);
                 }}
-                style={{ heighT: 38, verticalAlign: "center" }}
+                style={{ height: 38, verticalAlign: "middle" }}
               >
                 변경
               </Button>
