@@ -51,4 +51,8 @@ public interface CoachDao {
 	public List<CoachDto> recommend7(String goal, String like);
 
 	int contact(ContactDto contact);
+
+	List<ContactDto> readContact(String uid);
+
+	int deleteContact(ContactDto contact);
 }

@@ -37,4 +37,8 @@ public interface CoachService {
 	List<CoachDto> recommendByNumber(int number, String goal, String like);
 
 	void contact(ContactDto contact);
+
+	List<ContactDto> readContact(String uid);
+
+	void deleteContact(ContactDto contact);
 }

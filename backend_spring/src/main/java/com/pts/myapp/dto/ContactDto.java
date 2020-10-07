@@ -8,6 +8,8 @@ public class ContactDto {
 
 	private String coachId;
 
+	private String nickname;
+
 	public int getId() {
 		return id;
 	}
@@ -32,12 +34,21 @@ public class ContactDto {
 		this.coachId = coachId;
 	}
 
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
 	@Override
 	public String toString() {
 		return "ContactDto{" +
 			"id=" + id +
 			", uid='" + uid + '\'' +
 			", coachId='" + coachId + '\'' +
+			", nickname='" + nickname + '\'' +
 			'}';
 	}
 }

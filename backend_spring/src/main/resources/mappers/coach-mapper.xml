@@ -125,4 +125,13 @@
 		insert into CONTACTS (UID, COACH_ID) VALUES (#{uid}, #{coachId})
 	</insert>
 
+	<select id="readContact" parameterType="String" resultType="com.pts.myapp.dto.ContactDto">
+		select C.*, U.NICKNAME as "nickname"
+			from CONTACTS C inner join USERS U on C.COACH_ID = U.ID
+		where UID = #{uid} group by COACH_ID;
+	</select>
+
+	<delete id="deleteContact" parameterType="com.pts.myapp.dto.ContactDto">
+		delete from CONTACTS where COACH_ID = #{coachId} and UID = #{uid}
+	</delete>
 </mapper>

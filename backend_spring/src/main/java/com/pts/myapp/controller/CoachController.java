@@ -123,4 +123,20 @@ static final Logger logger = LoggerFactory.getLogger(CoachController.class);
 		coachService.contact(contact);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
+
+	@ApiOperation(value = "코치 또는 유저 조회", response = ContactDto.class)
+	@GetMapping("/contacts/{uid}")
+	private ResponseEntity<?> readContact(@PathVariable(value = "uid")String uid) {
+		logger.debug("유저와 코치 조회");
+		List<ContactDto> list = coachService.readContact(uid);
+		return new ResponseEntity<>(list, HttpStatus.OK);
+	}
+
+	@ApiOperation(value = "코치 또는 유저 삭제", response = ContactDto.class)
+	@DeleteMapping("/contacts")
+	private ResponseEntity<?> deleteContact(@RequestBody ContactDto contact) {
+		logger.debug("유저와 코치 삭제");
+		coachService.deleteContact(contact);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
 }

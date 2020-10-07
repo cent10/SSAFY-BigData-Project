@@ -130,4 +130,14 @@ public class CoachServiceImpl implements CoachService {
 			throw new EntityNotFoundException(contact.getCoachId());
 		}
 	}
+
+	@Override
+	public List<ContactDto> readContact(String uid) {
+		return coachDao.readContact(uid);
+	}
+
+	@Override
+	public void deleteContact(ContactDto contact) {
+		coachDao.deleteContact(contact);
+	}
 }
