@@ -20,10 +20,10 @@ function Main({ history }) {
   const MainFooter2 = MainFooter;
   const id = AuthenticationService.getLoggedInid();
 
-  const uid = localStorage.getItem("authenticatedId");
+  const uid = sessionStorage.getItem("authenticatedId");
   const [nickname, setNickname] = useState(null);
 
-  const token = localStorage.getItem("token");
+  const token = sessionStorage.getItem("token");
 
   // console.log("token\n", token);
 

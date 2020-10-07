@@ -37,9 +37,9 @@ function App() {
   const Sorry2 = Sorry;
 
   var windowWidth = window.innerWidth;
-  
+
   useEffect(() => {
-    localStorage.clear();
+    // localStorage.clear();
     window.addEventListener(
       "resize",
       function () {
@@ -68,9 +68,18 @@ function App() {
 
         <Route path="/login" component={windowWidth < 992 ? Sorry2 : Login2} />
         <Route path="/signup" component={windowWidth < 992 ? Sorry2 : SignUp} />
-        <RegiRoute path="/signup2" component={windowWidth < 992 ? Sorry2 : SignUp2} />
-        <RegiRoute path="/servey" component={windowWidth < 992 ? Sorry2 : Servey} />
-        <RegiRoute path="/measures" component={windowWidth < 992 ? Sorry2 : Measures} />
+        <RegiRoute
+          path="/signup2"
+          component={windowWidth < 992 ? Sorry2 : SignUp2}
+        />
+        <RegiRoute
+          path="/servey"
+          component={windowWidth < 992 ? Sorry2 : Servey}
+        />
+        <RegiRoute
+          path="/measures"
+          component={windowWidth < 992 ? Sorry2 : Measures}
+        />
         <AuthRoute
           path="/main"
           render={(props) =>

@@ -30,7 +30,7 @@ function MainNav({ history }) {
   const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
   const [value, setValue] = useState(null);
 
-  const uid = localStorage.getItem("authenticatedId");
+  const uid = sessionStorage.getItem("authenticatedId");
   const [profile, setProfile] = useState(null);
   // logout handling
 
