@@ -13,18 +13,24 @@ import Profile8 from "../static/assets/Archive2/8.png";
 import Profile9 from "../static/assets/Archive2/9.png";
 
 function ModalChangeImg(props) {
-  function fetchUserProfile(num){
-    console.log(sessionStorage.getItem('authenticatedId'))
-    console.log(num)
-    axios.put(`http://j3a501.p.ssafy.io:8888/pts/users/`+sessionStorage.getItem("authenticatedId"), {
-      id: sessionStorage.getItem("authenticatedId"),
-      profile : num
-    }).then((response) => {
-      console.log(response)
-    })
-    .catch((e) => {
-      console.log(e)
-    });
+  function fetchUserProfile(num) {
+    // console.log(sessionStorage.getItem("authenticatedId"));
+    // console.log(num);
+    axios
+      .put(
+        `http://j3a501.p.ssafy.io:8888/pts/users/` +
+          sessionStorage.getItem("authenticatedId"),
+        {
+          id: sessionStorage.getItem("authenticatedId"),
+          profile: num,
+        }
+      )
+      .then((response) => {
+        // console.log(response);
+      })
+      .catch((e) => {
+        // console.log(e);
+      });
   }
   return (
     <div>
@@ -41,95 +47,95 @@ function ModalChangeImg(props) {
         </Modal.Header>
         <Modal.Body>
           <img
-              src={Profile1}
-              alt="Avatar"
-              className="nav__avatar"
-              onClick={() => {
-                fetchUserProfile(1)
-                props.onSetting(Profile1)
-              }}
-              style={{ width: 150, height: 150 }}
-            />
+            src={Profile1}
+            alt="Avatar"
+            className="nav__avatar"
+            onClick={() => {
+              fetchUserProfile(1);
+              props.onSetting(Profile1);
+            }}
+            style={{ width: 150, height: 150 }}
+          />
           <img
-              src={Profile2}
-              alt="Avatar"
-              className="nav__avatar"
-              onClick={() => {
-                fetchUserProfile(2)
-                props.onSetting(Profile2)
-              }}
-              style={{ width: 150, height: 150 }}
-            />
+            src={Profile2}
+            alt="Avatar"
+            className="nav__avatar"
+            onClick={() => {
+              fetchUserProfile(2);
+              props.onSetting(Profile2);
+            }}
+            style={{ width: 150, height: 150 }}
+          />
           <img
-              src={Profile3}
-              alt="Avatar"
-              className="nav__avatar"
-              onClick={() => {
-                fetchUserProfile(3)
-                props.onSetting(Profile3)
-              }}
-              style={{ width: 150, height: 150 }}
-            />
+            src={Profile3}
+            alt="Avatar"
+            className="nav__avatar"
+            onClick={() => {
+              fetchUserProfile(3);
+              props.onSetting(Profile3);
+            }}
+            style={{ width: 150, height: 150 }}
+          />
           <img
-              src={Profile4}
-              alt="Avatar"
-              className="nav__avatar"
-              onClick={() => {
-                fetchUserProfile(4)
-                props.onSetting(Profile4)
-              }}
-              style={{ width: 150, height: 150 }}
-            />
+            src={Profile4}
+            alt="Avatar"
+            className="nav__avatar"
+            onClick={() => {
+              fetchUserProfile(4);
+              props.onSetting(Profile4);
+            }}
+            style={{ width: 150, height: 150 }}
+          />
           <img
-              src={Profile5}
-              alt="Avatar"
-              className="nav__avatar"
-              onClick={() => {
-                fetchUserProfile(5)
-                props.onSetting(Profile5)
-              }}
-              style={{ width: 150, height: 150 }}
-            />
+            src={Profile5}
+            alt="Avatar"
+            className="nav__avatar"
+            onClick={() => {
+              fetchUserProfile(5);
+              props.onSetting(Profile5);
+            }}
+            style={{ width: 150, height: 150 }}
+          />
           <img
-              src={Profile6}
-              alt="Avatar"
-              className="nav__avatar"
-              onClick={() => {
-                fetchUserProfile(6)
-                props.onSetting(Profile6)
-              }}
-              style={{ width: 150, height: 150 }}
-            />
+            src={Profile6}
+            alt="Avatar"
+            className="nav__avatar"
+            onClick={() => {
+              fetchUserProfile(6);
+              props.onSetting(Profile6);
+            }}
+            style={{ width: 150, height: 150 }}
+          />
           <img
-              src={Profile7}
-              alt="Avatar"
-              className="nav__avatar"
-              onClick={() => {
-                fetchUserProfile(7)
-                props.onSetting(Profile7)
-              }}
-              style={{ width: 150, height: 150 }}
-            />
+            src={Profile7}
+            alt="Avatar"
+            className="nav__avatar"
+            onClick={() => {
+              fetchUserProfile(7);
+              props.onSetting(Profile7);
+            }}
+            style={{ width: 150, height: 150 }}
+          />
           <img
-              src={Profile8}
-              alt="Avatar"
-              className="nav__avatar"
-              onClick={() => {
-                fetchUserProfile(8)
-                props.onSetting(Profile8)
-              }}
-              style={{ width: 150, height: 150 }}
-            />
+            src={Profile8}
+            alt="Avatar"
+            className="nav__avatar"
+            onClick={() => {
+              fetchUserProfile(8);
+              props.onSetting(Profile8);
+            }}
+            style={{ width: 150, height: 150 }}
+          />
           <img
-              src={Profile9}
-              alt="Avatar"
-              className="nav__avatar"
-              onClick={() => {
-                fetchUserProfile(9)
-                props.onSetting(Profile9)
-              }}
-              style={{ width: 150, height: 150 }}
-            />
+            src={Profile9}
+            alt="Avatar"
+            className="nav__avatar"
+            onClick={() => {
+              fetchUserProfile(9);
+              props.onSetting(Profile9);
+            }}
+            style={{ width: 150, height: 150 }}
+          />
         </Modal.Body>
       </Modal>
     </div>
