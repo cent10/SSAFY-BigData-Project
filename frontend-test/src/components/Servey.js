@@ -22,7 +22,6 @@ class registerComponent extends Component {
             {
                 [event.target.name]
                     :event.target.value,
-                disabled: (this.state.like !== '') && (this.state.goal !== '') && (this.state.dislike !== '')
             }
         )
     }
@@ -53,6 +52,7 @@ class registerComponent extends Component {
                             />
                             <select className="inputButtonServey" 
                             value={this.state.like} onChange={this.handleChange} name="like">
+                                    <option value=""></option>
                                     <option value="헬스">헬스</option>
                                     <option value="필라테스">필라테스</option>
                                     <option value="요가">요가</option>
@@ -72,6 +72,7 @@ class registerComponent extends Component {
                             />
                             <select className="inputButtonServey" 
                             value={this.state.dislike} onChange={this.handleChange} name="dislike">
+                                    <option value=""></option>
                                     <option value="헬스">헬스</option>
                                     <option value="필라테스">필라테스</option>
                                     <option value="요가">요가</option>
@@ -91,6 +92,7 @@ class registerComponent extends Component {
                             />
                             <select className="inputButtonServey" 
                             value={this.state.goal} onChange={this.handleChange} name="goal">
+                                    <option value=""></option>
                                     <option value="다이어트">다이어트</option>
                                     <option value="벌크업">벌크업</option>
                                     <option value="건강">건강</option>
@@ -114,7 +116,7 @@ class registerComponent extends Component {
                                     value={false}
                                     onChange={this.handleChange} />정적인 운동 선호
                             </div>
-                            <button disabled={!this.state.disabled} className="nextButtonServey" onClick={this.serveyClicked}>다음</button>
+                            <button className="nextButtonServey" onClick={this.serveyClicked}>다음</button>
                         </div>
                     </div>
                 </header>
