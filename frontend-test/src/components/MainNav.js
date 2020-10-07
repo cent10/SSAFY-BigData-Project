@@ -32,6 +32,8 @@ function MainNav({ history }) {
 
   const uid = sessionStorage.getItem("authenticatedId");
   const [profile, setProfile] = useState(null);
+  const [user, setUser] = useState(null);
+  const [nickname, setNickname] = useState(null);
   // logout handling
 
   useEffect(() => {
@@ -50,6 +52,8 @@ function MainNav({ history }) {
       `http://j3a501.p.ssafy.io:8888/pts/users/${uid}`
     );
     setProfile(request.data.profile);
+    setNickname(request.data.nickname)
+    // setUser(request.data)
     return request;
   }
   fetchProfile();
@@ -151,6 +155,8 @@ function MainNav({ history }) {
         onHide={() => {
           setModalShow(false);
         }}
+        nickname={nickname}
+        profile={profile2(profile)}
       />
     </div>
   );
