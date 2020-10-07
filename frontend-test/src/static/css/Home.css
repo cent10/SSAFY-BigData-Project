@@ -10868,3 +10868,45 @@ body {
 .home {
   background-color: #000;
 }
+
+.close-button {
+  cursor: pointer;
+  color: #fff;
+  outline: none;
+  border: none;
+  font-weight: 700;
+  border-radius: 0.2vw;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background-color: rgba(217, 83, 79, 0.7);
+}
+
+.close-button:hover {
+  color: #fff;
+  background-color: rgb(217, 83, 79);
+  transition: all 0.2s;
+}
+
+.info-button {
+  cursor: pointer;
+  color: #fff;
+  outline: none;
+  border: none;
+  font-weight: 700;
+  border-radius: 0.2vw;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background-color: rgba(91, 192, 222, 0.7);
+}
+
+.info-button:hover {
+  color: #fff;
+  background-color: rgb(91, 192, 222);
+  transition: all 0.2s;
+}
