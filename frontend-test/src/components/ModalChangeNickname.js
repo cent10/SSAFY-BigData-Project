@@ -56,16 +56,14 @@ function ModalChangeNickname(props) {
               }}
               style={{ height: 38 }}
             />
-            <InputGroup.Append style={{ height: 38 }}>
-              <Button
-                variant="outline-secondary"
-                onClick={() => {
-                  fetchUserNickname(change);
-                  props.onSetting(change);
-                }}
-              >
-                <span>변경</span>
-              </Button>
+            <InputGroup.Append
+              onClick={() => {
+                fetchUserNickname(change);
+                props.onSetting(change);
+              }}
+              style={{ cursor: "pointer", height: 38 }}
+            >
+              <InputGroup.Text id="basic-addon2">변경</InputGroup.Text>
             </InputGroup.Append>
           </InputGroup>
         </Modal.Body>
