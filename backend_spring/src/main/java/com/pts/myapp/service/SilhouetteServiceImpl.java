@@ -19,10 +19,10 @@ public class SilhouetteServiceImpl implements SilhouetteService {
 	SilhouetteDao dao;
 
 	@Override
-	public void create(ResultDto rDto) {
+	public void create(ResultDto rDto, int height, boolean gender) {
 
 		int star = getStar(rDto);
-		int number = getBody(rDto.getBmi(), star);
+		int number = getBody(rDto.getBmi(), star, height, gender, rDto);
 
 		SilhouetteDto silhouette = new SilhouetteDto(number, rDto.getUid(), star);
 		try {
@@ -51,17 +51,32 @@ public class SilhouetteServiceImpl implements SilhouetteService {
 		return Math.round((rDto.getArm() + rDto.getLeg() + rDto.getCore() + rDto.getChest()) / 4);
 	}
 
-	private int getBody(float bmi, int star) {
-		int number;
-
-		if (bmi > 30 - star) number = 5;
-		else if (bmi > 27.5 - star) number = 6;
-		else if (bmi > 25 - star) number = 4;
-		else if (bmi > 24 - star) number = 3;
-		else if (bmi > 23 - star) number = 2;
-		else if (bmi > 18.5 - star) number = 1;
+	private int getBody (float bmi, int star, int height, boolean gender, ResultDto rDto) {
+		int number = 0;
+		if(bmi <= 22.9) {
+			if(star >= 4) number = 1;
+			else if(star >= 3) {
+				if(rDto.getLeg() < 3) {
+					number = 3;
+				} else {
+					if (gender) {
+						if (height >= 170)
+							number = 1;
+						else
+							number = 7;
+					} else {
+						if (height >= 160)
+							number = 1;
+						else
+							number = 7;
+					}
+				}
+			}
+			else number = 2;
+		} else if(bmi - star >= 30) number = 5;
+		else if(bmi - star > 27.5) number = 6;
+		else if (bmi - star > 25) number = 4;
 		else number = 7;
-
 		return number;
 	}
 }

@@ -50,8 +50,6 @@ public class SilhouetteController {
 	private ResponseEntity<?> create(@PathVariable(value = "uid") String uid) {
 		logger.debug("실루엣 생성");
 		ResultDto rDto = rService.read(uid);
-
-		service.create(rDto);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 

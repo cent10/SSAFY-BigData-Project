@@ -131,7 +131,7 @@ public class AspectConfig {
 		logger.debug("결과값 저장 중");
 		resultService.create(result);
 		logger.debug("유저의 실루엣 생성 중");
-		silhouetteService.create(result);
+		silhouetteService.create(result, user.getHeight(), user.getGender());
 	}
 
 	@Before("@annotation(com.pts.myapp.common.annotation.UserVideo)")
