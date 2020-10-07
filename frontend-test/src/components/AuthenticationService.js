@@ -45,13 +45,6 @@ class AuthenticationService {
     }
 
     executeMesureService(sitUp, pushUp, squat, runningJump, standingJump, twistSitUp){
-        console.log(localStorage.getItem('registeringId'))
-        console.log(sitUp)
-        console.log(pushUp)
-        console.log(squat)
-        console.log(runningJump)
-        console.log(standingJump)
-        console.log(twistSitUp)
         return axios.post(`http://j3a501.p.ssafy.io:8888/pts/measures`,{
             uid : localStorage.getItem('registeringId'),
             sitUp : sitUp,

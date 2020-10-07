@@ -120,5 +120,9 @@
 			OR TYPE3 in (#{goal}, #{like}, "상체", "하체", "가슴", "어깨", "체형관리", "벌크업")
 		LIMIT 14
 	</select>
+	
+	<insert id="contact" parameterType="com.pts.myapp.dto.ContactDto">
+		insert into CONTACTS (UID, COACH_ID) VALUES (#{uid}, #{coachId})
+	</insert>
 
 </mapper>

@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.pts.myapp.common.component.UserCheck;
 import com.pts.myapp.dto.CoachDto;
+import com.pts.myapp.dto.ContactDto;
 import com.pts.myapp.dto.UserDto;
 import com.pts.myapp.jwt.service.JwtService;
 import com.pts.myapp.service.CoachService;
@@ -113,5 +114,13 @@ static final Logger logger = LoggerFactory.getLogger(CoachController.class);
 		logger.debug("코치 이름으로 검색");
 		List<CoachDto> coachDtoList = coachService.search(searchword);
 		return new ResponseEntity<List<CoachDto>>(coachDtoList, HttpStatus.OK);
+	}
+
+	@ApiOperation(value = "코치와 유저 연결", response = ContactDto.class)
+	@PostMapping("/contacts")
+	private ResponseEntity<?> contact(@RequestBody ContactDto contact) {
+		logger.debug("유저와 코치 연결");
+		coachService.contact(contact);
+		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 }

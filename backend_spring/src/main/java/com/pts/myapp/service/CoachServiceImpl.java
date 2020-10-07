@@ -11,6 +11,7 @@ import com.pts.myapp.dao.CoachDao;
 import com.pts.myapp.dao.FavoriteDao;
 import com.pts.myapp.dao.SilhouetteDao;
 import com.pts.myapp.dto.CoachDto;
+import com.pts.myapp.dto.ContactDto;
 import com.pts.myapp.dto.FavoriteDto;
 import com.pts.myapp.dto.SilhouetteDto;
 import com.pts.myapp.error.exception.EntityNotFoundException;
@@ -121,5 +122,12 @@ public class CoachServiceImpl implements CoachService {
 				break;
 		}
 		return coachList;
+	}
+
+	@Override
+	public void contact(ContactDto contact) {
+		if(coachDao.contact(contact) < 1) {
+			throw new EntityNotFoundException(contact.getCoachId());
+		}
 	}
 }

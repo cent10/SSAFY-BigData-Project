@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.pts.myapp.dto.CoachDto;
+import com.pts.myapp.dto.ContactDto;
 
 @Mapper
 public interface CoachDao {
@@ -48,4 +49,6 @@ public interface CoachDao {
 	public List<CoachDto> recommend6(String goal, String like);
 	//	i : 키가 작고 어깨가 좁은 스타일
 	public List<CoachDto> recommend7(String goal, String like);
+
+	int contact(ContactDto contact);
 }
