@@ -65,7 +65,7 @@ class registerComponent extends Component {
                   onChange={this.handleChange}
                   type="text"
                   name="sitUp"
-                  placeholder="윗몸일으키기"
+                  placeholder="1분 윗몸일으키기"
                   className="inputButtonRegister"
                 />
                 <input
@@ -73,7 +73,7 @@ class registerComponent extends Component {
                   onChange={this.handleChange}
                   type="text"
                   name="pushUp"
-                  placeholder="팔굽혀펴기"
+                  placeholder="1분 팔굽혀펴기"
                   className="inputButtonRegister"
                 />
                 <input
@@ -81,7 +81,7 @@ class registerComponent extends Component {
                   onChange={this.handleChange}
                   type="text"
                   name="squat"
-                  placeholder="스쿼트"
+                  placeholder="1분 스쿼트"
                   className="inputButtonRegister"
                 />
                 <input
@@ -89,7 +89,7 @@ class registerComponent extends Component {
                   onChange={this.handleChange}
                   type="text"
                   name="runningJump"
-                  placeholder="제자리뛰기"
+                  placeholder="1분 제자리 점프"
                   className="inputButtonRegister"
                 />
                 <input
@@ -97,7 +97,7 @@ class registerComponent extends Component {
                   onChange={this.handleChange}
                   type="text"
                   name="standingJump"
-                  placeholder="연속뛰기"
+                  placeholder="2분 제자리 걷기"
                   className="inputButtonRegister"
                 />
                 <input
@@ -105,7 +105,7 @@ class registerComponent extends Component {
                   onChange={this.handleChange}
                   type="text"
                   name="twistSitUp"
-                  placeholder="윗몸비틀어일으키기"
+                  placeholder="1분 윗몸 비틀어 일으키기"
                   className="inputButtonRegister"
                 />
               <button
