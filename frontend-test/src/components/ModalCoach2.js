@@ -46,13 +46,13 @@ function ModalCoach2(props) {
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button
-            variant="danger"
+          <button
+            className="close-button"
             onClick={props.onHide}
             style={{ height: 38, verticalAlign: "middle" }}
           >
-            <span>닫기</span>
-          </Button>
+            닫기
+          </button>
         </Modal.Footer>
       </Modal>
     </div>

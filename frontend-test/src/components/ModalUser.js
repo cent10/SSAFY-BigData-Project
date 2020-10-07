@@ -61,46 +61,51 @@ function ModalClass(props) {
             />
             <br />
             {/* 사진 변경하기 */}
-            <Button
-              variant="primary"
+            <button
+              className="blue-button"
               onClick={() => {
                 setModalChangeImgShow(true);
               }}
-              style={{ height: 38, verticalAlign: "middle" }}
+              style={{
+                marginLeft: 16,
+                width: 200,
+                height: 38,
+                verticalAlign: "middle",
+              }}
             >
-              <span>이미지 변경</span>
-            </Button>
+              이미지 변경
+            </button>
           </div>
           <h4>내가 연락한 코치들</h4>
           <div style={{ display: "inline" }}>
             {props.contact &&
               props.contact.map((coach) => (
-                <Button
-                  variant="outline-info"
+                <button
+                  className="alert-button"
                   onClick={() => {
                     setCoachname(coach.nickname);
                     fetchCoach(coach.coachId);
                     setModalShow(true);
                   }}
                   style={{
-                    marginRight: 10,
                     height: 38,
                     verticalAlign: "middle",
+                    marginBottom: 16,
                   }}
                 >
-                  <span>{coach.nickname}</span>
-                </Button>
+                  {coach.nickname}
+                </button>
               ))}
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button
-            variant="danger"
+          <button
+            className="close-button"
             onClick={props.onHide}
             style={{ height: 38, verticalAlign: "middle" }}
           >
-            <span>닫기</span>
-          </Button>
+            닫기
+          </button>
         </Modal.Footer>
       </Modal>
       <ModalChangeImg
