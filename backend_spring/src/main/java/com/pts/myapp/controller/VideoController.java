@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -47,7 +48,7 @@ public class VideoController {
 		@ApiResponse(code = 401, message = "로그인 후 이용해 주세요"),
 		@ApiResponse(code = 404, message = "영상 생성 실패")
 	})
-	private ResponseEntity<?> create(VideoDto video) {
+	private ResponseEntity<?> create(@RequestBody VideoDto video) {
 		logger.debug("영상 생성");
 		service.create(video);
 		return new ResponseEntity<>(HttpStatus.CREATED);

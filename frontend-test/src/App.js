@@ -61,7 +61,7 @@ function App() {
     <Router>
       <header>{windowWidth > 992 && <MainNav2 />}</header>
       <Switch>
-        <Route exact path="/" component={Home2} />
+        {/* <Route exact path="/" component={Home2} /> */}
 
         <Route exact path="/" component={windowWidth > 992 ? Home2 : Sorry2} />
 
@@ -73,7 +73,9 @@ function App() {
         <RegiRoute path="/servey" component={Servey} />
         <RegiRoute path="/measures" component={Measures} />
 
-        <Route exact path="/video/:videoUrl" component={Video2} />
+        {/* <AuthRoute path="/main" component={Main2} /> */}
+        {/*  */}
+        {/* <Route exact path="/video/:videoUrl" component={Video2} /> */}
         <AuthRoute
           path="/main"
           render={(props) =>

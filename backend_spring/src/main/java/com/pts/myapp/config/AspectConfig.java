@@ -72,8 +72,7 @@ public class AspectConfig {
 		Object[] parameterValues = point.getArgs();
 		MeasureDto measure = (MeasureDto)parameterValues[0];
 		UserDto user = userService.read(measure.getUid());
-		System.out.println(measure.toString());
-		System.out.println(user.toString());
+
 		int height = user.getHeight();
 		int weight = user.getWeight();
 		int sitUp = resultService.readCore1(height, weight, user.getGender() ? 'M' : 'F');
@@ -131,6 +130,8 @@ public class AspectConfig {
 			getScore(chest), fat);
 		logger.debug("결과값 저장 중");
 		resultService.create(result);
+		logger.debug("유저의 실루엣 생성 중");
+		silhouetteService.create(result);
 	}
 
 	@Before("@annotation(com.pts.myapp.common.annotation.UserVideo)")

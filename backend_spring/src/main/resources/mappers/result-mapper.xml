@@ -8,7 +8,7 @@
     </insert>
 
     <select id="read" parameterType="String" resultType="com.pts.myapp.dto.ResultDto">
-        select * from RESULTS where UID = #{uid}
+        select * from RESULTS where UID = #{uid} ORDER BY ID DESC LIMIT 1
     </select>
 
     <select id="readArm" parameterType="map" resultType="int">

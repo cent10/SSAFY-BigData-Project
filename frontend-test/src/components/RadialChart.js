@@ -7,11 +7,11 @@ function RadialChart(props) {
   const data = [
     {
       data: {
-        upper: props.upper,
-        core: props.core,
-        leg: props.leg,
-        back: props.back,
         arm: props.arm,
+        leg: props.leg,
+        core: props.core,
+        chest: props.chest,
+        fat: props.fat,
       },
       meta: { color: "#1D4E89" },
     },
@@ -19,11 +19,11 @@ function RadialChart(props) {
 
   const captions = {
     // columns 나중에 수정할 것
-    upper: "상체",
-    core: "코어",
-    leg: "다리",
-    back: "등",
     arm: "팔",
+    leg: "다리",
+    core: "코어",
+    chest: "가슴",
+    fat: "체지방",
   };
   return (
     <div>
