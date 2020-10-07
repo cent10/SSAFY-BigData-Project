@@ -3,6 +3,7 @@ package com.pts.myapp.service;
 import java.util.List;
 
 import com.pts.myapp.dto.CoachDto;
+import com.pts.myapp.dto.ContactDto;
 
 public interface CoachService {
 	
@@ -34,4 +35,6 @@ public interface CoachService {
 	void recommend(List<CoachDto> list, String id);
 
 	List<CoachDto> recommendByNumber(int number, String goal, String like);
+
+	void contact(ContactDto contact);
 }
