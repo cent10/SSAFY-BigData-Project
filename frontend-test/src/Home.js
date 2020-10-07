@@ -79,7 +79,7 @@ function Home() {
             </h2>
             <Link to={"/signup"}>
               {/* {"시작하기"} */}
-              <button className="start-button">시작하기</button>
+              <button className="start-button">회원가입</button>
             </Link>
             {/* <a className="btn btn-primary js-scroll-trigger" href="#about">
               Log In

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import AuthenticationService from "./AuthenticationService.js";
-
+import "../static/css/measure.css";
 class registerComponent extends Component {
   constructor(props) {
     super(props);
@@ -60,63 +60,57 @@ class registerComponent extends Component {
               <h2 className="text-white-50 mx-auto mt-2 mb-5">
                 개인 체력 측정
               </h2>
-              <div>
                 <input
                   value={this.state.sitUp}
                   onChange={this.handleChange}
                   type="text"
                   name="sitUp"
                   placeholder="윗몸일으키기"
+                  className="inputButtonRegister"
                 />
-              </div>
-              <div>
                 <input
                   value={this.state.pushUp}
                   onChange={this.handleChange}
                   type="text"
                   name="pushUp"
                   placeholder="팔굽혀펴기"
+                  className="inputButtonRegister"
                 />
-              </div>
-              <div>
                 <input
                   value={this.state.squat}
                   onChange={this.handleChange}
                   type="text"
                   name="squat"
                   placeholder="스쿼트"
+                  className="inputButtonRegister"
                 />
-              </div>
-              <div>
                 <input
                   value={this.state.runningJump}
                   onChange={this.handleChange}
                   type="text"
                   name="runningJump"
                   placeholder="제자리뛰기"
+                  className="inputButtonRegister"
                 />
-              </div>
-              <div>
                 <input
                   value={this.state.standingJump}
                   onChange={this.handleChange}
                   type="text"
                   name="standingJump"
                   placeholder="연속뛰기"
+                  className="inputButtonRegister"
                 />
-              </div>
-              <div>
                 <input
                   value={this.state.twistSitUp}
                   onChange={this.handleChange}
                   type="text"
                   name="twistSitUp"
                   placeholder="윗몸비틀어일으키기"
+                  className="inputButtonRegister"
                 />
-              </div>
               <button
                 disabled={!this.state.disabled}
-                className="btn button_wide"
+                className="completeButton"
                 onClick={this.MesureClicked}
               >
                 회원가입 완료

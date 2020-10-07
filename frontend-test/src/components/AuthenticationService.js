@@ -10,6 +10,11 @@ class AuthenticationService {
         })
     }
 
+    duplicateCheck(id){
+        console.log(id)
+        return axios.get('http://j3a501.p.ssafy.io:8888/pts/users/'+id)
+    }
+
     executeRegisterService(id, password, name) {
         localStorage.setItem('registeringId', id);
         localStorage.setItem('password', password);
@@ -74,7 +79,7 @@ class AuthenticationService {
             config => {
                 const token = localStorage.getItem('token');
                 if (token) {
-                    config.headers['Authorization'] = token;
+                    config.headers['jwt-token'] = token;
                 }
                 // config.headers['Content-Type'] = 'application/json';
                 return config;

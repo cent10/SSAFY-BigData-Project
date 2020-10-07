@@ -1,11 +1,13 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import AuthenticationService from './AuthenticationService.js'
+import { Link } from "react-router-dom";
+import "../static/css/login.css";
 
 class LoginComponent extends Component {
-    
+
     constructor(props) {
         super(props)
-        
+
         this.state = {
             id: localStorage.getItem("authenticatedId") || '',
             password: '',
@@ -20,23 +22,23 @@ class LoginComponent extends Component {
         this.setState(
             {
                 [event.target.name]
-                :event.target.value
+                    : event.target.value
             }
         )
     }
 
     loginClicked() {
         AuthenticationService
-        .executeJwtAuthenticationService(this.state.id, this.state.password)
-        .then((response) => {
-            this.setState({
-                token: response.headers['jwt-auth-token']
-            });
-            AuthenticationService.registerSuccessfulLoginForJwt(this.state.id,this.state.token)
-            this.props.history.push('/main')
-        }).catch( () =>{
-            this.setState({hasLoginFailed:true})
-        })
+            .executeJwtAuthenticationService(this.state.id, this.state.password)
+            .then((response) => {
+                this.setState({
+                    token: response.headers['jwt-auth-token']
+                });
+                AuthenticationService.registerSuccessfulLoginForJwt(this.state.id, this.state.token)
+                this.props.history.push('/main')
+            }).catch(() => {
+                this.setState({ hasLoginFailed: true })
+            })
     }
 
     render() {
@@ -53,24 +55,34 @@ class LoginComponent extends Component {
                             <br />
                                 Service
                     </h1>
-                    <h2 className="text-white-50 mx-auto mt-2 mb-5">Login</h2>
-                        <input
-                            value={this.state.id}
-                            onChange={this.handleChange}
-                            type="text"
-                            name="id"
-                            placeholder="ID"
-                        />
-                        <input
-                            value={this.state.password}
-                            onChange={this.handleChange}
-                            type="password"
-                            name="password"
-                            placeholder="password"
-                        />
-                        <button className="btn btn-success" onClick={this.loginClicked}>Login</button>
+                            {/* <h2 className="text-white-50 mx-auto mt-2 mb-5 buttonDiv">Login</h2> */}
+                            <input
+                                className="inputButton"
+                                value={this.state.id}
+                                onChange={this.handleChange}
+                                type="text"
+                                name="id"
+                                placeholder="ID"
+                            />
+                            <input
+                                className="inputButton"
+                                value={this.state.password}
+                                onChange={this.handleChange}
+                                type="password"
+                                name="password"
+                                placeholder="password"
+                            />
+                            {this.state.hasLoginFailed && (
+                                <span className="loginFail">아이디와 비밀번호를 확인해주세요!!</span>
+                            )}
+                            <div>
+                                <button className="loginButton" onClick={this.loginClicked}>로그인</button>
+                                <Link to={"/signup"} >
+                                    <button className="linkButton">아이디가 없으신가요?</button>
+                                </Link>
+                            </div>
+                        </div>
                     </div>
-                </div>
                 </header>
             </div>
         )
