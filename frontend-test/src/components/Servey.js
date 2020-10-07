@@ -27,7 +27,6 @@ class registerComponent extends Component {
     }
 
     serveyClicked() {
-        console.log("버튼 클릭")
         AuthenticationService
             .executeServeyService(this.state.like, this.state.goal, this.state.dislike, this.state.is_solo, this.state.is_active)
             .then((response) => {
