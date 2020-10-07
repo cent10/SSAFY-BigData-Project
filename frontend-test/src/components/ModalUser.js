@@ -66,7 +66,7 @@ function ModalClass(props) {
               onClick={() => {
                 setModalChangeImgShow(true);
               }}
-              style={{ height: 38, verticalAlign: "center" }}
+              style={{ height: 38, verticalAlign: "middle" }}
             >
               이미지 변경
             </Button>
@@ -85,7 +85,7 @@ function ModalClass(props) {
                   style={{
                     marginRight: 10,
                     height: 38,
-                    verticalAlign: "center",
+                    verticalAlign: "middle",
                   }}
                 >
                   {coach.nickname}
@@ -97,7 +97,7 @@ function ModalClass(props) {
           <Button
             variant="danger"
             onClick={props.onHide}
-            style={{ height: 38, verticalAlign: "center" }}
+            style={{ height: 38, verticalAlign: "middle" }}
           >
             닫기
           </Button>
