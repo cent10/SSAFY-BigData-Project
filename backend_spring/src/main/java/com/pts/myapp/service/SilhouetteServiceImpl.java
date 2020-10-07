@@ -77,6 +77,9 @@ public class SilhouetteServiceImpl implements SilhouetteService {
 		else if(bmi - star > 27.5) number = 6;
 		else if (bmi - star > 25) number = 4;
 		else number = 7;
+		System.out.println(bmi);
+		System.out.println(star);
+		System.out.println(rDto.toString());
 		return number;
 	}
 }
