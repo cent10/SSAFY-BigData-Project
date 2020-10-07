@@ -34,6 +34,12 @@ class AuthenticationService {
     }
     
     executeServeyService(like, goal, dislike, is_solo, is_active){
+        console.log(like)
+        console.log(goal)
+        console.log(dislike)
+        console.log(is_solo)
+        console.log(is_active)
+        console.log(localStorage.getItem('registeringId'))
         return axios.post(`http://j3a501.p.ssafy.io:8888/pts/favorites`,{
             uid : localStorage.getItem('registeringId'),
             like : like,

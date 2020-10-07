@@ -37,8 +37,9 @@ function App() {
   const Sorry2 = Sorry;
 
   var windowWidth = window.innerWidth;
-
+  
   useEffect(() => {
+    localStorage.clear();
     window.addEventListener(
       "resize",
       function () {
@@ -61,19 +62,18 @@ function App() {
     <Router>
       <header>{windowWidth > 992 && <MainNav2 />}</header>
       <Switch>
-        <Route exact path="/" component={Home2} />
+        <Route exact path="/" component={windowWidth < 992 ? Sorry2 : Home2} />
 
         <Route exact path="/" component={windowWidth > 992 ? Home2 : Sorry2} />
 
         <Route exact path="/sorry" component={Sorry2} />
 
-        <Route path="/login" component={Login2} />
-        <Route path="/signup" component={SignUp} />
-        <RegiRoute path="/signup2" component={SignUp2} />
-        <RegiRoute path="/servey" component={Servey} />
-        <RegiRoute path="/measures" component={Measures} />
+        <Route path="/login" component={windowWidth < 992 ? Sorry2 : Login2} />
+        <Route path="/signup" component={windowWidth < 992 ? Sorry2 : SignUp} />
+        <RegiRoute path="/signup2" component={windowWidth < 992 ? Sorry2 : SignUp2} />
+        <RegiRoute path="/servey" component={windowWidth < 992 ? Sorry2 : Servey} />
+        <RegiRoute path="/measures" component={windowWidth < 992 ? Sorry2 : Measures} />
 
-        <Route exact path="/video/:videoUrl" component={Video2} />
         <AuthRoute
           path="/main"
           render={(props) =>
