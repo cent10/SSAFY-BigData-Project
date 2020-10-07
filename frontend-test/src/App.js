@@ -73,8 +73,6 @@ function App() {
         <RegiRoute path="/servey" component={Servey} />
         <RegiRoute path="/measures" component={Measures} />
 
-        <AuthRoute path="/main" component={Main2} />
-
         <Route exact path="/video/:videoUrl" component={Video2} />
         <AuthRoute
           path="/main"

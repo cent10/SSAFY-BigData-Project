@@ -1,44 +1,16 @@
 import React, { Component } from 'react'
 import AuthenticationService from './AuthenticationService.js'
-import * as Survey from "survey-react";
-import "survey-react/survey.css";
-let json1 = {
-    questions: [
-      {
-        type: "checkbox",
-        name: "exercise",
-        title: "관심있는 운동을 모두 골라주세요",
-        isRequired: true,
-        hasNone: true,
-        noneText: "해당없음",
-        colCount: 4,
-        choicesOrder: "asc",
-        choices: [
-          "헬스",
-          "필라테스",
-          "요가",
-          "에어로빅",
-          "줌바",
-          "크로스핏",
-          "TRX",
-          "스피닝",
-          "댄스스포츠",
-          "복싱"
-        ]
-      }
-    ]
-  };
-  var surveyRender = <Survey.Survey json={json1} />;
+import "../static/css/servey.css";
 class registerComponent extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            like : '',
-            goal : '',
-            dislike : '',
-            is_solo : true,
-            is_active : true,
+            like: '',
+            goal: '',
+            dislike: '',
+            is_solo: true,
+            is_active: true,
             hasRegisterFailed: false,
         }
         this.handleChange = this.handleChange.bind(this)
@@ -49,8 +21,8 @@ class registerComponent extends Component {
         this.setState(
             {
                 [event.target.name]
-                    : event.target.value,
-                disabled : (this.state.like !== '') && (this.state.goal !== '') && (this.state.dislike !== '')
+                    :event.target.value,
+                disabled: (this.state.like !== '') && (this.state.goal !== '') && (this.state.dislike !== '')
             }
         )
     }
@@ -73,55 +45,80 @@ class registerComponent extends Component {
                     <div className="container d-flex h-100 align-items-center">
                         <div className="mx-auto text-center">
                             <h2 className="text-white-50 mx-auto mt-2 mb-5">설문조사</h2>
-                            <div>
-                                {/* {surveyRender} */}
-                                <input
-                                    value={this.state.like}
-                                    onChange={this.handleChange}
-                                    type="text"
-                                    name="like"
-                                    placeholder="좋아하는 운동"
-                                />
+                            <input
+                                className="inputButtonServey"
+                                type="text"
+                                disabled
+                                placeholder="1. 가장 관심있는 운동을 선택해주세요"
+                            />
+                            <select className="inputButtonServey" 
+                            value={this.state.like} onChange={this.handleChange} name="like">
+                                    <option value="헬스">헬스</option>
+                                    <option value="필라테스">필라테스</option>
+                                    <option value="요가">요가</option>
+                                    <option value="에어로빅">에어로빅</option>
+                                    <option value="줌바">줌바</option>
+                                    <option value="크로스핏">크로스핏</option>
+                                    <option value="TRX">TRX</option>
+                                    <option value="스피닝">스피닝</option>
+                                    <option value="댄스스포츠">댄스스포츠</option>
+                                    <option value="복싱">복싱</option>
+                            </select>
+                            <input
+                                className="inputButtonServey"
+                                type="text"
+                                disabled
+                                placeholder="2. 가장 하기 싫어하는 운동을 선택해주세요"
+                            />
+                            <select className="inputButtonServey" 
+                            value={this.state.dislike} onChange={this.handleChange} name="dislike">
+                                    <option value="헬스">헬스</option>
+                                    <option value="필라테스">필라테스</option>
+                                    <option value="요가">요가</option>
+                                    <option value="에어로빅">에어로빅</option>
+                                    <option value="줌바">줌바</option>
+                                    <option value="크로스핏">크로스핏</option>
+                                    <option value="TRX">TRX</option>
+                                    <option value="스피닝">스피닝</option>
+                                    <option value="댄스스포츠">댄스스포츠</option>
+                                    <option value="복싱">복싱</option>
+                            </select>
+                            <input
+                                className="inputButtonServey"
+                                type="text"
+                                disabled
+                                placeholder="3. 당신의 운동 목표를 알려주세요"
+                            />
+                            <select className="inputButtonServey" 
+                            value={this.state.goal} onChange={this.handleChange} name="goal">
+                                    <option value="다이어트">다이어트</option>
+                                    <option value="벌크업">벌크업</option>
+                                    <option value="건강">건강</option>
+                                    <option value="체력증진">체력증진</option>
+                                    <option value="재활">재활</option>
+                                    <option value="체형교정">체형교정</option>
+                            </select>
+                            <div className="radioDiv">
+                                <input type="radio" name="is_solo"
+                                    value={true}
+                                    onChange={this.handleChange} />개인 운동 선호
+                                    <input type="radio" name="is_solo"
+                                    value={false}
+                                    onChange={this.handleChange} />단체 운동 선호
                             </div>
-                            <div>
-                                <input
-                                    value={this.state.dislike}
-                                    onChange={this.handleChange}
-                                    type="text"
-                                    name="dislike"
-                                    placeholder="싫어하는 운동"
-                                />
+                            <div className="radioDiv">
+                                <input type="radio" name="is_active"
+                                    value={true}
+                                    onChange={this.handleChange} />동적인 운동 선호
+                                <input type="radio" name="is_active"
+                                    value={false}
+                                    onChange={this.handleChange} />정적인 운동 선호
                             </div>
-                            <div>
-                                <input
-                                    value={this.state.goal}
-                                    onChange={this.handleChange}
-                                    type="text"
-                                    name="goal"
-                                    placeholder="운동 목표"
-                                />
-                            </div>
-                            <div>
-                                <input type="radio" name="is_solo" 
-                                   value={true} 
-                                   onChange={this.handleChange} />개인 운동 선호
-                                <input type="radio" name="is_solo" 
-                                   value={false} 
-                                   onChange={this.handleChange} />단체 운동 선호
-                            </div>
-                            <div>
-                                <input type="radio" name="is_active" 
-                                   value={true} 
-                                   onChange={this.handleChange} />동적인 운동 선호
-                                <input type="radio" name="is_active" 
-                                   value={false} 
-                                   onChange={this.handleChange} />정적인 운동 선호
-                            </div>
-                            <button disabled={!this.state.disabled} className="btn button_wide" onClick={this.serveyClicked}>다음</button>
+                            <button disabled={!this.state.disabled} className="nextButtonServey" onClick={this.serveyClicked}>다음</button>
                         </div>
                     </div>
                 </header>
-            </div>
+            </div >
         )
     }
 }

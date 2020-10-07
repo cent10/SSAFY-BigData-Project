@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import AuthenticationService from './AuthenticationService.js'
+import "../static/css/signup.css";
 
 class registerComponent extends Component {
     constructor(props) {
@@ -46,40 +47,35 @@ class registerComponent extends Component {
                     <div className="container d-flex h-100 align-items-center">
                         <div className="mx-auto text-center">
                             <h2 className="text-white-50 mx-auto mt-2 mb-5">프로필추가</h2>
-                            <div>
                                 <input
+                                    className="inputButtonRegister"
                                     value={this.state.height}
                                     onChange={this.handleChange}
                                     type="text"
                                     name="height"
                                     placeholder="키"
                                 />
-                            </div>
-                            <div>
                                 <input
+                                    className="inputButtonRegister"
                                     value={this.state.weight}
                                     onChange={this.handleChange}
                                     type="text"
                                     name="weight"
                                     placeholder="몸무게"
                                 />
-                            </div>
-                            <div>
                                 <input
+                                    className="inputButtonRegister"
                                     value={this.state.birthYear}
                                     onChange={this.handleChange}
                                     type="name"
                                     name="birthYear"
                                     placeholder="생년"
-                                />
-                            </div>
-                            <div>
-                                <select value={this.state.gender} onChange={this.handleChange}>
+                                    />
+                                <select className="inputButtonRegister" value={this.state.gender} onChange={this.handleChange} name="gender">
                                     <option value={true}>남자</option>
                                     <option value={false}>여자</option>
                                 </select>
-                            </div>
-                            <button disabled={!this.state.disabled} className="btn button_wide" onClick={this.registerClicked}>다음</button>
+                            <button disabled={!this.state.disabled} className="nextButton" onClick={this.registerClicked}>다음</button>
                         </div>
                     </div>
                 </header>
