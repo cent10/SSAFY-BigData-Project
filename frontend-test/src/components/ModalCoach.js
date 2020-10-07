@@ -57,16 +57,15 @@ function ModalCoach(props) {
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button
-            variant="danger"
+          <button
+            className="close-button"
             onClick={props.onHide}
             style={{ height: 38, verticalAlign: "middle" }}
           >
-            <span>닫기</span>
-          </Button>
-          {/* 함수 설정할 것 */}
-          <Button
-            variant="info"
+            닫기
+          </button>
+          <button
+            className="info-button"
             onClick={() => {
               props.onShow2(true);
               axios.post(
@@ -80,8 +79,8 @@ function ModalCoach(props) {
             }}
             style={{ height: 38, verticalAlign: "middle" }}
           >
-            <span>연락하기</span>
-          </Button>
+            연락하기
+          </button>
         </Modal.Footer>
       </Modal>
     </div>
