@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { Modal, Button } from "react-bootstrap";
 
-function ModalClass(props) {
+import Alert from "react-bootstrap/Alert";
+
+import axios from "axios";
+
+function ModalCoach(props) {
   // console.log(props.coach.career);
+
   return (
     <div>
       <Modal
@@ -12,6 +17,11 @@ function ModalClass(props) {
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
+        {props.show2 && (
+          <Alert variant="info" onClose={() => {}} dismissible>
+            <Alert.Heading>{props.name} 코치님께 연락되었습니다.</Alert.Heading>
+          </Alert>
+        )}
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
             코치 소개
@@ -41,11 +51,29 @@ function ModalClass(props) {
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="danger" onClick={props.onHide}>
+          <Button
+            variant="danger"
+            onClick={props.onHide}
+            style={{ height: 38 }}
+          >
             닫기
           </Button>
           {/* 함수 설정할 것 */}
-          <Button variant="info" onClick={() => {}}>
+          <Button
+            variant="info"
+            onClick={() => {
+              props.onShow2(true);
+              axios.post(
+                "http://j3a501.p.ssafy.io/pts/coaches/contacts",
+                {
+                  coachId: props.coach.uid,
+                  uid: props.uid,
+                },
+                null
+              );
+            }}
+            style={{ height: 38 }}
+          >
             연락하기
           </Button>
         </Modal.Footer>
@@ -54,4 +82,4 @@ function ModalClass(props) {
   );
 }
 
-export default ModalClass;
+export default ModalCoach;

@@ -37,7 +37,9 @@ function Heatmap(props) {
           if (!value) {
             return "color-empty";
           }
-          return `color-scale-${value.count}`;
+          return value.count > 10
+            ? "color-scale-10"
+            : `color-scale-${value.count}`;
         }}
       />
     </div>

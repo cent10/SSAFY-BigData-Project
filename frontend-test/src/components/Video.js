@@ -6,7 +6,7 @@ import "../static/css/Video.css";
 import Badge from "react-bootstrap/Badge";
 
 function Video(props) {
-  console.log(props);
+  // console.log(props);
   const opts = {
     width: "100%",
     height: "800",
@@ -41,7 +41,7 @@ function Video(props) {
         // }}
         onEnd={() => {
           // 화면 끝날 때 함수로 조작 가능? 카운트 추가??
-          alert("asdf");
+          // alert("asdf");
         }}
       />
       {/* <div className="youtube-back-button-wrap">

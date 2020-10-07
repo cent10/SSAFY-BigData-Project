@@ -6,13 +6,14 @@ import axios from "axios";
 import ModalCoach from "./ModalCoach";
 import Carousel from "react-bootstrap/Carousel";
 
-function Coaches({ title, token }) {
+function Coaches({ title, token, uid }) {
   const [coaches, setCoaches] = useState([]);
   const [modalShow, setModalShow] = useState(false);
   const [coach, setCoach] = useState({});
   const [src, setSrc] = useState("");
   const [name, setName] = useState("");
   const [index, setIndex] = useState(0);
+  const [show2, setShow2] = useState(false);
 
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
@@ -102,10 +103,16 @@ function Coaches({ title, token }) {
         show={modalShow}
         onHide={() => {
           setModalShow(false);
+          setShow2(false);
         }}
         coach={coach}
         src={src}
         name={name}
+        show2={show2}
+        onShow2={() => {
+          setShow2(true);
+        }}
+        uid={uid}
       />
     </div>
   );

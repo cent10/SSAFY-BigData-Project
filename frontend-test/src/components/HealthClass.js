@@ -7,7 +7,7 @@ import ModalClass from "./ModalClass";
 
 import Badge from "react-bootstrap/Badge";
 
-function HealthClass({ title, keyword, token }) {
+function HealthClass({ title, keyword, token, uid }) {
   const [classes, setClasses] = useState([]);
   const [modalShow, setModalShow] = useState(false);
   const [story, setStory] = useState("");
@@ -158,6 +158,7 @@ function HealthClass({ title, keyword, token }) {
         coach={coach}
         tags={tags}
         name={name}
+        uid={uid}
       />
     </div>
   );
