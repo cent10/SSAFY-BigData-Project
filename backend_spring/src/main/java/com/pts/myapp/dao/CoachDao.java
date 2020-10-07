@@ -26,7 +26,7 @@ public interface CoachDao {
 	public int delete(int id);
 	
 	// 코치 조회
-	public CoachDto read(int id);
+	public CoachDto read(String uid);
 	
 	// 코치 리스트 조회 (승인 상태의 코치 리스트 전체 조회)
 	public List<CoachDto> readAll();

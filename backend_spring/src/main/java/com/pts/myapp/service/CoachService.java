@@ -23,7 +23,7 @@ public interface CoachService {
 	void delete(int id);
 	
 	// 코치 조회
-	CoachDto read(int id);
+	CoachDto read(String uid);
 	
 	// 코치 리스트 조회 (승인 상태의 코치 리스트 조회)
 	List<CoachDto> readAll();

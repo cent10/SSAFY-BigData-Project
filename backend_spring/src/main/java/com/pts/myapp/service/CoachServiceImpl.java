@@ -75,8 +75,8 @@ public class CoachServiceImpl implements CoachService {
 	}
 
 	@Override
-	public CoachDto read(int id) {
-		return coachDao.read(id);
+	public CoachDto read(String uid) {
+		return coachDao.read(uid);
 	}
 
 	@Override
