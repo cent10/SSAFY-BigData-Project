@@ -49,7 +49,7 @@ function ModalCoach2(props) {
           <Button
             variant="danger"
             onClick={props.onHide}
-            style={{ height: 38 }}
+            style={{ height: 38, verticalAlign: "center" }}
           >
             닫기
           </Button>

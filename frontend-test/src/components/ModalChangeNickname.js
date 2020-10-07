@@ -54,6 +54,7 @@ function ModalChangeNickname(props) {
                   props.onSetting(change);
                 }
               }}
+              style={{ height: 38 }}
             />
             <InputGroup.Append>
               <Button
@@ -62,6 +63,7 @@ function ModalChangeNickname(props) {
                   fetchUserNickname(change);
                   props.onSetting(change);
                 }}
+                style={{ heighT: 38, verticalAlign: "center" }}
               >
                 변경
               </Button>
