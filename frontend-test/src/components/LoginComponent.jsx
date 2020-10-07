@@ -8,9 +8,9 @@ class LoginComponent extends Component {
     super(props);
 
     this.state = {
-      id: localStorage.getItem("authenticatedId") || "",
+      id: sessionStorage.getItem("authenticatedId") || "",
       password: "",
-      token: localStorage.getItem("token") || "",
+      token: sessionStorage.getItem("token") || "",
       hasLoginFailed: false,
     };
     this.handleChange = this.handleChange.bind(this);
