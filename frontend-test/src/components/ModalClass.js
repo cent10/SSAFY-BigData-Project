@@ -3,7 +3,17 @@ import { Modal, Button } from "react-bootstrap";
 
 import Badge from "react-bootstrap/Badge";
 
+import axios from "axios";
+
 function ModalClass(props) {
+  function getFormatDate(date) {
+    var year = date.getFullYear();
+    var month = 1 + date.getMonth();
+    month = month >= 10 ? month : "0" + month;
+    var day = date.getDate();
+    day = day >= 10 ? day : "0" + day;
+    return year + "-" + month + "-" + day;
+  }
   return (
     <div>
       <Modal
@@ -51,11 +61,33 @@ function ModalClass(props) {
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="danger" onClick={props.onHide}>
+          <Button
+            variant="danger"
+            onClick={props.onHide}
+            style={{ height: 38 }}
+          >
             닫기
           </Button>
           {/* 함수 설정할 것 */}
-          <Button variant="info" onClick={() => {}}>
+          <Button
+            variant="info"
+            onClick={() => {
+              window.open(
+                "https://hangouts.google.com/call/" + props.coach.uid
+              );
+              var today = new Date();
+              axios.post(
+                "http://j3a501.p.ssafy.io:8888/pts/logs",
+                {
+                  day: getFormatDate(today),
+                  point: 3,
+                  uid: props.uid,
+                },
+                null
+              );
+            }}
+            style={{ height: 38 }}
+          >
             참여하기
           </Button>
         </Modal.Footer>

@@ -59,13 +59,13 @@ function Inform({ uid, nickname }) {
       const request = await axios.get(
         `http://j3a501.p.ssafy.io:8888/pts/logs/${uid}`
       );
-      console.log("asdf", request);
+      // console.log("asdf", request);
       setDatedata(request.data);
       return request;
     }
     fetchDatedata();
 
-    console.log("asdf2", datedata);
+    // console.log("asdf2", datedata);
   }, [uid]);
 
   function bodyrank(num) {

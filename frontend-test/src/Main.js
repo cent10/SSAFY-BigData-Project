@@ -49,6 +49,7 @@ function Main({ history }) {
         keyword="pushup posture"
         history={history}
         token={token}
+        uid={uid}
       />
 
       {/* Health Class */}
@@ -56,6 +57,7 @@ function Main({ history }) {
         title={`${nickname}님이 관심있을 만한 클래스`}
         keyword="yoga class"
         token={token}
+        uid={uid}
       />
 
       {/* Best Coach */}
@@ -71,10 +73,15 @@ function Main({ history }) {
           ],
         }}
         history={history}
+        uid={uid}
       />
 
       {/* Coaches */}
-      <Coaches2 title={`${nickname}님과 성향이 일치하는 코치`} token={token} />
+      <Coaches2
+        title={`${nickname}님과 성향이 일치하는 코치`}
+        token={token}
+        uid={uid}
+      />
 
       {/* Footer */}
       <MainFooter2 />
