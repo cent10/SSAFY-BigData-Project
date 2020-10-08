@@ -55,8 +55,8 @@ function Home() {
   return (
     <div className="home">
       {/* <!-- Masthead--> */}
-      <Button
-        variant="secondary"
+      <button
+        className="gray-button"
         style={{
           position: "fixed",
           right: 20,
@@ -69,7 +69,7 @@ function Home() {
         }}
       >
         ▲
-      </Button>
+      </button>
       <header className="masthead" id="page-top">
         <div className="container d-flex h-100 align-items-center">
           <div className="mx-auto text-center">
