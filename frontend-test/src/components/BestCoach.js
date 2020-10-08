@@ -4,7 +4,7 @@ import backdropImage from "../static/image/bestcoach.png";
 
 import BestCoachVideo from "./BestCoachVideo";
 
-function BestCoach({ title, bestCoach, history }) {
+function BestCoach({ title, bestCoach, history, uid }) {
   const BestCoachVideo2 = BestCoachVideo;
 
   return (
@@ -31,6 +31,7 @@ function BestCoach({ title, bestCoach, history }) {
             className="bcoach__video"
             keyword="lofi"
             history={history}
+            uid={uid}
           />
         </div>
       </div>

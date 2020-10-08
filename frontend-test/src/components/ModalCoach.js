@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { Modal, Button } from "react-bootstrap";
 
-function ModalClass(props) {
+import Alert from "react-bootstrap/Alert";
+
+import axios from "axios";
+
+function ModalCoach(props) {
+  // console.log(props.coach.career);
+
   return (
     <div>
       <Modal
@@ -11,6 +17,17 @@ function ModalClass(props) {
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
+        {props.show2 && (
+          <Alert
+            variant="info"
+            onClose={() => {
+              props.closeShow2();
+            }}
+            dismissible
+          >
+            <Alert.Heading>{props.name} 코치님께 연락되었습니다.</Alert.Heading>
+          </Alert>
+        )}
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
             코치 소개
@@ -19,39 +36,55 @@ function ModalClass(props) {
         <Modal.Body>
           <div>
             {/* 좌측 코치 사진 */}
-            {/* <img src={props.coach.profile_photo} alt={""}/> */}
             <img
-              style={{ float: "left" }}
-              src={require("../static/image/coach.png")}
+              style={{
+                float: "left",
+                objectFit: "contain",
+                width: "400px",
+                marginRight: 20,
+              }}
+              src={props.coach.profilePhoto}
               alt={""}
             />
-            <div style={{ float: "left", width: 20, height: 400 }}></div>
 
             {/* 우측 코치 경력 */}
             <h2>{props.name} 코치</h2>
-            <h4>{props.coach.career}</h4>
-            <p>
-              좋아~ 아주 좋아~좋아~ 아주 좋아~좋아~ 아주 좋아~좋아~ 아주
-              좋아~좋아~ 아주 좋아~좋아~ 아주 좋아~좋아~ 아주 좋아~좋아~ 아주
-              좋아~좋아~ 아주 좋아~좋아~ 아주 좋아~좋아~ 아주 좋아~좋아~ 아주
-              좋아~좋아~ 아주 좋아~좋아~ 아주 좋아~좋아~ 아주 좋아~좋아~ 아주
-              좋아~좋아~ 아주 좋아~좋아~ 아주 좋아~좋아~ 아주 좋아~좋아~ 아주
-              좋아~좋아~ 아주 좋아~좋아~ 아주 좋아~
-            </p>
+            <h4>
+              <pre style={{ whiteSpace: "pre-wrap" }}>{props.coach.career}</pre>
+            </h4>
+            <br />
+            <pre style={{ whiteSpace: "pre-wrap" }}>{props.coach.story}</pre>
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="danger" onClick={props.onHide}>
+          <button
+            className="close-button"
+            onClick={props.onHide}
+            style={{ height: 38, verticalAlign: "middle" }}
+          >
             닫기
-          </Button>
-          {/* 함수 설정할 것 */}
-          <Button variant="info" onClick={() => {}}>
+          </button>
+          <button
+            className="info-button"
+            onClick={() => {
+              props.onShow2(true);
+              axios.post(
+                "http://j3a501.p.ssafy.io:8888/pts/coaches/contacts",
+                {
+                  coachId: props.coach.uid,
+                  uid: props.uid,
+                },
+                null
+              );
+            }}
+            style={{ height: 38, verticalAlign: "middle" }}
+          >
             연락하기
-          </Button>
+          </button>
         </Modal.Footer>
       </Modal>
     </div>
   );
 }
 
-export default ModalClass;
+export default ModalCoach;

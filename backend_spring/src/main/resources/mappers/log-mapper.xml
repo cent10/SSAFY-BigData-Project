@@ -4,10 +4,10 @@
 
     <insert id="create" parameterType="com.pts.myapp.dto.LogDto">
         insert into LOGS (UID, POINT, DAY) VALUES
-            (#{uid}, #{point}, #{day})
+            (#{uid}, #{point}, now())
     </insert>
 	
     <select id="readAll" parameterType="String" resultType="com.pts.myapp.dto.LogDto">
-        select * from LOGS where UID = #{uid}
+        select sum(POINT) as POINT, DAY, UID from LOGS where UID = #{uid}  group by DAY
     </select>
 </mapper>

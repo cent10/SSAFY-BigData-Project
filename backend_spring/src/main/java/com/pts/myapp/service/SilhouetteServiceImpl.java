@@ -1,10 +1,13 @@
 package com.pts.myapp.service;
 
+import java.util.HashMap;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.pts.myapp.dao.SilhouetteDao;
+import com.pts.myapp.dto.ResultDto;
 import com.pts.myapp.dto.SilhouetteDto;
 import com.pts.myapp.error.exception.EntityNotFoundException;
 import com.pts.myapp.error.exception.InvalidValueException;
@@ -16,7 +19,12 @@ public class SilhouetteServiceImpl implements SilhouetteService {
 	SilhouetteDao dao;
 
 	@Override
-	public void create(SilhouetteDto silhouette) {
+	public void create(ResultDto rDto, int height, boolean gender) {
+
+		int star = getStar(rDto);
+		int number = getBody(rDto.getBmi(), star, height, gender, rDto);
+
+		SilhouetteDto silhouette = new SilhouetteDto(number, rDto.getUid(), star);
 		try {
 			dao.create(silhouette);
 		} catch (DataAccessException e) {
@@ -27,15 +35,53 @@ public class SilhouetteServiceImpl implements SilhouetteService {
 	}
 
 	@Override
-	public SilhouetteDto read(String uid) {
-		SilhouetteDto silhouette = new SilhouetteDto();
+	public HashMap<String, String> read(String uid) {
+		HashMap<String, String> map = new HashMap<String, String>();
 		try {
-			silhouette = dao.read(uid);
+			map = dao.read(uid);
 		} catch (DataAccessException e) {
 			if(e.getMessage().contains("For")) {
-				throw new EntityNotFoundException(silhouette.getUid());
+				throw new EntityNotFoundException(uid);
 			}
 		}
-		return silhouette;
+		return map;
+	}
+
+	private int getStar(ResultDto rDto) {
+		return Math.round((rDto.getArm() + rDto.getLeg() + rDto.getCore() + rDto.getChest()) / 4);
+	}
+
+	private int getBody (float bmi, int star, int height, boolean gender, ResultDto rDto) {
+		int number = 0;
+		if(bmi <= 22.9) {
+			if(star >= 4) number = 1;
+			else if(star >= 3) {
+				if(rDto.getLeg() < 3) {
+					number = 3;
+				} else {
+					if (gender) {
+						if (height >= 170)
+							number = 1;
+						else
+							number = 7;
+					} else {
+						if (height >= 160)
+							number = 1;
+						else
+							number = 7;
+					}
+				}
+			}
+			else number = 2;
+		} else {
+			if (bmi - star >= 23)
+				number = 5;
+			else if (bmi - star >= 21)
+				number = 6;
+			else if (bmi - star > 19)
+				number = 4;
+			else number = 4;
+		}
+		return number;
 	}
 }

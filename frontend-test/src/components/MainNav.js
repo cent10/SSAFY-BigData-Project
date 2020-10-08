@@ -5,22 +5,58 @@ import { Link } from "react-router-dom";
 import cardSearch from "@iconify/icons-mdi/card-search";
 import ModalUser from "./ModalUser";
 import { withRouter } from "react-router-dom";
-
-import SearchBox from "./SearchBox";
+import AuthenticationService from "./AuthenticationService.js";
+import InputGroup from "react-bootstrap/InputGroup";
+import FormControl from "react-bootstrap/FormControl";
+import Button from "react-bootstrap/Button";
 
 import "../static/css/MainNav.css";
 
-function MainNav({ isLoggedIn, logout, history }) {
+import axios from "axios";
+
+import Profile1 from "../static/assets/Archive2/1.png";
+import Profile2 from "../static/assets/Archive2/2.png";
+import Profile3 from "../static/assets/Archive2/3.png";
+import Profile4 from "../static/assets/Archive2/4.png";
+import Profile5 from "../static/assets/Archive2/5.png";
+import Profile6 from "../static/assets/Archive2/6.png";
+import Profile7 from "../static/assets/Archive2/7.png";
+import Profile8 from "../static/assets/Archive2/8.png";
+import Profile9 from "../static/assets/Archive2/9.png";
+
+function MainNav({ history }) {
   const [show, handleShow] = useState(false);
   const [modalShow, setModalShow] = useState(false);
+  const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
+  const [value, setValue] = useState(null);
 
+  const uid = sessionStorage.getItem("authenticatedId");
+  const [profile, setProfile] = useState(null);
+  // const [user, setUser] = useState(null);
+  const [nickname, setNickname] = useState(null);
   // logout handling
-  const handleClick = () => {
-    logout();
-    history.push("/");
-  };
+  // console.log(profile);
+
+  const [contact, setContact] = useState(null);
 
   useEffect(() => {
+    async function fetchProfile() {
+      const request = await axios.get(
+        `http://j3a501.p.ssafy.io:8888/pts/users/${uid}`
+      );
+      setProfile(request.data.profile);
+      setNickname(request.data.nickname);
+      // setUser(request.data)
+
+      const request2 = await axios.get(
+        `http://j3a501.p.ssafy.io:8888/pts/coaches/contacts/${uid}`
+      );
+      setContact(request2.data);
+
+      return request;
+    }
+    fetchProfile();
+
     window.addEventListener("scroll", () => {
       if (window.scrollY > 100) {
         handleShow(true);
@@ -29,34 +65,97 @@ function MainNav({ isLoggedIn, logout, history }) {
     return () => {
       window.removeEventListener("scroll", null);
     };
-  }, []);
+  }, [uid, modalShow]);
+
+  function profile2(num) {
+    if (num == "1") {
+      return Profile1;
+    } else if (num == "2") {
+      return Profile2;
+    } else if (num == "3") {
+      return Profile3;
+    } else if (num == "4") {
+      return Profile4;
+    } else if (num == "5") {
+      return Profile5;
+    } else if (num == "6") {
+      return Profile6;
+    } else if (num == "7") {
+      return Profile7;
+    } else if (num == "8") {
+      return Profile8;
+    } else if (num == "9") {
+      return Profile9;
+    } else {
+      return Profile1;
+    }
+  }
 
   return (
     <div className={`nav__main ${show && "nav__white"}`}>
-      <Link className="nav__linkmain" to={"/main"}>
-        <img src={logo} alt="PTS logo" className="nav__logo" />
-      </Link>
+      {isUserLoggedIn && (
+        <Link className="nav__linkmain" to={"/main"}>
+          <img src={logo} alt="PTS logo" className="nav__logo" />
+        </Link>
+      )}
+      {!isUserLoggedIn && (
+        <Link className="nav__linkmain" to={"/"}>
+          <img src={logo} alt="PTS logo" className="nav__logo" />
+        </Link>
+      )}
 
       <div className="nav__right">
-        {!isLoggedIn && (
+        {!isUserLoggedIn && (
           <Link to={"/login"}>
             {/* {"로그인"} */}
             <button className="start-button">로그인</button>
           </Link>
         )}
-        {isLoggedIn && <Icon className="nav__search" icon={cardSearch} />}
-        {/* {isLoggedIn && <SearchBox />} */}
-        {isLoggedIn && <button onClick={handleClick}>Logout</button>}
-        {isLoggedIn && (
-          <img
-            src="data:image/png;base64,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"
-            alt="Avatar"
-            className="nav__avatar"
-            /* my page modal */
-            onClick={() => {
-              setModalShow(true);
-            }}
-          />
+        {isUserLoggedIn && (
+          <InputGroup className="mb-3">
+            <FormControl
+              placeholder="검색어를 입력하세요"
+              aria-label="검색어를 입력하세요"
+              aria-describedby="basic-addon2"
+              value={value}
+              onChange={(e) => {
+                setValue(e.target.value);
+              }}
+              onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  history.push("/search/" + value);
+                  setValue("");
+                }
+              }}
+              style={{ height: 38 }}
+            />
+            <InputGroup.Append
+              onClick={() => {
+                history.push("/search/" + value);
+                setValue("");
+              }}
+              style={{ cursor: "pointer", height: 38 }}
+            >
+              <InputGroup.Text id="basic-addon2">검색</InputGroup.Text>
+            </InputGroup.Append>
+            &nbsp;
+            {isUserLoggedIn && (
+              <Link to={"/"} onClick={AuthenticationService.logout}>
+                <button className="start-button">Logout</button>
+              </Link>
+            )}
+            &nbsp;
+            <img
+              src={profile2(profile)}
+              alt="Avatar"
+              className="nav__avatar"
+              /* my page modal */
+              onClick={() => {
+                setModalShow(true);
+              }}
+              style={{ width: 38, height: 38 }}
+            />
+          </InputGroup>
         )}
       </div>
       <ModalUser
@@ -65,6 +164,9 @@ function MainNav({ isLoggedIn, logout, history }) {
         onHide={() => {
           setModalShow(false);
         }}
+        nickname={nickname}
+        profile={profile2(profile)}
+        contact={contact}
       />
     </div>
   );

@@ -21,11 +21,13 @@ import com.pts.myapp.dto.UserDto;
 import com.pts.myapp.jwt.service.JwtService;
 import com.pts.myapp.service.UserService;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin(origins = { "*" }, maxAge = 6000)
 @RestController
 @RequestMapping("/pts/users")
+@Api(tags = "User", value = "User Controller")
 public class UserController {
 	
 	static final Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -82,17 +84,5 @@ public class UserController {
 		} else {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
-	}
-		
-	@ApiOperation(value = "로그아웃")
-	@GetMapping("/logout")
-	private ResponseEntity<?> logout(@RequestBody UserDto userDto) {
-		logger.debug("로그아웃");
-		
-		// 로그아웃 처리
-		
-		////////////////
-		
-		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }

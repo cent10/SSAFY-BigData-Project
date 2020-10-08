@@ -14,6 +14,8 @@ public interface ClassDao {
 
 	public ClassDto readById(int id);
 
+	public List<ClassDto> search(String word);
+
 	public void update(ClassDto classDto);
 
 	public void delete(int id);

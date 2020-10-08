@@ -4,6 +4,15 @@
   color: white;
 }
 
+.hover {
+  display: none;
+  font-style: bold;
+}
+
+.rowrow:hover .hover {
+  display: inline;
+}
+
 .row__title {
 }
 
@@ -11,7 +20,7 @@
   display: flex;
   overflow-y: hidden;
   overflow-x: scroll;
-  height: 300px;
+  height: 340px;
   padding: 20px;
 }
 

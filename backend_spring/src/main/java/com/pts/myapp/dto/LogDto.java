@@ -16,7 +16,7 @@ public class LogDto {
 	@ApiModelProperty(value = "활동 점수", example = "333")
 	private int point;
 
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
 	@ApiModelProperty(value = "포인트 획득 날짜", example = "2020.")
 	private Date day;
 

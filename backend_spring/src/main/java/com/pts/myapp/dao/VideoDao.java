@@ -20,4 +20,6 @@ public interface VideoDao {
 	int delete(int id);
 
 	List<VideoDto> readBest();
+	
+	List<VideoDto> search(String searchword);
 }

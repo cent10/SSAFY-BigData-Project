@@ -4,10 +4,12 @@ import java.util.Date;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Component;
 
 import com.pts.myapp.dto.UserDto;
 
+import com.pts.myapp.error.exception.JWTExpiredException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.JwtBuilder;
@@ -18,6 +20,8 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Slf4j
 public class JwtService {
+
+    static final String JWT_EXPIRED = "JWT expired at";
 
     @Value("${jwt.salt}")
     private String salt;
@@ -73,8 +77,11 @@ public class JwtService {
     	Jws<Claims> claims = null;
         try {
             claims = Jwts.parser().setSigningKey(salt.getBytes()).parseClaimsJws(jwt);
-        } catch (final Exception e) {
-            throw new RuntimeException();
+        } catch (final DataAccessException e) {
+            if(e.getMessage().contains(JWT_EXPIRED)) {
+                throw new JWTExpiredException();
+            }
+            throw e;
         }
 
 //        log.trace("claims: {}", claims);

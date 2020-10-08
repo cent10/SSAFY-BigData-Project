@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,7 +41,7 @@ public class LogController {
 		@ApiResponse(code = 401, message = "로그인 후 이용해 주세요"),
 		@ApiResponse(code = 404, message = "로그 생성 실패")
 	})
-	private ResponseEntity<?> create(LogDto log) {
+	private ResponseEntity<?> create(@RequestBody LogDto log) {
 		logger.debug("로그 생성");
 		service.create(log);
 		return new ResponseEntity<>(HttpStatus.CREATED);

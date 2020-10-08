@@ -1,7 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { Modal, Button } from "react-bootstrap";
-
+import ModalChangeImg from "./ModalChangeImg";
+import ModalChangeNickname from "./ModalChangeNickname";
+import ModalCoach2 from "./ModalCoach2";
 function ModalClass(props) {
+  const [modalChangeImgShow, setModalChangeImgShow] = useState(false);
+  const [modalChangeNickname, setModalChangeNickname] = useState(false);
+  const [modalShow, setModalShow] = useState(false);
+  const [profile, setProfile] = useState(null);
+  const [nickname, setNickname] = useState(null);
+  const [coach, setCoach] = useState(null);
+  const [coachname, setCoachname] = useState(null);
+
+  async function fetchCoach(uid) {
+    const request = await axios.get(
+      "http://j3a501.p.ssafy.io:8888/pts/coaches/" + uid,
+      {}
+    );
+    setCoach(request.data);
+    return request;
+  }
+
+  // console.log(props.contact);
   return (
     <div>
       <Modal
@@ -12,36 +33,111 @@ function ModalClass(props) {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-            Test User
+            <h4>
+              {nickname ? nickname : props.nickname}
+              <span
+                style={{
+                  fontSize: 15,
+                  verticalAlign: "top",
+                  cursor: "pointer",
+                }}
+                onClick={() => {
+                  setModalChangeNickname(true);
+                }}
+              >
+                ✏
+              </span>
+              님의 마이페이지
+            </h4>
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h4>마이페이지</h4>
-          <img
-            src="data:image/png;base64,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"
-            alt="Avatar"
-            className="nav__avatar"
-          />
-          {/* 사진 변경하기 */}
-          <div>
-            <Button variant="primary" onClick={() => {}}>
+          <div style={{ float: "left", textAlign: "center", marginRight: 30 }}>
+            <img
+              src={profile ? profile : props.profile}
+              alt="Avatar"
+              className="nav__avatar"
+              style={{ width: 200, height: 200 }}
+            />
+            <br />
+            {/* 사진 변경하기 */}
+            <button
+              className="blue-button"
+              onClick={() => {
+                setModalChangeImgShow(true);
+              }}
+              style={{
+                marginLeft: 16,
+                width: 200,
+                height: 38,
+                verticalAlign: "middle",
+              }}
+            >
               이미지 변경
-            </Button>
+            </button>
           </div>
-          {/* 회원 정보 */}
-          <p>
-            Test User의 회원 정보입니다.
-          </p>
+          <h4>내가 연락한 코치들</h4>
+          <div style={{ display: "inline" }}>
+            {props.contact &&
+              props.contact.map((coach) => (
+                <button
+                  className="alert-button"
+                  onClick={() => {
+                    setCoachname(coach.nickname);
+                    fetchCoach(coach.coachId);
+                    setModalShow(true);
+                  }}
+                  style={{
+                    height: 38,
+                    verticalAlign: "middle",
+                    marginBottom: 16,
+                  }}
+                >
+                  {coach.nickname}
+                </button>
+              ))}
+          </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="danger" onClick={props.onHide}>
+          <button
+            className="close-button"
+            onClick={props.onHide}
+            style={{ height: 38, verticalAlign: "middle" }}
+          >
             닫기
-          </Button>
-          <Button variant="info" onClick={() => {}}>
-            로그아웃
-          </Button>
+          </button>
         </Modal.Footer>
       </Modal>
+      <ModalChangeImg
+        show={modalChangeImgShow}
+        onHide={() => {
+          setModalChangeImgShow(false);
+        }}
+        onSetting={(profile) => {
+          setProfile(profile);
+          setModalChangeImgShow(false);
+        }}
+      ></ModalChangeImg>
+      <ModalChangeNickname
+        show={modalChangeNickname}
+        nickname={nickname ? nickname : props.nickname}
+        onHide={() => {
+          setModalChangeNickname(false);
+        }}
+        onSetting={(nickname) => {
+          setNickname(nickname);
+          setModalChangeNickname(false);
+        }}
+      ></ModalChangeNickname>
+      <ModalCoach2
+        className="modal-coach"
+        show={modalShow}
+        onHide={() => {
+          setModalShow(false);
+        }}
+        coach={coach}
+        coachname={coachname}
+      />
     </div>
   );
 }

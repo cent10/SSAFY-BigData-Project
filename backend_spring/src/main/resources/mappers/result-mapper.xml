@@ -8,7 +8,41 @@
     </insert>
 
     <select id="read" parameterType="String" resultType="com.pts.myapp.dto.ResultDto">
-        select * from RESULTS where UID = #{uid}
+        select * from RESULTS where UID = #{uid} ORDER BY ID DESC LIMIT 1
     </select>
 
+    <select id="readArm" parameterType="map" resultType="int">
+        select `COUNT` from PUSHUPS
+        where AGE = #{age} and GENDER = #{gender}
+    </select>
+
+    <select id="readLeg1" parameterType="map" resultType="int">
+        select ROUND(AVG(SQUAT)) from FITNESSES
+        where SQUAT != 0 and HEIGHT = #{height} and WEIGHT = #{weight}
+    </select>
+
+    <select id="readLeg2" parameterType="map" resultType="int">
+        select ROUND(AVG(RUNNING_JUMP)) from FITNESSES
+        where RUNNING_JUMP != 0 and HEIGHT = #{height} and WEIGHT = #{weight}
+    </select>
+
+    <select id="readLeg3" parameterType="map" resultType="int">
+        select ROUND(AVG(STANDING_JUMP)) from FITNESSES
+        where STANDING_JUMP != 0 and HEIGHT = #{height} and WEIGHT = #{weight}
+    </select>
+
+    <select id="readCore1" parameterType="map" resultType="int">
+        select ROUND(AVG(SIT_UP)) from FITNESSES
+        where SIT_UP != 0 and HEIGHT = #{height} and WEIGHT = #{weight}
+    </select>
+
+    <select id="readCore2" parameterType="map" resultType="int">
+        select ROUND(AVG(TWIST_SIT_UP)) from FITNESSES
+        where TWIST_SIT_UP != 0 and HEIGHT = #{height} and WEIGHT = #{weight}
+    </select>
+
+    <select id="readChest" parameterType="map" resultType="int">
+        select `COUNT` from PUSHUPS
+        where AGE = #{age} and GENDER = #{gender}
+    </select>
 </mapper>

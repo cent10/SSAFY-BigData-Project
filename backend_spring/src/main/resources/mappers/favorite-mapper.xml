@@ -4,13 +4,13 @@
 	
 	<!-- 성향 등록 -->
 	<insert id="create">
-		INSERT INTO FAVORITES(UID, IS_SOLO, IS_ACTIVE, LIKE, GOAL, DISLIKE)
-		VALUES(#{uid}, #{is_solo}, #{is_active} ,#{like}, #{goal}, #{dislike})
+		INSERT INTO FAVORITES
+		VALUES(#{uid}, #{isSolo}, #{isActive} ,#{like}, #{goal}, #{dislike})
 	</insert>
 	
 	<!-- 성향 조회 -->
 	<select id="read" resultType="com.pts.myapp.dto.UserDto">
-		SELECT UID, IS_SOLO, IS_ACTIVE, LIKE, GOAL, DISLIKE
+		SELECT *
 		FROM FAVORITES
 		WHERE UID=#{uid}
 	</select>

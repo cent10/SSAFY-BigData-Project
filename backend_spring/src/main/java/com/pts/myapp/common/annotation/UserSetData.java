@@ -1,0 +1,14 @@
+package com.pts.myapp.common.annotation;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+public @interface UserSetData {
+	/**
+	 * 사용자의 측정값으로 결과치를 예
+	 */
+}

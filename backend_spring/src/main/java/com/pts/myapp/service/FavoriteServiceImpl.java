@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.pts.myapp.dao.FavoriteDao;
 import com.pts.myapp.dto.FavoriteDto;
+import com.pts.myapp.error.exception.IncorrectFormatException;
 
 @Service
 public class FavoriteServiceImpl implements FavoriteService {
@@ -13,7 +14,9 @@ public class FavoriteServiceImpl implements FavoriteService {
 	
 	@Override
 	public void create(FavoriteDto favoriteDto) {
-		favoriteDao.create(favoriteDto);
+		if (favoriteDao.create(favoriteDto) < 1) {
+			throw new IncorrectFormatException(String.valueOf(favoriteDto.getUid()));
+		}
 	}
 
 	@Override

@@ -10,11 +10,13 @@ public interface VideoService {
 
 	VideoDto read(int id);
 
-	List<VideoDto> readAll();
+	void readAll(List<VideoDto> list, String userId);
 
 	void update(VideoDto video);
 
 	void delete(int id);
 
 	List<VideoDto> readBest();
+	
+	List<VideoDto> search(String searchword);
 }

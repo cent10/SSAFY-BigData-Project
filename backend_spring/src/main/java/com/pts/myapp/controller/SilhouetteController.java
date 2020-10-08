@@ -1,5 +1,7 @@
 package com.pts.myapp.controller;
 
+import java.util.HashMap;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pts.myapp.dto.ResultDto;
 import com.pts.myapp.dto.SilhouetteDto;
+import com.pts.myapp.service.ResultService;
 import com.pts.myapp.service.SilhouetteService;
 
 import io.swagger.annotations.Api;
@@ -31,8 +35,11 @@ public class SilhouetteController {
 
 	@Autowired
 	SilhouetteService service;
+	
+	@Autowired
+	ResultService rService;
 
-	@RequestMapping(method = RequestMethod.POST, produces = "application/json")
+	@RequestMapping(method = RequestMethod.POST, value = "/{uid}", produces = "application/json")
 	@ApiOperation(value = "실루엣 생성", notes = "사용자의 실루엣 저장")
 	@ApiResponses({
 		@ApiResponse(code = 201, message = "실루엣 생성"),
@@ -40,9 +47,9 @@ public class SilhouetteController {
 		@ApiResponse(code = 401, message = "로그인 후 이용해 주세요"),
 		@ApiResponse(code = 404, message = "실루엣 생성 실패")
 	})
-	private ResponseEntity<?> create(SilhouetteDto silhouette) {
+	private ResponseEntity<?> create(@PathVariable(value = "uid") String uid) {
 		logger.debug("실루엣 생성");
-		service.create(silhouette);
+		ResultDto rDto = rService.read(uid);
 		return new ResponseEntity<>(HttpStatus.CREATED);
 	}
 
@@ -57,7 +64,7 @@ public class SilhouetteController {
 	})
 	private ResponseEntity<?> read(@PathVariable(value = "uid") String uid) {
 		logger.debug("실루엣 조회");
-		SilhouetteDto silhouette = service.read(uid);
-		return new ResponseEntity<>(silhouette, HttpStatus.OK);
+		HashMap<String, String> map = service.read(uid);
+		return new ResponseEntity<>(map, HttpStatus.OK);
 	}
 }

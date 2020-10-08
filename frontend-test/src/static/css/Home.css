@@ -10732,20 +10732,23 @@ body {
 }
 
 .about-section {
-  padding-top: 10rem;
+  padding-top: 6rem;
   background: linear-gradient(
     to bottom,
     #000000 0%,
     rgba(0, 0, 0, 0.9) 75%,
     rgba(0, 0, 0, 0.8) 100%
   );
+  height: 100vh;
 }
 .about-section p {
   margin-bottom: 5rem;
 }
 
 .projects-section {
-  padding: 10rem 0;
+  /* padding: 10rem 0; */
+  height: 100vh;
+  padding: 0;
 }
 .projects-section .featured-text {
   padding: 2rem;
@@ -10864,4 +10867,108 @@ body {
 
 .home {
   background-color: #000;
+}
+
+.close-button {
+  cursor: pointer;
+  color: #fff;
+  outline: none;
+  border: none;
+  font-weight: 700;
+  border-radius: 0.2vw;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background-color: rgba(217, 83, 79, 0.7);
+}
+
+.close-button:hover {
+  color: #fff;
+  background-color: rgb(217, 83, 79);
+  transition: all 0.2s;
+}
+
+.info-button {
+  cursor: pointer;
+  color: #fff;
+  outline: none;
+  border: none;
+  font-weight: 700;
+  border-radius: 0.2vw;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background-color: rgba(91, 192, 222, 0.7);
+}
+
+.info-button:hover {
+  color: #fff;
+  background-color: rgb(91, 192, 222);
+  transition: all 0.2s;
+}
+
+.blue-button {
+  cursor: pointer;
+  color: #fff;
+  outline: none;
+  border: none;
+  font-weight: 700;
+  border-radius: 0.2vw;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background-color: rgba(2, 117, 216, 0.7);
+}
+
+.blue-button:hover {
+  color: #fff;
+  background-color: rgb(2, 117, 216);
+  transition: all 0.2s;
+}
+
+.alert-button {
+  cursor: pointer;
+  color: rgb(240, 173, 78);
+  outline: none;
+  border: 2px solid rgb(240, 173, 78);
+  font-weight: 700;
+  font-style: bold;
+  border-radius: 10px;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  background-color: rgb(247, 247, 247);
+}
+
+.alert-button:hover {
+  color: #fff;
+  background-color: rgba(240, 173, 78, 0.7);
+  transition: all 0.2s;
+  border: 2px solid white;
+}
+
+.gray-button {
+  cursor: pointer;
+  color: #000;
+  border: 2px solid rgba(60, 60, 60, 0.5);
+  background-color: rgb(247, 247, 247);
+
+  outline: none;
+  font-weight: 700;
+  border-radius: 0.2vw;
+}
+
+.gray-button:hover {
+  color: #fff;
+  border: 2px solid rgb(247, 247, 247);
+  background-color: rgba(60, 60, 60, 0.5);
+  transition: all 0.2s;
 }

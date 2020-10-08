@@ -7,10 +7,10 @@ import ModalClass from "./ModalClass";
 
 import Badge from "react-bootstrap/Badge";
 
-function HealthClass({ title, keyword, isLargeRow }) {
+function HealthClass({ title, keyword, token, uid }) {
   const [classes, setClasses] = useState([]);
   const [modalShow, setModalShow] = useState(false);
-  const [src, setSrc] = useState("");
+  const [story, setStory] = useState("");
   const [cltitle, setCltitle] = useState("");
   const [coach, setCoach] = useState({});
   const [tags, setTags] = useState([]);
@@ -19,20 +19,26 @@ function HealthClass({ title, keyword, isLargeRow }) {
   useEffect(() => {
     async function fetchVideo() {
       const request = await axios.get(
-        "http://j3a501.p.ssafy.io:8888/pts/class"
+        "http://j3a501.p.ssafy.io:8888/pts/class",
+        {
+          headers: {
+            "jwt-auth-token": token,
+          },
+        }
       );
       // console.log(request.data);
       setClasses(request.data);
+      // console.log(request.data);
       return request;
     }
     fetchVideo();
-  }, [keyword]);
+  }, [token]);
 
   async function fetchCoach(coachId) {
     const request = await axios.get(
       `http://j3a501.p.ssafy.io:8888/pts/coaches/${coachId}`
     );
-    console.log("asdf", request.data);
+    // console.log("asdf", request.data);
     setCoach(request.data);
     fetchName(request.data.uid);
     return request;
@@ -56,7 +62,9 @@ function HealthClass({ title, keyword, isLargeRow }) {
   return (
     <div className="rowrow">
       {/* title */}
-      <h2 className="row__title">{title}</h2>
+      <h2 className="row__title">
+        {title} <h4 className="hover">></h4>
+      </h2>
 
       {/* container -> posters */}
       <div className="row__posters">
@@ -66,40 +74,35 @@ function HealthClass({ title, keyword, isLargeRow }) {
             className="row__class__poster"
             style={{ width: "290px", height: "300px;" }}
           >
-            <img
-              key={cl.id}
+            <div
+              className={`row__class row__poster`}
+              style={{
+                backgroundSize: "cover",
+                backgroundImage: `url(${cl.thumbnail})`,
+                backgroundRepeat: "no-repeat",
+                width: "270px",
+                height: "200px",
+                display: "flex",
+              }}
               onClick={() => {
-                setSrc(cl.thumbnail);
+                setStory(cl.story);
                 setCltitle(cl.title);
-                setCoach(fetchCoach(cl.coachId));
+                setCoach(fetchCoach(cl.url));
                 setTags([cl.type1, cl.type2, cl.type3]);
                 setModalShow(true);
               }}
-              className={`row__class row__poster ${
-                isLargeRow && "row__posterLarge"
-              }`}
-              src={cl.thumbnail}
-              alt={cl.title}
-              style={{ position: "absolute" }}
-            />
-            <h1
-              style={{
-                position: "absolute",
-                color: "red",
-                fontWeight: "bold",
-              }}
             >
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              .
-            </h1>
-            <img
-              key={cl.id}
-              className={`row__class row__poster ${
-                isLargeRow && "row__posterLarge"
-              }`}
-              src={cl.thumbnail}
-              alt={cl.title}
-            />
+              <span
+                style={{
+                  fontSize: "30px",
+                  fontWeight: "bold",
+                  color: "red",
+                  marginLeft: "240px",
+                }}
+              >
+                .
+              </span>
+            </div>
             <h6 className="row__class__title" style={{ paddingTop: "200px;" }}>
               {truncate(cl.title, 18)}
             </h6>
@@ -119,11 +122,12 @@ function HealthClass({ title, keyword, isLargeRow }) {
         onHide={() => {
           setModalShow(false);
         }}
-        src={src}
+        story={story}
         title={cltitle}
         coach={coach}
         tags={tags}
         name={name}
+        uid={uid}
       />
     </div>
   );
