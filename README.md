@@ -1,6 +1,5 @@
 # :muscle: PTS (Personal Training Service) - Sub PJT 2 [2020.09.07 ~ 2020.09.18]
 ### [PTS 구경하기](http://j3a501.p.ssafy.io/)
-> ID : kim@test.com, PWD: 123
 ## :tophat: 팀소개 (멋쟁이신사)
 > #### 팀장 : 오인호 (Back-end)  
 > #### 팀원 : 김경재 (Front-end)  
