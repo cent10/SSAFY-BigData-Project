@@ -57,7 +57,13 @@ function Home() {
       {/* <!-- Masthead--> */}
       <Button
         variant="secondary"
-        style={{ position: "fixed", right: 20, bottom: 20 }}
+        style={{
+          position: "fixed",
+          right: 20,
+          bottom: 20,
+          width: 38,
+          height: 38,
+        }}
         onClick={() => {
           window.scrollTo(0, 0);
         }}
